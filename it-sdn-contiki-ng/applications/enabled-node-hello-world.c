@@ -75,14 +75,14 @@ PROCESS_THREAD(sdn_test_process, ev, data) {
     
       //char *data = "Hello World!\n";
       char *data4 = "Goodbye World!";
-      //char *data3 = "Test 3";
+      char *data3 = "Test 3";
       //char *data2 = "Test 4";
 
       //sdn_send((uint8_t *)data, strlen(data), 2018);
       //sdn_send((uint8_t *)data, strlen(data), 2018);
       
-      //sdn_send((uint8_t *)data3, strlen(data3), 2018);
-      //sdn_send((uint8_t *)data4, strlen(data4), 2018);
+      sdn_send((uint8_t *)data3, strlen(data3), 2018);
+      sdn_send((uint8_t *)data4, strlen(data4), 2018);
       sdn_send((uint8_t *)data4, strlen(data4), 2018);
   
     }
