@@ -1,0 +1,8 @@
+build
+obj_sky
+*.a
+*.map
+*.bak
+*_backup
+symbols.c
+symbols.h

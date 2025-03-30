@@ -1,0 +1,52 @@
+CONTIKI_PROJECT = enabled-node sink-node
+
+CONTIKI?=/opt/contiki
+
+# CONTIKIDIRS
+EXTERNALDIRS += ../contiki-sdn/
+EXTERNALDIRS += ../sdn-common/
+EXTERNALDIRS += ../contiki-sdn/sdn-cd/
+EXTERNALDIRS += ../contiki-sdn/sdn-nd/
+
+# CONTIKI_SOURCEFILES
+PROJECT_SOURCEFILES += sdn-core.c sdn-send.c sdn-network.c sdn-receive.c sdn-packetbuf.c \
+                        sdn-neighbor-table.c sdn-debug.c data-flow-table.c control-flow-table.c \
+                        sdn-addr.c sdn-queue.c sdn-process-packets.c sdn-unknown-route.c sdn-send-packet.c \
+                        energy-manager.c manage-info.c
+
+PROJECT_SOURCEFILES += dummy-neighbor-discovery.c dummy-controller-discovery.c
+PROJECT_SOURCEFILES += naive-nd.c null-cd.c
+PROJECT_SOURCEFILES += naive-directed-cd.c symmcheck-cd.c improved-naive-nd.c
+
+# Test related files
+# EXTERNALDIRS += ../tests/
+# PROJECT_SOURCEFILES += flow-table-tests.c src-route-tests.c
+
+DEFINES+=PROJECT_CONF_H=\"project-conf.h\"
+
+# Activates the Energy Manager module
+DEFINES+=ENERGY_MANAGER
+# DEFINES+=NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE=16
+DEFINES+=NBR_TABLE_CONF_MAX_NEIGHBORS=16
+
+#Defines which platform to be compiled.
+CFLAGS += -DSDN_ENABLED_NODE
+# Others [SDN_CONTROLLER_NODE, SDN_CONTROLLER_PC]
+
+#CFLAGS += -DDEBUG_SDN
+CFLAGS += -DSDN_METRIC
+#CFLAGS += -DDEMO
+
+#Management flag
+#CFLAGS += -DMANAGEMENT
+
+# Disabling other protocols in Contiki
+MAKE_NET = MAKE_NET_OTHER
+MAKE_ROUTING = MAKE_ROUTING_NULLROUTING
+
+# setting address size to 2 (ContikiNG default is 8)
+CFLAGS += -DLINKADDR_CONF_SIZE=2
+
+all: $(CONTIKI_PROJECT)
+
+include $(CONTIKI)/Makefile.include

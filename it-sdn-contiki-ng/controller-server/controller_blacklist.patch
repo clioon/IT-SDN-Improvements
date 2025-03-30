@@ -1,0 +1,349 @@
+Index: digraph/dijkstra.c
+===================================================================
+--- digraph/dijkstra.c	(revision 2620)
++++ digraph/dijkstra.c	(working copy)
+@@ -63,7 +63,7 @@
+ 
+ route_ptr widest_shortest_path_algorithm(unsigned char *vertice_id_from, unsigned char *vertice_id_to);
+ 
+-route_ptr shortest_path_algorithm(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path);
++route_ptr shortest_path_algorithm(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path,  unsigned char* blacklisted);
+ 
+ route_ptr checks_widest_shortest_route(route_ptr current_route);
+ 
+@@ -160,7 +160,7 @@
+   return vertice;
+ }
+ 
+-route_ptr dijkstra_shortest_path(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path) {
++route_ptr dijkstra_shortest_path(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path, unsigned char* blacklisted) {
+ 
+   if (PATH_FINDER_ALGORITHM == WIDEST_SHORTEST_PATH) {
+ 
+@@ -168,11 +168,11 @@
+ 
+   } else if (PATH_FINDER_ALGORITHM == SHORTEST_PATH) {
+ 
+-    return shortest_path_algorithm(vertice_id_from, vertice_id_to, demand_bidir_path);
++    return shortest_path_algorithm(vertice_id_from, vertice_id_to, demand_bidir_path, blacklisted);
+   }
+ }
+ 
+-route_ptr shortest_path_algorithm(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path) {
++route_ptr shortest_path_algorithm(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path, unsigned char* blacklisted) {
+ 
+   route_ptr route_head = NULL;
+ 
+@@ -208,7 +208,10 @@
+ 
+         back_link = digraph_find_edge(edge->vertice, vertice);
+ 
+-        if(edge->vertice->visited == 0 && ( (back_link != NULL) | !demand_bidir_path )) {
++        if( edge->vertice->visited == 0 &&
++           ( (back_link != NULL) | !demand_bidir_path ) &&
++           ( blacklisted == NULL || (blacklisted != NULL && memcmp(edge->vertice->vertice_id , blacklisted, DIGRAPH_VERTICE_ID_SIZE) != 0))
++          ) {
+ 
+           edge_weight = edge->weight;
+ 
+Index: digraph/dijkstra.h
+===================================================================
+--- digraph/dijkstra.h	(revision 2620)
++++ digraph/dijkstra.h	(working copy)
+@@ -64,7 +64,7 @@
+    int unidir;
+ };
+ 
+-route_ptr dijkstra_shortest_path(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path);
++route_ptr dijkstra_shortest_path(unsigned char *vertice_id_from, unsigned char *vertice_id_to, unsigned char demand_bidir_path, unsigned char* blacklisted);
+ 
+ route_ptr dijkstra_checks_route(route_ptr route);
+ 
+Index: sdn-flow-table-cache.c
+===================================================================
+--- sdn-flow-table-cache.c	(revision 2620)
++++ sdn-flow-table-cache.c	(working copy)
+@@ -187,6 +187,19 @@
+   return flow_id_table;
+ }
+ 
++void sdn_flow_id_table_reset_countdown(unsigned char* source, uint16_t flowid, unsigned char* next_hop, action_t action) {
++
++  flow_id_table_ptr field = sdn_flow_id_table_find(source, flowid);
++
++  if(field != NULL) {
++
++    if(field->online == 0 && memcmp(field->next_hop, next_hop, SDNADDR_SIZE) == 0 && field->action == action) {
++      field->countdown = SDN_RETRANSMIT_TIME_S;
++    }
++  }
++
++}
++
+ void sdn_flow_id_table_set_online(unsigned char* source, uint16_t flowid, unsigned char* next_hop, action_t action) {
+ 
+   flow_id_table_ptr field = sdn_flow_id_table_find(source, flowid);
+@@ -403,6 +416,19 @@
+   return flow_address_table;
+ }
+ 
++void sdn_flow_address_table_reset_countdown(unsigned char* source, unsigned char* target, unsigned char* next_hop, action_t action) {
++
++  flow_address_table_ptr field = sdn_flow_address_table_find(source, target);
++
++  if(field != NULL) {
++
++    if(field->online == 0 && memcmp(field->next_hop, next_hop, SDNADDR_SIZE) == 0 && field->action == action) {
++      field->countdown = SDN_RETRANSMIT_TIME_S;
++    }
++  }
++
++}
++
+ void sdn_flow_address_table_set_online(unsigned char* source, unsigned char* target, unsigned char* next_hop, action_t action) {
+ 
+   flow_address_table_ptr field = sdn_flow_address_table_find(source, target);
+@@ -411,6 +437,7 @@
+ 
+     if(memcmp(field->next_hop, next_hop, SDNADDR_SIZE) == 0 && field->action == action) {
+       field->online = 1;
++      field->countdown = 240; // control routes unmaintained after 4 minutes
+       // SDN_DEBUG ("### Ack flow address confirmed. source: ");
+       // sdnaddr_print((sdnaddr_t *)source);
+       // SDN_DEBUG ("target: ");
+@@ -444,6 +471,35 @@
+   return flow_address_table_head;
+ }
+ 
++flow_address_table_ptr sdn_flow_address_table_remove(flow_address_table_ptr flow_address_table_remove) {
++  flow_address_table_ptr flow_address_table_previous = NULL;
++
++  flow_address_table_ptr flow_address_table = flow_address_table_head;
++
++  while(flow_address_table != NULL) {
++
++    if(flow_address_table == flow_address_table_remove) {
++
++      if(flow_address_table_previous == NULL) {
++        flow_address_table_head = flow_address_table->next;
++        flow_address_table_previous = flow_address_table_head;
++      } else {
++        flow_address_table_previous->next = flow_address_table->next;
++      }
++
++      free(flow_address_table_remove);
++
++      break;
++
++    } else {
++      flow_address_table_previous = flow_address_table;
++      flow_address_table = flow_address_table->next;
++    }
++  }
++
++  return flow_address_table_previous;
++}
++
+ uint8_t sdn_flow_address_table_remove_source(unsigned char* source_address) {
+ 
+   uint8_t ret = 0;
+Index: sdn-flow-table-cache.h
+===================================================================
+--- sdn-flow-table-cache.h	(revision 2620)
++++ sdn-flow-table-cache.h	(working copy)
+@@ -109,6 +109,8 @@
+ 
+ flow_id_table_ptr sdn_flow_id_table_update_action(unsigned char* source, uint16_t flowid, unsigned char* next_hop, action_t action);
+ 
++void sdn_flow_id_table_reset_countdown(unsigned char* source, uint16_t flowid, unsigned char* next_hop, action_t action);
++
+ void sdn_flow_id_table_set_online(unsigned char* source, uint16_t flowid, unsigned char* next_hop, action_t action);
+ 
+ flow_id_table_ptr sdn_flow_id_table_find(unsigned char* source, uint16_t flowid);
+@@ -124,6 +126,8 @@
+ 
+ flow_address_table_ptr sdn_flow_address_table_update_action(unsigned char* source, unsigned char* target, unsigned char* next_hop, action_t action);
+ 
++void sdn_flow_address_table_reset_countdown(unsigned char* source, unsigned char* target, unsigned char* next_hop, action_t action);
++
+ void sdn_flow_address_table_set_online(unsigned char* source, unsigned char* target, unsigned char* next_hop, action_t action);
+ 
+ flow_address_table_ptr sdn_flow_address_table_find(unsigned char* source, unsigned char* target);
+@@ -130,6 +134,7 @@
+ 
+ flow_address_table_ptr sdn_flow_address_table_get();
+ 
++flow_address_table_ptr sdn_flow_address_table_remove(flow_address_table_ptr);
+ uint8_t sdn_flow_address_table_remove_source(unsigned char* source_address);
+ 
+ // flow_table_field_ptr flow_table_find_flow(unsigned char* source, uint16_t flowid);
+Index: sdn-reliability.c
+===================================================================
+--- sdn-reliability.c	(revision 2620)
++++ sdn-reliability.c	(working copy)
+@@ -41,10 +41,10 @@
+ 
+ void sdn_reliability_timer_event() {
+ 
++  int ret;
+   flow_id_table_ptr flow_id_table_field = sdn_flow_id_table_get();
+ 
+   while(flow_id_table_field != NULL) {
+-
+     //For Hysteresis
+     if(flow_id_table_field->countdown >= 0) {
+ 
+@@ -57,14 +57,17 @@
+ 
+ #ifdef SDN_SOURCE_ROUTED
+       SDN_DEBUG("SDN_SOURCE_ROUTED\n");
+-      send_src_rtd_data_flow_setup((sdnaddr_t*)flow_id_table_field->source, flow_id_table_field->flowid, (sdnaddr_t*)flow_id_table_field->next_hop, flow_id_table_field->action);
++      ret = send_src_rtd_data_flow_setup((sdnaddr_t*)flow_id_table_field->source, flow_id_table_field->flowid, (sdnaddr_t*)flow_id_table_field->next_hop, flow_id_table_field->action);
+ #else
+       SDN_DEBUG("NOT SDN_SOURCE_ROUTED\n");
+-      sdn_send_data_flow_setup((sdnaddr_t*)flow_id_table_field->source, flow_id_table_field->flowid, (sdnaddr_t*)flow_id_table_field->next_hop, flow_id_table_field->action);
++      ret = sdn_send_data_flow_setup((sdnaddr_t*)flow_id_table_field->source, flow_id_table_field->flowid, (sdnaddr_t*)flow_id_table_field->next_hop, flow_id_table_field->action);
+ #endif
+ 
+       //TODO: update time for retransmit when packet was sent by serial/radio
+-      flow_id_table_field->countdown = SDN_RETRANSMIT_TIME_S;
++      // flow_id_table_field->countdown = SDN_RETRANSMIT_TIME_S;
++      if (ret == SDN_ERROR) {
++        flow_id_table_field->countdown = SDN_RETRANSMIT_TIME_S;
++      }
+     }
+ 
+     flow_id_table_field = flow_id_table_field->next;
+@@ -79,23 +82,33 @@
+       flow_address_search->countdown--;
+     }
+ 
+-    if (flow_address_search->online == 0 && flow_address_search->countdown == 0) {
++    if (flow_address_search->countdown == 0) {
++      if (flow_address_search->online == 0) {
+ 
+-      SDN_DEBUG("Retransmitting control flow setup with");
++        SDN_DEBUG("Retransmitting control flow setup with");
+ 
++
+ #ifdef SDN_SOURCE_ROUTED
+-      SDN_DEBUG("SDN_SOURCE_ROUTED\n");
+-      send_src_rtd_control_flow_setup((sdnaddr_t*)flow_address_search->source, (sdnaddr_t*)flow_address_search->target, (sdnaddr_t*)flow_address_search->next_hop, flow_address_search->action);
++        SDN_DEBUG("SDN_SOURCE_ROUTED\n");
++        ret = send_src_rtd_control_flow_setup((sdnaddr_t*)flow_address_search->source, (sdnaddr_t*)flow_address_search->target, (sdnaddr_t*)flow_address_search->next_hop, flow_address_search->action);
+ #else
+-      SDN_DEBUG("NOT SDN_SOURCE_ROUTED\n");
+-      sdn_send_control_flow_setup((sdnaddr_t*)flow_address_search->source, (sdnaddr_t*)flow_address_search->target, (sdnaddr_t*)flow_address_search->next_hop, flow_address_search->action);
++        SDN_DEBUG("NOT SDN_SOURCE_ROUTED\n");
++        ret = sdn_send_control_flow_setup((sdnaddr_t*)flow_address_search->source, (sdnaddr_t*)flow_address_search->target, (sdnaddr_t*)flow_address_search->next_hop, flow_address_search->action);
+ #endif
++        if (ret == SDN_ERROR) {
++          flow_address_search->countdown = SDN_RETRANSMIT_TIME_S;
++        }
+ 
+       //TODO: update time for retransmit when packet was sent by serial/radio
+-      flow_address_search->countdown = SDN_RETRANSMIT_TIME_S;
++      // flow_address_search->countdown = SDN_RETRANSMIT_TIME_S;
++      } else {
++        SDN_DEBUG("Address flow expired!\n");
++        flow_address_search = sdn_flow_address_table_remove(flow_address_search);
++      }
+     }
+ 
+-    flow_address_search = flow_address_search->next;
++    if (flow_address_search != NULL)
++      flow_address_search = flow_address_search->next;
+ 
+   }
+ }
+\ No newline at end of file
+Index: sdn-serial-send.c
+===================================================================
+--- sdn-serial-send.c	(revision 2620)
++++ sdn-serial-send.c	(working copy)
+@@ -35,6 +35,7 @@
+ #include "sdn-process-packets.h"
+ #include "mainwindow_wrapper.h"
+ #include "sdn-serial-packet.h"
++#include "sdn-flow-table-cache.h"
+ 
+ typedef enum {
+   SDN_SEND_IDLE,
+@@ -159,6 +160,23 @@
+       break;
+   }
+ 
++  if (SDN_HEADER(queue_data->data)->type == SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP) {
++    sdn_flow_id_table_reset_countdown(
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_src_rtd_data_flow_setup_t, real_destination).u8,
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_data_flow_setup_t, flowid),
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_data_flow_setup_t, action_parameter).u8,
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_data_flow_setup_t, action_id)
++    );
++  }
++  if (SDN_HEADER(queue_data->data)->type == SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP) {
++    sdn_flow_address_table_reset_countdown(
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_src_rtd_control_flow_setup_t, real_destination).u8,
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_control_flow_setup_t, route_destination).u8,
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_control_flow_setup_t, action_parameter).u8,
++      SDN_PACKET_GET_FIELD(queue_data->data, sdn_control_flow_setup_t, action_id)
++    );
++  }
++
+   sdn_packetbuf_pool_put((sdn_packetbuf*) queue_data->data);
+ 
+   sdn_send_status = SDN_SEND_IDLE;
+Index: sdn-util-controller.c
+===================================================================
+--- sdn-util-controller.c	(revision 2628)
++++ sdn-util-controller.c	(working copy)
+@@ -33,13 +33,17 @@
+ #include "sdn-common-send.h"
+ #include <stdlib.h>
+ 
+-route_ptr get_better_route(uint8_t *source, uint8_t *target, route_ptr route_better, unsigned char demand_bidir_path);
++route_ptr get_better_route(uint8_t *source, uint8_t *target, route_ptr route_better, unsigned char demand_bidir_path, uint8_t* blacklisted);
+ 
+ /**********************************************************************************************************************************/
+-route_ptr get_better_route(uint8_t *source, uint8_t *target, route_ptr route_better, unsigned char demand_bidir_path) {
++route_ptr get_better_route(uint8_t *source, uint8_t *target, route_ptr route_better, unsigned char demand_bidir_path, uint8_t* blacklisted) {
+ 
+-  route_ptr route_search = dijkstra_shortest_path(source, target, demand_bidir_path);
++  route_ptr route_search = dijkstra_shortest_path(source, target, demand_bidir_path, blacklisted);
+ 
++  // if (route_search == NULL and blacklisted != NULL) {
++  //   route_search = dijkstra_shortest_path(source, target, demand_bidir_path, NULL);
++  // }
++
+   if(route_search != NULL) {
+ 
+     if(route_better == NULL) {
+@@ -69,7 +73,7 @@
+ 
+   route_ptr route_better = NULL;
+ 
+-  route_better = get_better_route(source, target, route_better, CONTROLLER_BIDIR_ROUTES_ONLY);
++  route_better = get_better_route(source, target, route_better, CONTROLLER_BIDIR_ROUTES_ONLY, NULL);
+ 
+   return route_better;
+ }
+@@ -81,12 +85,18 @@
+ 
+   flow_id_list_table_ptr flow_id_list_table_field = sdn_flow_id_list_table_get();
+ 
++  uint8_t* blacklisted = NULL;
++
++  if (flowid != SDN_CONTROLLER_FLOW){
++    blacklisted = sdn_node_addr.u8;
++  }
++
+   // Getting all possible targets from specific flow id to calculate better route.
+   while(flow_id_list_table_field != NULL) {
+ 
+     if(flow_id_list_table_field->flowid == flowid) {
+ 
+-      route_better = get_better_route(source, flow_id_list_table_field->target, route_better, CONTROLLER_BIDIR_ROUTES_ONLY);
++      route_better = get_better_route(source, flow_id_list_table_field->target, route_better, CONTROLLER_BIDIR_ROUTES_ONLY, blacklisted);
+     }
+ 
+     flow_id_list_table_field = flow_id_list_table_field->next;

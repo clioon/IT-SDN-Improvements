@@ -1,0 +1,35 @@
+CONTIKI?=/opt/contiki
+
+EXTERNALDIRS += ../contiki-sdn/
+EXTERNALDIRS += ../sdn-common/
+EXTERNALDIRS += ../contiki-sdn/sdn-cd/
+EXTERNALDIRS += ../contiki-sdn/sdn-nd/
+
+PROJECT_SOURCEFILES += sdn-network.c sdn-debug.c sdn-addr.c  dummy-controller-discovery.c sdn-neighbor-table.c sdn-send-packet.c sdn-packetbuf.c sdn-serial.c sdn-send.c sdn-queue.c sdn-receive.c naive-directed-cd.c null-cd.c sdn-serial.c naive-nd.c dummy-neighbor-discovery.c dummy-controller-discovery.c energy-manager.c manage-info.c symmcheck-cd.c improved-naive-nd.c
+
+
+DEFINES+=PROJECT_CONF_H=\"project-conf.h\"
+# DEFINES+=NETSTACK_CONF_RDC_CHANNEL_CHECK_RATE=16
+DEFINES+=NBR_TABLE_CONF_MAX_NEIGHBORS=100
+
+#Defines which platform to be compiled.
+CFLAGS += -DSDN_CONTROLLER_NODE
+
+# CFLAGS += -DDEBUG_SDN
+CFLAGS += -DSDN_METRIC
+#CFLAGS += -DDEMO
+
+#Management flag
+#CFLAGS += -DMANAGEMENT
+
+# Disabling other protocols in Contiki
+# MAKE_NET = 2
+MAKE_NET = MAKE_NET_OTHER
+MAKE_ROUTING = MAKE_ROUTING_NULLROUTING
+
+# setting address size to 2 (ContikiNG default is 8)
+CFLAGS += -DLINKADDR_CONF_SIZE=2
+
+all: controller-node
+
+include $(CONTIKI)/Makefile.include

@@ -1,0 +1,91 @@
+'delivery_data'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);99.9076354679803;0.29394516366048773;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);99.9076354679803;0.29394516366048773;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);99.85007496251875;0.19478684612376684;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);99.96251874062969;0.11928209540553066;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);99.88590263691682;0.1789202768394145;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);99.9366125760649;0.15274527454739786;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);99.7615553925165;0.30331027292606705;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);99.85326485693324;0.23830305641264762;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);99.84241750092696;0.2615348606491597;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);99.6662958843159;1.4133709385077269;
+
+'delivery_ctrl'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);100.0;0.0;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);100.0;0.0;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);100.0;0.0;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);100.0;0.0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);100.0;0.0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);100.0;0.0;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);100.0;0.0;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);100.0;0.0;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);100.0;0.0;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);100.0;0.0;
+
+'delay_data'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);70552.61710391713;8500.080619633765;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);67401.11564138357;5026.433008175228;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);99287.15720053592;6991.004689754572;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);100700.58778521775;36021.63460179709;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);169962.3229938124;66870.59974186435;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);128367.07838491228;11236.124508125056;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);516615.81542185723;465647.2058748764;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);367744.55217170774;317254.4935433056;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);394119.11794736;259193.33588631736;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);631235.7384246371;327476.9705204761;
+
+'delay_ctrl'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);1.0;0.0;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);1.0;0.0;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);1.0;0.0;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);1.0;0.0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);1.0;0.0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);1.0;0.0;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);1.0;0.0;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);1.0;0.0;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);1.0;0.0;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);1.0;0.0;
+
+'ctrl_overhead'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);2525258.0;217104.3594467664;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);2272498.5;601457.655524162;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);5931117.5;1488374.7768235514;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);5958333.75;1738761.7902419055;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);13834591.25;2013459.6763116135;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);13566499.75;4063620.0187351624;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);22940302.75;1198697.312752483;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);22372842.0;6063872.36821677;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);35325192.333333336;23482631.083084192;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);483570521.75;799426749.7080817;
+
+'fg_time'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);73945334.5;8115737.596369196;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);71596787.75;687674.6689025162;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);81690706.0;520115.7846811114;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);81342634.0;0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);80860056.0;2816825.8218148947;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);80961494.0;286773.1157056374;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);79267386.33333333;24942934.402440857;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);76306542.0;13476455.70139599;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);82605422.33333333;1348533.0558246197;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);82118802.0;197670.42708467407;
+
+'energy'
+scenario;average;std deviation
+(16, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);0;0;
+(16, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);0;0;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);0;0;
+(25, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);0;0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);0;0;
+(36, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);0;0;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);0;0;
+(49, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);0;0;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-bidir', 1);0;0;
+(64, 'GRID-FULL', 'IM-SC-nullrdc-unidir', 1);0;0;
+
