@@ -25,6 +25,12 @@
  *
  */
 
+
+ #define SDN_PACKET_IS_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved & 0x1 )
+
+#include "stdint.h"
+#include "sdn-packetbuf.h"
+#include "sdn-protocol.h"
 #include "sdn-queue.h"
 #include "sdn-debug.h"
 #include "sdn-constants.h"
@@ -267,9 +273,250 @@ sdn_recv_queue_data_t* sdn_recv_queue_dequeue() {
   return t;
 }
 
+void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
+
+  printf("Header e flowid: ");
+  for (int i = 0; i < header_size; i++){
+      printf("%02X ", p[i]);
+  }
+
+  printf("\ntamanho completo: %d\n", len);
+
+  
+  if (SDN_PACKET_IS_MERGED(p)) {
+      uint8_t deslocamento = header_size;
+      uint8_t num_sub = p[deslocamento];
+      deslocamento++;
+      printf("\tSubpacotes: %d\n", num_sub);
+      
+      for (int i = 0; i < num_sub; i++) {
+          uint16_t len_sub = p[deslocamento];
+          printf("\tSub pacote #%d (len %d): ", i, len_sub);
+          deslocamento++;
+          for (int j = 0; j < len_sub; j++)
+              printf("%c ", p[deslocamento + j]);
+          deslocamento += len_sub;
+          printf("\n");
+      }
+              
+  
+  } else {
+      printf("\tPayload: ");
+      
+      for (int i = header_size; i < len; i++)
+          printf("%c ", p[i]);
+  
+      printf("\n");
+  }
+}
+
+uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size){
+  return 0;
+}
+
+
+uint8_t sdn_recv_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t pos, uint8_t header_size){
+
+  //eliminate the old packet
+  sdn_packetbuf_pool_put((sdn_packetbuf *)sdn_recv_queue_data[pos].data);
+
+  //replace by the new one
+  sdn_recv_queue_data[pos].len = len;
+  sdn_recv_queue_data[pos].data = data;
+
+#if defined (MANAGEMENT) && defined (SDN_ENABLED_NODE)
+  sdn_recv_queue_data[pos].time = clock_time();
+#endif
+
+  SDN_DEBUG ("Old duplicate packet has been replaced by the new one\n");
+  imprimir(data, len, header_size);
+  return 1;
+
+}
+
+uint8_t sdn_recv_queue_compare_packets(uint8_t *packet1, uint8_t *packet2, uint16_t len1, uint16_t len2){
+
+  if(SDN_HEADER(packet1)->type != SDN_HEADER(packet2)->type) return 0;
+  uint16_t header_size = sizeof(sdn_header_t);
+
+  //in order to verify if the destination of the packets are the same, we need to treat by the routing type
+
+  //if routed by address:
+  if(SDN_ROUTED_BY_ADDR(packet1)){
+    sdnaddr_t *dest1 = &(SDN_GET_PACKET_ADDR(packet1));
+    sdnaddr_t *dest2 = &(SDN_GET_PACKET_ADDR(packet2));
+
+    if(memcmp(dest1, dest2, sizeof(sdnaddr_t)) == 0){
+      SDN_DEBUG("Routed by address packets with the same destination!\n");
+
+      //verify if the payloads are duplicate, if it is return 1, else if the type are equal but the payloads arent return 2
+      if(memcmp(packet1 + header_size, packet2 + header_size, len1 - header_size) == 0) return 1;
+
+      else if(SDN_HEADER(packet1)->type == SDN_HEADER(packet2)->type) return 2;
+    }
+  }
+
+  //if routed by flowID:
+  if(SDN_ROUTED_BY_FLOWID(packet1)){
+    flowid_t *dest1 = &(SDN_GET_PACKET_FLOW(packet1));
+    flowid_t *dest2 = &(SDN_GET_PACKET_FLOW(packet2));
+
+    if(memcmp(dest1, dest2, sizeof(flowid_t)) == 0){
+      SDN_DEBUG("Routed by flowID packets with the same destination!\n");
+      if(memcmp(packet1 + header_size, packet2 + header_size, len1 - header_size) == 0) return 1;
+
+      else if(SDN_HEADER(packet1)->type == SDN_HEADER(packet2)->type) return 2;
+    }
+  }
+
+  //if routed by Source:
+  if(SDN_ROUTED_BY_SRC(packet1)){
+    sdnaddr_t *dest1 = &(SDN_GET_PACKET_REAL_DEST(packet1));
+    sdnaddr_t *dest2 = &(SDN_GET_PACKET_REAL_DEST(packet2));
+
+    if(memcmp(dest1, dest2, sizeof(sdnaddr_t)) == 0){
+      SDN_DEBUG("Routed by source packets with the same destination!\n");
+      if(memcmp(packet1 + header_size, packet2 + header_size, len1 - header_size) == 0) return 1;
+
+      else if(SDN_HEADER(packet1)->type == SDN_HEADER(packet2)->type) return 2;
+    }
+  }
+
+  return 0;
+}
+
+uint8_t sdn_recv_queue_is_same_type(uint8_t *data, uint16_t len, uint8_t header_size){
+
+  uint8_t pos = sdn_recv_queue.head;
+
+  while(pos != sdn_recv_queue.tail){
+    
+    //verify if it is just the same type (== 2)
+    if(sdn_recv_queue_compare_packets(data, sdn_recv_queue_data[pos].data, len, sdn_recv_queue_data[pos].len) == 2){
+
+      SDN_DEBUG("Duplicate packet type!: type:%x \n", SDN_HEADER(data)->type);
+
+      //if the treatment went well, return 1. Else it returns 0 and the packet is treated normally
+      return sdn_recv_queue_combine_packets(data, len, pos, header_size);
+    }
+
+    pos = (pos+1) % sdn_recv_queue.max_size;
+  }
+
+  return 0;
+}
+
+uint8_t sdn_recv_queue_is_duplicate(uint8_t *data, uint16_t len, uint8_t header_size){
+
+  uint8_t pos = sdn_recv_queue.head;
+
+  while(pos != sdn_recv_queue.tail){
+    
+    //verify if it is duplicate (== 1)
+    if(sdn_recv_queue_compare_packets(data, sdn_recv_queue_data[pos].data, len, sdn_recv_queue_data[pos].len) == 1){
+
+      SDN_DEBUG("Duplicate packet!: type:%x \n", SDN_HEADER(data)->type);
+      
+      //if the treatment went well, return 1. Else it returns 0 and the packet is treated normally
+      return sdn_recv_queue_replace_old_packet(data, len, pos, header_size);
+    }
+
+    pos = (pos+1) % sdn_recv_queue.max_size;
+  }
+
+  return 0;
+}
+
+uint8_t sdn_recv_queue_verify_per_packet_type(uint8_t *data, uint16_t len) {
+  switch (SDN_HEADER(data)->type) {
+    case SDN_PACKET_CONTROL_FLOW_SETUP:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_control_flow_setup_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_control_flow_setup_t));
+      return 0;
+
+    case SDN_PACKET_DATA_FLOW_SETUP:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_data_flow_setup_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_data_flow_setup_t));
+      return 0;
+
+    case SDN_PACKET_CONTROL_FLOW_REQUEST:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_control_flow_request_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_control_flow_request_t));
+      return 0;
+
+    case SDN_PACKET_DATA_FLOW_REQUEST:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_data_flow_request_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_data_flow_request_t));
+      return 0;
+
+    case SDN_PACKET_NEIGHBOR_REPORT:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_neighbor_report_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_neighbor_report_t));
+      return 0;
+
+    case SDN_PACKET_DATA:
+      return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_data_t));
+      //return 0;
+
+    case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_src_rtd_control_flow_setup_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_src_rtd_control_flow_setup_t));
+      return 0;
+
+    case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_src_rtd_data_flow_setup_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_src_rtd_data_flow_setup_t));
+      return 0;
+
+    case SDN_PACKET_MULTIPLE_CONTROL_FLOW_SETUP:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_mult_control_flow_setup_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_mult_control_flow_setup_t));
+      return 0;
+
+    case SDN_PACKET_MULTIPLE_DATA_FLOW_SETUP:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_mult_data_flow_setup_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_mult_data_flow_setup_t));
+      return 0;
+
+    case SDN_PACKET_ACK_BY_FLOW_ID:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_ack_by_flow_id_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_ack_by_flow_id_t));
+      return 0;
+
+    case SDN_PACKET_ACK_BY_FLOW_ADDRESS:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_ack_by_flow_address_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_ack_by_flow_address_t));
+      return 0;
+
+    case SDN_PACKET_SRC_ROUTED_ACK:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_src_rtd_ack_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_src_rtd_ack_t));
+      return 0;
+
+    case SDN_PACKET_MNGT_CONT_SRC_RTD:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_src_rtd_cont_mngt_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_src_rtd_cont_mngt_t));
+      return 0;
+
+    case SDN_PACKET_MNGT_NODE_DATA:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_flow_id_mngt_node_data_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_flow_id_mngt_node_data_t));
+      return 0;
+
+    case SDN_PACKET_GENERIC_FLOW:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_generic_flow_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_generic_flow_t));
+      return 0;
+
+    case SDN_PACKET_GENERIC_SRC_ROUTED:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_generic_src_rtd_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_generic_src_rtd_t));
+      return 0;
+
+    case SDN_PACKET_GENERIC_ADDR:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_generic_addr_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_generic_addr_t));
+      return 0;
+
+    case SDN_PACKET_PHASE_INFO:
+      //return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_phase_info_flow_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_phase_info_flow_t));
+      return 0;
+
+    default:
+      return 0;
+  }
+}
+
 uint8_t sdn_recv_queue_enqueue(uint8_t *data, uint16_t len) {
 
-  if (sdn_recv_queue_size() < sdn_recv_queue_maxSize()) {
+  // verify if packet needs treatment, if so, treat it and if the treatment went well, returns success
+  if(sdn_recv_queue_verify_per_packet_type(data, len) == 1){
+    return SDN_SUCCESS;
+  }
+  else if (sdn_recv_queue_size() < sdn_recv_queue_maxSize()) {
     sdn_recv_queue_data[sdn_recv_queue.tail].data = data;
     sdn_recv_queue_data[sdn_recv_queue.tail].len = len;
 #if defined (MANAGEMENT) && defined (SDN_ENABLED_NODE)
@@ -279,8 +526,8 @@ uint8_t sdn_recv_queue_enqueue(uint8_t *data, uint16_t len) {
     if (sdn_recv_queue.tail == sdn_recv_queue.max_size) sdn_recv_queue.tail = 0;
     sdn_recv_queue.size+= 1;
 
-    //SDN_DEBUG ("Packet for recv, enqueued!\n");
-    //sdn_recv_queue_print();
+    SDN_DEBUG ("Packet for recv, enqueued!\n");
+    sdn_recv_queue_print();
 
     return SDN_SUCCESS;
   } else {
