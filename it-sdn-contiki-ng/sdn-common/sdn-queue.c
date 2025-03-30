@@ -26,7 +26,11 @@
  */
 
 
- #define SDN_PACKET_IS_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved & 0x1 )
+#define SDN_PACKET_IS_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved & 0x1 )
+
+#define SDN_PACKET_SET_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved |= 0x1 )
+
+#define SDN_GET_NUM_SUBPACKETS(packet_ptr) (SDN_PACKET_IS_MERGED(packet_ptr) ? (packet_ptr)[sizeof(sdn_data_t)] : 1)
 
 #include "stdint.h"
 #include "sdn-packetbuf.h"
@@ -274,7 +278,6 @@ sdn_recv_queue_data_t* sdn_recv_queue_dequeue() {
 }
 
 void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
-
   printf("Header e flowid: ");
   for (int i = 0; i < header_size; i++){
       printf("%02X ", p[i]);
@@ -284,34 +287,141 @@ void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
 
   
   if (SDN_PACKET_IS_MERGED(p)) {
-      uint8_t deslocamento = header_size;
-      uint8_t num_sub = p[deslocamento];
+    uint8_t deslocamento = header_size;
+    uint8_t num_sub = p[deslocamento];
+    deslocamento++;
+    printf("\tSubpacotes: %d\n", num_sub);
+    
+    for (int i = 0; i < num_sub; i++) {
+      uint16_t len_sub = p[deslocamento];
+      printf("\tSub pacote #%d (len %d): ", i, len_sub);
       deslocamento++;
-      printf("\tSubpacotes: %d\n", num_sub);
-      
-      for (int i = 0; i < num_sub; i++) {
-          uint16_t len_sub = p[deslocamento];
-          printf("\tSub pacote #%d (len %d): ", i, len_sub);
-          deslocamento++;
-          for (int j = 0; j < len_sub; j++)
-              printf("%c ", p[deslocamento + j]);
-          deslocamento += len_sub;
-          printf("\n");
+      for (int j = 0; j < len_sub; j++) {
+        printf("%c ", p[deslocamento + j]);
       }
-              
-  
-  } else {
-      printf("\tPayload: ");
-      
-      for (int i = header_size; i < len; i++)
-          printf("%c ", p[i]);
-  
+      deslocamento += len_sub;
       printf("\n");
+    }
+  } else {
+    printf("\tPayload: ");
+    
+    for (int i = header_size; i < len; i++){
+      printf("%c ", p[i]);
+    }
+    printf("\n");
   }
 }
 
+uint16_t sdn_merged_new_length(uint8_t *p, uint8_t header_size) {
+  uint16_t new_len = header_size; // header length
+  uint8_t deslocated = header_size;
+  uint8_t num_subpackets = p[deslocated]; 
+  new_len += 1;  // byte that stores the number of subpackets
+  deslocated++;
+
+  
+  for (int i = 0; i < num_subpackets; i++) {
+      uint8_t sub_len = p[deslocated];  // subpacket length
+      new_len += 1 + sub_len;         // byte that stores subpacket len + subpacket len
+      deslocated += 1 + sub_len;
+  }
+  return new_len;
+}
+
 uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size){
-  return 0;
+  
+  uint8_t *p2 = sdn_recv_queue_data[pos].data;
+  uint16_t *p2_len = &(sdn_recv_queue_data[pos].len); 
+  printf("max_pack: %d, len1: %d, len2: %d\n", SDN_MAX_PACKET_SIZE, p1_len, *p2_len);
+
+  uint8_t num_sub_p1 = SDN_GET_NUM_SUBPACKETS(p1);
+  uint8_t deslocated_p1 = header_size; // set deslocated_p1 to skip the header
+  
+  uint8_t num_sub_p2 = SDN_GET_NUM_SUBPACKETS(p2);
+  uint8_t deslocated_p2 = header_size;
+
+    
+  if(p1_len + *p2_len > SDN_MAX_PACKET_SIZE){
+    printf("Max number of merged packets reached!  p1 subpackets: %d,  p2 subpackets: %d\n", num_sub_p1, num_sub_p2);
+    return 0;
+  }
+
+  // if p2 is already merged, deslocate to the end of the payload
+  if (SDN_PACKET_IS_MERGED(p2)) {
+    deslocated_p2 = *p2_len;
+  } 
+  else{
+    // if p2 is not merged, reajust the p2 structure to match the merged structure
+    SDN_PACKET_SET_MERGED(p2);
+    uint8_t extra_bytes = 2;
+    uint16_t p2_payload_len = *p2_len - header_size;
+
+    //open space to input the extra bytes to store the #subpackets and the first subpacket length
+    for (int i = *p2_len + (extra_bytes - 1); i > header_size; i--) {
+      p2[i] = p2[i-extra_bytes];
+    }
+
+    p2[deslocated_p2] = 1; // initialize the number of subpacket to 1
+    deslocated_p2++;
+    p2[deslocated_p2] = p2_payload_len; // insert the first subpacket len
+    deslocated_p2++; // payload 1 already inserted
+    deslocated_p2 += p2_payload_len;
+  }
+
+  // analize the p1 packet
+  
+  uint16_t p1_sub_payload_len = p1_len - header_size;
+
+  if (SDN_PACKET_IS_MERGED(p1)){
+    deslocated_p1++;
+
+    // insert the subpackets in p1 to p2, one by one
+    for(int i = 0; i < num_sub_p1; i++){
+      p1_sub_payload_len = p1[deslocated_p1];
+      deslocated_p1++;
+
+      //insert p1 subpacket payload len in p2
+      p2[deslocated_p2] = p1_sub_payload_len;
+      deslocated_p2++;
+
+      //insert p1 subpacket payload in p2
+      memcpy(&p2[deslocated_p2], &p1[deslocated_p1], p1_sub_payload_len);
+
+
+      deslocated_p1 += p1_sub_payload_len;
+      deslocated_p2 += p1_sub_payload_len;
+
+      //ajust the number of subpackets in p1 counter
+      num_sub_p2++;
+    }
+  } 
+  else{
+    //if p1 is not merged, insert the only p1 subpacket in p2
+    
+    p2[deslocated_p2] = p1_sub_payload_len;
+    deslocated_p2++;
+
+    memcpy(&p2[deslocated_p2], &p1[deslocated_p1], p1_sub_payload_len);
+
+
+    deslocated_p1 += p1_sub_payload_len;
+    deslocated_p2 += p1_sub_payload_len;
+
+    num_sub_p2++;
+  }
+  //ajust the number of subpackets in p1 after inserting all the p2 subpackets in p1
+  p2[header_size] = num_sub_p2;
+  
+  *p2_len = sdn_merged_new_length(p2, header_size);
+
+
+  //eliminate p1 packet
+  sdn_packetbuf_pool_put((sdn_packetbuf *) p1);
+
+  printf("merging packets...\n");
+  imprimir(p2, *p2_len, header_size);
+
+  return 1;
 }
 
 
@@ -450,7 +560,7 @@ uint8_t sdn_recv_queue_verify_per_packet_type(uint8_t *data, uint16_t len) {
       return 0;
 
     case SDN_PACKET_DATA:
-      return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_data_t));
+      return sdn_recv_queue_is_duplicate(data, len, sizeof(sdn_data_t)) || sdn_recv_queue_is_same_type(data, len, sizeof(sdn_data_t));
       //return 0;
 
     case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
