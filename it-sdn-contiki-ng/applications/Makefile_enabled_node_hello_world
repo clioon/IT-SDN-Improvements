@@ -49,4 +49,6 @@ CFLAGS += -DLINKADDR_CONF_SIZE=2
 
 all: enabled-node-hello-world
 
+CFLAGS += $(EXTRA_FLAGS)
+
 include $(CONTIKI)/Makefile.include

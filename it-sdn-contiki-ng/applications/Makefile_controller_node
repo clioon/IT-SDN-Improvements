@@ -32,4 +32,6 @@ CFLAGS += -DLINKADDR_CONF_SIZE=2
 
 all: controller-node
 
+CFLAGS += $(EXTRA_FLAGS)
+
 include $(CONTIKI)/Makefile.include

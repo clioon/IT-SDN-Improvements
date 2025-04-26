@@ -327,11 +327,15 @@ uint8_t sdn_send_data(uint8_t *data, uint16_t len, flowid_t flowid) {
     return SDN_ERROR;
   }
 
+  printf("Antes de copiar: %s\n", ((uint8_t *)sdn_packet) + sizeof(sdn_data_t));
+  memset(((uint8_t *)sdn_packet), 0, SDN_MAX_PACKET_SIZE);
+
   MAKE_SDN_HEADER(SDN_PACKET_DATA, SDN_DEFAULT_TTL)
 
   flowid_copy(&sdn_packet->flowid, &flowid);
 
   memcpy(((uint8_t *)sdn_packet) + sizeof(sdn_data_t), data, len);
+  printf("Depois de copiar: %s\n", ((uint8_t *)sdn_packet) + sizeof(sdn_data_t));
 
 #if defined (SDN_ENABLED_NODE) && defined (MANAGEMENT)
   ENQUEUE_AND_SEND(sdn_packet, packet_len, clock_time());

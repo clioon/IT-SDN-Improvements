@@ -52,6 +52,11 @@
 #include "leds.h"
 #endif
 
+#include "sdn-protocol.h"
+#define SDN_PACKET_IS_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved & 0x1 )
+#define SDN_PACKET_SET_NOT_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved &= ~0x1 )
+#define SDN_GET_NUM_SUBPACKETS(packet_ptr) (SDN_PACKET_IS_MERGED(packet_ptr) ? (packet_ptr)[sizeof(sdn_data_t)] : 1)
+
 extern void (* sdn_callback_receive)(uint8_t*, uint16_t, sdnaddr_t*, uint16_t);
 extern uint8_t sdn_state;
 
@@ -896,88 +901,169 @@ uint8_t check_packet_len() {
   return ret;
 }
 
-sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret) {
-  action_t action = SDN_ACTION_DROP;
-  sdnaddr_t *next_hop = NULL;
-  packet_ptr = packet;
-  packet_len = len;
-  // SDN_DEBUG ("sdn_treat_packet %x\n", ((sdn_header_t*) packet)->type);
-//   sdn_dataflow_print();
+uint8_t sdn_get_header_size(uint8_t *data) {
+  switch (SDN_HEADER(data)->type) {
+    case SDN_PACKET_CONTROL_FLOW_SETUP:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
 
-  if (check_packet_len() != SDN_SUCCESS) {
-    SDN_DEBUG_ERROR("check_packet_len failed\n");
-    print_packet(packet_ptr, packet_len);
-  /* Treat packets routed by flowid */
-  } else if (SDN_ROUTED_BY_FLOWID(packet)) {
-    struct data_flow_entry *dfe;
-    dfe = sdn_dataflow_get(SDN_GET_PACKET_FLOW(packet));
-    if (dfe != NULL) {
-      action = dfe->action;
-      next_hop = &dfe->next_hop;
-      dfe->times_used++;
-    } else {
-      SDN_DEBUG ("dfe == NULL\n");
-      sdn_unknown_flow(packet, len, time);
-    }
-  /* Treat packets routed by address */
-  } else if (SDN_ROUTED_BY_ADDR(packet)) {
-    struct control_flow_entry *cfe;
-    cfe = sdn_controlflow_get(SDN_GET_PACKET_ADDR(packet));
-    if (cfe != NULL) {
-      action = cfe->action;
-      next_hop = &cfe->next_hop;
-      cfe->times_used++;
-    } else {
-      SDN_DEBUG ("cfe == NULL\n");
-      sdn_unknown_dest(packet, len);
-    }
-  /* The packet is not routed by address neither flowid, but by the source */
-  } else if (SDN_ROUTED_BY_SRC(packet)) {
-    next_hop = &SDN_GET_PACKET_ADDR(packet);
-    //sdnaddr_print( &SDN_GET_PACKET_REAL_DEST(packet) );
-    if (sdnaddr_cmp(next_hop, &sdn_node_addr) == SDN_EQUAL) {
-      action = SDN_ACTION_RECEIVE;
-    } else if(check_src_routed_is_unidir()) {
-      action = SDN_ACTION_FORWARD_UNIDIR;
-    } else {
-      action = SDN_ACTION_FORWARD;
-    }
-  } else if (SDN_ROUTED_NOT(packet)) {
-    if (sdnaddr_cmp(&((sdn_header_t*)packet_ptr)->source, &sdn_node_addr) == SDN_EQUAL) {
-      next_hop = sdn_addr_broadcast;
-      action = SDN_ACTION_FORWARD;
-    } else {
-      action = SDN_ACTION_RECEIVE;
-    }
-  }else {
-    SDN_DEBUG ("(sdn_treat_packet) Unknown packet type.\n");
-  }
+    case SDN_PACKET_DATA_FLOW_SETUP:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
 
-  if (action_ret != NULL)
-    *action_ret = action;
-  // sdn_send_queue_data_t * queue_data;
-  switch (action) {
-    case SDN_ACTION_FORWARD_UNIDIR:
-    case SDN_ACTION_FORWARD:
-      //SDN_DEBUG("\nSDN_ACTION_FORWARD\n");
-      /* do nothing, the outer function will enqueue and TX the packet */
-    break;
-    case SDN_ACTION_RECEIVE:
-      //SDN_DEBUG("\nSDN_ACTION_RECEIVE\n");
-      if (! (SDN_ROUTED_BY_SRC(packet_ptr) && sdnaddr_cmp(&SDN_GET_PACKET_REAL_DEST(packet_ptr), &sdn_node_addr) != SDN_EQUAL) ) {
-        SDN_METRIC_RX(packet_ptr);
-      }
-      next_hop = NULL;
-      sdn_execute_action_receive();
-    break;
-    case SDN_ACTION_DROP:
-      //SDN_DEBUG("\nSDN_ACTION_DROP\n");
-      next_hop = NULL;
-    break;
+    case SDN_PACKET_CONTROL_FLOW_REQUEST:
+      return sizeof(sdn_header_t) + sizeof(flowid_t);
+
+    case SDN_PACKET_DATA_FLOW_REQUEST:
+      return sizeof(sdn_header_t) + sizeof(flowid_t);
+
+    case SDN_PACKET_DATA:
+      return sizeof(sdn_data_t);
+
+    case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+
+    case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+    
+    case SDN_PACKET_REGISTER_FLOWID:
+      return sizeof(sdn_header_t) + sizeof(flowid_t);
+      
+    case SDN_PACKET_ACK_BY_FLOW_ID:
+      return sizeof(sdn_header_t) + sizeof(flowid_t);
+
+    case SDN_PACKET_ACK_BY_FLOW_ADDRESS:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+
+    case SDN_PACKET_SRC_ROUTED_ACK:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+
     default:
-      SDN_DEBUG("\nUnknown action\n");
-      next_hop = NULL;
+      return 0;
   }
+}
 
-  return next_hop;
+void sdn_treat_merged_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret){
+  uint8_t num_subpackets = SDN_GET_NUM_SUBPACKETS(packet);
+  uint8_t header_size = sdn_get_header_size(packet);
+  uint16_t offset = header_size + 1; //header and number of subpackets
+
+  //copy of the packet header that will be used separeta the subpackets into idividual packets
+  uint8_t copied_packet[SDN_MAX_PACKET_SIZE];
+  memset(copied_packet, 0, SDN_MAX_PACKET_SIZE);
+  memcpy(copied_packet, packet, header_size);
+  SDN_PACKET_SET_NOT_MERGED(copied_packet);
+  
+  //for every subpacket in packet
+  for(int i = 0; i < num_subpackets; i++){ 
+    
+    if(offset >= len) break;
+
+    uint8_t subpacket_len = packet[offset];
+    offset++;
+
+    if((offset+subpacket_len) > len) break;
+
+    memset(copied_packet + header_size, 0, SDN_MAX_PACKET_SIZE - header_size);
+
+    //copy the subpacket payload to copied_packet after the header
+    memcpy(copied_packet + header_size, packet + offset, subpacket_len);
+    offset += subpacket_len;
+
+    //treat this subpacket
+    printf("treating packet %d\n", i);
+    sdn_treat_packet(copied_packet, (subpacket_len + header_size), time, action_ret);
+  }
+}
+
+sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret) {
+#ifdef ENABLE_SDN_TREATMENT
+  if(SDN_PACKET_IS_MERGED(packet)){
+    sdn_header_t *header = (sdn_header_t *)packet;
+    printf("processing merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
+    sdn_treat_merged_packet(packet, len, time, action_ret);
+    return NULL;
+  }
+#endif
+    action_t action = SDN_ACTION_DROP;
+    sdnaddr_t *next_hop = NULL;
+    packet_ptr = packet;
+    packet_len = len;
+    // SDN_DEBUG ("sdn_treat_packet %x\n", ((sdn_header_t*) packet)->type);
+  //   sdn_dataflow_print();
+
+    if (check_packet_len() != SDN_SUCCESS) {
+      SDN_DEBUG_ERROR("check_packet_len failed\n");
+      print_packet(packet_ptr, packet_len);
+    /* Treat packets routed by flowid */
+    } else if (SDN_ROUTED_BY_FLOWID(packet)) {
+      struct data_flow_entry *dfe;
+      dfe = sdn_dataflow_get(SDN_GET_PACKET_FLOW(packet));
+      if (dfe != NULL) {
+        action = dfe->action;
+        next_hop = &dfe->next_hop;
+        dfe->times_used++;
+      } else {
+        SDN_DEBUG ("dfe == NULL\n");
+        sdn_unknown_flow(packet, len, time);
+      }
+    /* Treat packets routed by address */
+    } else if (SDN_ROUTED_BY_ADDR(packet)) {
+      struct control_flow_entry *cfe;
+      cfe = sdn_controlflow_get(SDN_GET_PACKET_ADDR(packet));
+      if (cfe != NULL) {
+        action = cfe->action;
+        next_hop = &cfe->next_hop;
+        cfe->times_used++;
+      } else {
+        SDN_DEBUG ("cfe == NULL\n");
+        sdn_unknown_dest(packet, len);
+      }
+    /* The packet is not routed by address neither flowid, but by the source */
+    } else if (SDN_ROUTED_BY_SRC(packet)) {
+      next_hop = &SDN_GET_PACKET_ADDR(packet);
+      //sdnaddr_print( &SDN_GET_PACKET_REAL_DEST(packet) );
+      if (sdnaddr_cmp(next_hop, &sdn_node_addr) == SDN_EQUAL) {
+        action = SDN_ACTION_RECEIVE;
+      } else if(check_src_routed_is_unidir()) {
+        action = SDN_ACTION_FORWARD_UNIDIR;
+      } else {
+        action = SDN_ACTION_FORWARD;
+      }
+    } else if (SDN_ROUTED_NOT(packet)) {
+      if (sdnaddr_cmp(&((sdn_header_t*)packet_ptr)->source, &sdn_node_addr) == SDN_EQUAL) {
+        next_hop = sdn_addr_broadcast;
+        action = SDN_ACTION_FORWARD;
+      } else {
+        action = SDN_ACTION_RECEIVE;
+      }
+    }else {
+      SDN_DEBUG ("(sdn_treat_packet) Unknown packet type.\n");
+    }
+
+    if (action_ret != NULL)
+      *action_ret = action;
+    // sdn_send_queue_data_t * queue_data;
+    switch (action) {
+      case SDN_ACTION_FORWARD_UNIDIR:
+      case SDN_ACTION_FORWARD:
+        //SDN_DEBUG("\nSDN_ACTION_FORWARD\n");
+        /* do nothing, the outer function will enqueue and TX the packet */
+      break;
+      case SDN_ACTION_RECEIVE:
+        //SDN_DEBUG("\nSDN_ACTION_RECEIVE\n");
+        if (! (SDN_ROUTED_BY_SRC(packet_ptr) && sdnaddr_cmp(&SDN_GET_PACKET_REAL_DEST(packet_ptr), &sdn_node_addr) != SDN_EQUAL) ) {
+          SDN_METRIC_RX(packet_ptr);
+        }
+        next_hop = NULL;
+        sdn_execute_action_receive();
+      break;
+      case SDN_ACTION_DROP:
+        //SDN_DEBUG("\nSDN_ACTION_DROP\n");
+        next_hop = NULL;
+      break;
+      default:
+        SDN_DEBUG("\nUnknown action\n");
+        next_hop = NULL;
+    }
+
+    return next_hop;
 }

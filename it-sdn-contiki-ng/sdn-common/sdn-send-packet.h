@@ -54,7 +54,7 @@ extern "C" {
 #endif
 
 #define MAKE_SDN_HEADER_PTR(PTR, TYPE, THL)  (PTR)->header.type = TYPE; \
-  (PTR)->header.reserved = 0xFF; \
+  (PTR)->header.reserved = 0; \
   (PTR)->header.thl = THL; \
   (PTR)->header.seq_no = 0; \
   sdnaddr_copy(&(PTR)->header.source, &sdn_node_addr);
