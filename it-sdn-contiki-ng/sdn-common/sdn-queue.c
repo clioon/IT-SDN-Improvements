@@ -38,12 +38,6 @@
 
 #define SDN_QUEUE_ACTION_MERGE 2
 
-// typedef enum {
-//   SDN_QUEUE_ACTION_REPLACE = 1 << 0, 
-//   SDN_QUEUE_ACTION_MERGE   = 1 << 1,
-//   SDN_QUEUE_ACTION_BOTH    = SDN_QUEUE_ACTION_REPLACE | SDN_QUEUE_ACTION_MERGE
-// } sdn_queue_action_t;
-
 #include "data-flow-table.h"
 #include "control-flow-table.h"
 #include <stddef.h>
@@ -354,7 +348,7 @@ uint16_t sdn_merged_new_length(uint8_t *p, uint8_t header_size) {
   return new_len;
 }
 
-uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size){
+uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size) {
   
   uint8_t *p2 = sdn_recv_queue_data[pos].data;
   uint16_t *p2_len = &(sdn_recv_queue_data[pos].len); 
@@ -455,7 +449,7 @@ uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos
 //  replace the packet that is already in the queue with the new packet
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-uint8_t sdn_recv_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t pos, uint8_t header_size){
+uint8_t sdn_recv_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t pos, uint8_t header_size) {
 
   //eliminate the old packet
   sdn_packetbuf_pool_put((sdn_packetbuf *)sdn_recv_queue_data[pos].data);
@@ -599,16 +593,20 @@ uint8_t sdn_recv_queue_determine_pckt_action(uint8_t *p1, uint8_t *p2, uint16_t 
   // if types are different dont compare;
   uint8_t type = SDN_HEADER(p1)->type;
   if (type != SDN_HEADER(p2)->type) return SDN_QUEUE_ACTION_NONE;
+
+  //verify if the origin of the packets are the same
+  if (sdnaddr_cmp(&SDN_HEADER(p1)->source, &SDN_HEADER(p2)->source) == 0) return SDN_QUEUE_ACTION_NONE;
   
   // verify if the destination of the packets are the same
   uint8_t *dest1, *dest2;
-  size_t dest_len;
+  size_t dest_len1, dest_len2;
 
-  if (!sdn_get_routing_dest(p1, &dest1, &dest_len) || !sdn_get_routing_dest(p2, &dest2, &dest_len)) {
+  if (!sdn_get_routing_dest(p1, &dest1, &dest_len1) || !sdn_get_routing_dest(p2, &dest2, &dest_len2)) {
     return SDN_QUEUE_ACTION_NONE;
   }
 
-  if (memcmp(dest1, dest2, dest_len) != 0) return SDN_QUEUE_ACTION_NONE;
+  if (dest_len1 != dest_len2) return SDN_QUEUE_ACTION_NONE;
+  if (memcmp(dest1, dest2, dest_len1) != 0) return SDN_QUEUE_ACTION_NONE;
 
   // treat specific packet types
   uint16_t compare_size = 0;
