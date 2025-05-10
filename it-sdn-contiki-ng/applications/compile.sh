@@ -8,6 +8,14 @@ else
   export TARGET=${1}
 fi
 
+if [ "$2" = "enable" ]; then
+  EXTRA_FLAGS="-DENABLE_SDN_TREATMENT"
+  echo "Compilando com tratamento SDN ativado"
+else
+  EXTRA_FLAGS=""
+  echo "Compilando com tratamento SDN desativado"
+fi
+
 rm -f *.$TARGET
 
 set -e
@@ -21,9 +29,9 @@ set -e
 # make -f Makefile_enabled_node enabled-node
 
 make clean -f Makefile_enabled_node
-make -f Makefile_enabled_node
+make -f Makefile_enabled_node EXTRA_FLAGS="$EXTRA_FLAGS"
 
 make clean -f Makefile_controller_node
-make -f Makefile_controller_node
+make -f Makefile_controller_node EXTRA_FLAGS="$EXTRA_FLAGS"
 
 size *.$TARGET

@@ -16,7 +16,6 @@ else
   echo "Compilando com tratamento SDN desativado"
 fi
 
-
 rm -f *.$TARGET
 
 set -e
