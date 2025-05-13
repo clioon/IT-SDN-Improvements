@@ -52,6 +52,7 @@
  *
  */
 
+#include <stdio.h>
 #ifndef SDN_PROTOCOL_H
 #define SDN_PROTOCOL_H
 
@@ -459,13 +460,20 @@ typedef struct {
 #define SDN_GET_PACKET_ADDR(packet)  ( *((sdnaddr_t*) &((uint8_t *)packet)[sizeof(sdn_header_t)]) )
 
 /**
-* \brief Returns a pointer to real destination of src routed packets.
+* \brief Returns a pointer to real destination of merged src routed packets.
+*         Packet type should be checked beforehand
+* \param packet: a pointer to the SDN packet
+*/
+sdnaddr_t *sdn_get_real_dest_from_merged_packet(uint8_t *packet);
+
+/**
+* \brief Returns a pointer to real destination of not merged src routed packets.
 *         Packet type should be checked beforehand
 * \param packet: a pointer to the SDN packet
 */
 #define SDN_GET_PACKET_REAL_DEST(packet)  \
 ( \
-*((sdnaddr_t*) \
+((sdnaddr_t*) \
   ( ( (((sdn_header_t*) packet)->type) == SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP ) ? \
     &SDN_PACKET_GET_FIELD(packet, sdn_src_rtd_control_flow_setup_t, real_destination) : \
     ( \
@@ -487,6 +495,13 @@ typedef struct {
     ) \
   ) \
 ) )\
+
+/**
+* \brief  Gets the subpackets length of a source routed merged packet (does not include the length of the header and the destination)
+*         Packet type should be checked beforehand
+* \param ptr: a pointer to the SDN packet
+*/
+size_t sdn_get_src_rtd_merged_subpackets_len(uint8_t *packet);
 
 /**
 * \brief  Gets a certain packet field.
@@ -544,16 +559,71 @@ typedef struct {
 * \param pkt_type: sdn_src_rtd_control_flow_setup_t, sdn_src_rtd_data_flow_setup_t
 */
 #define SDN_PACKET_GET_NEXT_SRC_ADDR(ptr, pkt_type) \
-  SDN_GET_ADDR_IN_ARRAY( \
-    packet_ptr + sizeof(pkt_type), \
-    SDN_PACKET_GET_FIELD(packet_ptr, pkt_type, path_len) \
-  )
+  sdn_packet_get_next_src_addr((uint8_t *)(ptr), sizeof(pkt_type))
+ 
+sdnaddr_t *sdn_packet_get_next_src_addr(uint8_t *p, size_t pkt_type_size);
+
+/**
+* \brief  Macro that returns true is packet is merged (reserved == 1)
+* \param packet_ptr: a pointer to the SDN packet
+*/
+#define SDN_PACKET_IS_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved & 0x1 )
+
+/**
+* \brief  Macro that sets the packet as merged (reserved == 1)
+* \param packet_ptr: a pointer to the SDN packet
+*/
+#define SDN_PACKET_SET_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved |= 0x1 )
+
+/**
+* \brief  Macro that sets the packet as not merged (reserved == 0)
+* \param packet_ptr: a pointer to the SDN packet
+*/
+#define SDN_PACKET_SET_NOT_MERGED(packet_ptr) ( ((sdn_header_t *) packet_ptr)->reserved &= ~0x1 )
+
+/**
+* \brief  Macro that sets the packet as merged (reserved == 1)
+* \param packet_ptr: a pointer to the SDN packet
+* \param header_size: length of all the fields before the number of subpacket byte (ex: sdn_header_t + sdnaddr_t)
+*/
+#define SDN_GET_NUM_SUBPACKETS(packet_ptr, header_size) (SDN_PACKET_IS_MERGED(packet_ptr) ? (packet_ptr)[header_size] : 1)
 
 /**
 * \brief  Returns a pointer to the packet header.
 * \param packet_ptr: a pointer to the SDN packet
 */
 #define SDN_HEADER(packet_ptr) ((sdn_header_t *) packet_ptr)
+
+//#ifdef SDN_ENABLED_NODE
+static inline uint8_t sdn_get_header_size(uint8_t *packet) {
+  uint8_t type = SDN_HEADER(packet)->type;
+
+  switch(type) {
+    case SDN_PACKET_CONTROL_FLOW_SETUP:
+    case SDN_PACKET_DATA_FLOW_SETUP:
+    case SDN_PACKET_ACK_BY_FLOW_ADDRESS:
+    case SDN_PACKET_SRC_ROUTED_ACK:
+    case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
+    case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
+      return sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+
+    case SDN_PACKET_CONTROL_FLOW_REQUEST:
+    case SDN_PACKET_DATA_FLOW_REQUEST:
+    case SDN_PACKET_REGISTER_FLOWID:
+    case SDN_PACKET_ACK_BY_FLOW_ID:
+      return sizeof(sdn_header_t) + sizeof(flowid_t);
+
+    case SDN_PACKET_DATA:
+      return sizeof(sdn_data_t);
+
+    case SDN_PACKET_NEIGHBOR_REPORT:
+      return sizeof(sdn_header_t);
+
+    default:
+      return sizeof(sdn_header_t);
+  }
+}
+//#endif
 
 #ifdef __cplusplus
 }

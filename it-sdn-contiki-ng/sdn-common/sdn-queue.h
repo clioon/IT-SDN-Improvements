@@ -130,6 +130,29 @@ uint8_t sdn_recv_queue_enqueue(uint8_t *data, uint16_t len);
 
 void sdn_recv_queue_print();
 
+//
+
+void imprimir(uint8_t *p, uint16_t len, uint8_t header_size);
+
+uint16_t sdn_merged_new_length(uint8_t *p, uint8_t header_size);
+
+uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size);
+
+uint8_t sdn_recv_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t pos, uint8_t header_size); 
+
+uint8_t sdn_recv_queue_delete_subpacket(uint8_t *p, uint16_t p_len, uint8_t subpacket_num, uint8_t header_size, uint8_t p_pos);
+
+uint8_t sdn_recv_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2, uint16_t p2_len, uint8_t header_size, uint8_t compare_size, uint8_t p2_pos);
+
+uint8_t sdn_recv_queue_determine_pckt_action(uint8_t *p1, uint8_t *p2, uint16_t p1_len, uint16_t p2_len, uint8_t *header_size, uint8_t p2_pos);
+
+uint8_t sdn_recv_queue_process_new_packet(uint8_t *new_packet, uint16_t new_len);
+
+uint8_t sdn_is_final_destination(uint8_t* packet);
+
+uint8_t sdn_recv_queue_combine_src_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size);
+//
+
 #ifdef __cplusplus
 }
 #endif

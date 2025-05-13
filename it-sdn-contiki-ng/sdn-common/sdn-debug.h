@@ -57,6 +57,7 @@
 #endif
 
 #include "stdio.h"
+#include "sdn-protocol.h"
 
 #define TO_STRING(value) #value
 #define STRINGFY(value) #value " = " TO_STRING(value)
@@ -84,7 +85,7 @@
   if (SDN_ROUTED_BY_FLOWID(packet_ptr)) \
     flowid_print(&SDN_GET_PACKET_FLOW(packet_ptr)); \
   if (SDN_ROUTED_BY_SRC(packet_ptr)) \
-    sdnaddr_print_nodebug(&SDN_GET_PACKET_REAL_DEST(packet_ptr)); \
+    sdnaddr_print_nodebug(sdn_get_real_dest_from_merged_packet((uint8_t *)packet_ptr)); \
   printf("=\n");
 
 #define SDN_METRIC_TX(packet_ptr) SDN_METRIC_RXTX(packet_ptr, "TX")
