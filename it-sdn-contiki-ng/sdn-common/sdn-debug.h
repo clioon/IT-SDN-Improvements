@@ -91,10 +91,22 @@
 #define SDN_METRIC_TX(packet_ptr) SDN_METRIC_RXTX(packet_ptr, "TX")
 #define SDN_METRIC_RX(packet_ptr) SDN_METRIC_RXTX(packet_ptr, "RX")
 #define SDN_METRIC_ENERGY(...) printf(__VA_ARGS__);
+#define SDN_METRIC_MERGE(packet_ptr) \
+  printf("="); \
+  sdnaddr_print_nodebug(&SDN_HEADER(packet_ptr)->source); \
+  printf("=MG=%02X=%02X=\n", SDN_HEADER(packet_ptr)->type, SDN_HEADER(packet_ptr)->seq_no);
+  
+#define SDN_METRIC_REPLACE(packet_ptr) \
+  printf("="); \
+  sdnaddr_print_nodebug(&SDN_HEADER(packet_ptr)->source); \
+  printf("=RP=%02X=%02X=\n", SDN_HEADER(packet_ptr)->type, SDN_HEADER(packet_ptr)->seq_no);
+
 #else //SDN_METRIC
 #define SDN_METRIC_RXTX(packet_ptr, RXTX)
 #define SDN_METRIC_TX(packet_ptr)
 #define SDN_METRIC_RX(packet_ptr)
+#define SDN_METRIC_MERGE(packet_ptr) printf("ok\n");
+#define SDN_METRIC_REPLACE(packet_ptr) printf("ok\n");
 #define SDN_METRIC_ENERGY(...)
 #endif //SDN_METRIC
 

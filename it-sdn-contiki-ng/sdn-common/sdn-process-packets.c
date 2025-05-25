@@ -903,7 +903,7 @@ void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t ti
   uint8_t num_subpackets = SDN_GET_NUM_SUBPACKETS(packet, header_size);
   uint16_t offset = header_size + 1; //header and number of subpackets
 
-  //copy of the packet header that will be used in the subpackets that will turn into idividual packets
+  // copy of the packet header that will be used in the subpackets that will turn into idividual packets
   uint8_t individual_packet[SDN_MAX_PACKET_SIZE];
   memset(individual_packet, 0, SDN_MAX_PACKET_SIZE);
   memcpy(individual_packet, packet, header_size);
@@ -916,13 +916,13 @@ void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t ti
   uint8_t tail_len = len - (body_len + header_size);
   memcpy(tail, (packet + body_len), tail_len);
 
-  //for every subpacket in packet
+  // for every subpacket in packet
   for (int i = 0; i < num_subpackets; i++) { 
     
     if (offset >= len) break;
 
-    uint8_t subpacket_len = packet[offset];
-    offset++;
+    uint8_t seq_no = packet[offset++];
+    uint8_t subpacket_len = packet[offset++];
 
     if ((offset+subpacket_len) > len) break;
 
@@ -931,6 +931,9 @@ void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t ti
     //copy the subpacket payload to individual_packet after the header
     memcpy(individual_packet + header_size, packet + offset, subpacket_len);
     offset += subpacket_len;
+
+    // restore the original seq no
+    SDN_HEADER(individual_packet)->seq_no = seq_no;
 
     // copy the tail to the end of the individual packet
     memcpy(individual_packet + header_size + subpacket_len, tail, tail_len);
@@ -946,30 +949,33 @@ void sdn_treat_merged_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
   uint8_t num_subpackets = SDN_GET_NUM_SUBPACKETS(packet, header_size);
   uint16_t offset = header_size + 1; //header and number of subpackets
 
-  //copy of the packet header that will be used separeta the subpackets into idividual packets
+  // copy of the packet header that will be used separate the subpackets into idividual packets
   uint8_t individual_packet[SDN_MAX_PACKET_SIZE];
   memset(individual_packet, 0, SDN_MAX_PACKET_SIZE);
   memcpy(individual_packet, packet, header_size);
   SDN_PACKET_SET_NOT_MERGED(individual_packet);
   
-  //for every subpacket in packet
+  // for every subpacket in packet
   for (int i = 0; i < num_subpackets; i++) { 
     
-    if (offset >= len) break;
+    if (offset + 2 > len) break;
 
-    uint8_t subpacket_len = packet[offset];
-    offset++;
+    uint8_t seq_no = packet[offset++];
+    uint8_t subpacket_len = packet[offset++];
 
     if ((offset+subpacket_len) > len) break;
 
     memset(individual_packet + header_size, 0, SDN_MAX_PACKET_SIZE - header_size);
 
-    //copy the subpacket payload to individual_packet after the header
+    // copy the subpacket payload to individual_packet after the header
     memcpy(individual_packet + header_size, packet + offset, subpacket_len);
     offset += subpacket_len;
 
-    //treat this subpacket
-    SDN_DEBUG("treating packet %d\n", i);
+    // restore the original seq no
+    SDN_HEADER(individual_packet)->seq_no = seq_no;
+
+    // treat this subpacket
+    printf("treating packet %d\n", i);
     sdn_treat_packet(individual_packet, (subpacket_len + header_size), time, action_ret);
   }
 }

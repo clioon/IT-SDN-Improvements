@@ -3,42 +3,54 @@
 #set -x
 #set -v
 
+if [ "$1" = "enable" ]; then
+  EXTRA_FLAGS="-DENABLE_SDN_TREATMENT"
+	echo "sdn treatment enabled"
+else
+  EXTRA_FLAGS=""
+fi
+
 # Simulation set configuration
+#quantidade de vezes que a simulacao sera rodada
 MIN_ITER=1
-MAX_ITER=4
+MAX_ITER=2
 # MIN_ITER=1
 # MAX_ITER=2
-COOJA_INSTANCES=4 #max simulations running in parallel
+COOJA_INSTANCES=2 #max simulations running in parallel
 COOJA_CURRENT_INSTANCE=1
 
 DO_NOT_OVERWRITE=true
 
+#quantidades de nos, pega o mais de baixo
 nodes_v=(25 16 9)
 nodes_v=(100 81 64 49 36 25 16 169 256)
 nodes_v=(16 25 36 49 64 81 100)
-nodes_v=(16)
+nodes_v=(49)
 # topologies=(GRID-FULL GRID-RND GRID-CTA GRID-SPN)
-topologies=(BERLIN-FULL BERLIN-RND BERLIN-CTA BERLIN-SPN GRID-FULL GRID-RND GRID-CTA GRID-SPN)
+# topologies=(BERLIN-FULL BERLIN-RND BERLIN-CTA BERLIN-SPN GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 #topologies=(GRID-SPN BERLIN-SPN)
 #topologies=(GRID-RND GRID-CTA GRID-SPN)
 topologies=(GRID-FULL)
 #nd_possibilities=(NV CL BL) # Naive Collect and Baseline
 # nd_possibilities=(NV-NV IM-NV CL NV-SC IM-SC)
 # nd_possibilities=(IM-SC CL NV-NV)
-nd_possibilities=(IM-SC-unidir IM-SC-contikimac CL-contikimac CL-nullrdc)
-nd_possibilities=(IM-SC-unidir)
-nd_possibilities=(NV-NV-unidir)
-nd_possibilities=(IM-SC-nullrdc-bidir IM-SC-nullrdc-unidir)
+# nd_possibilities=(IM-SC-unidir IM-SC-contikimac CL-contikimac CL-nullrdc)
+# nd_possibilities=(IM-SC-unidir)
+# nd_possibilities=(NV-NV-unidir)
+# nd_possibilities=(IM-SC-nullrdc-bidir IM-SC-nullrdc-unidir)
+nd_possibilities=(NV-NV)
+# taxa com que os pacotes de dados sao gerados - pacotes/min
 # datarates=(0.2 2)
 datarates=(1)
+# tempo da simulacao
 # SIM_TIME_MS=6000   # 0.1 minute
 # SIM_TIME_MS=60000   # 1 minute
 # SIM_TIME_MS=180000   # 3 minutes
 # SIM_TIME_MS=300000  # 5 minutes
-# SIM_TIME_MS=600000  # 10 minutes
+ SIM_TIME_MS=600000  # 10 minutes
 # SIM_TIME_MS=1200000 # 20 minutes
 # SIM_TIME_MS=1800000 # 30 minutes
-SIM_TIME_MS=3600000 # 60 minutes
+# SIM_TIME_MS=3600000 # 60 minutes
 
 ## datadistrs=(CTE EXP)
 ### datadistrs=(CTE)
@@ -182,18 +194,18 @@ for nnodes in "${nodes_v[@]}"; do
 						# make TARGET=sky -f Makefile_enabled_node enabled-node
 
 						make TARGET=sky clean -f Makefile_enabled_node
-						make TARGET=sky -f Makefile_enabled_node
+						make TARGET=sky -f Makefile_enabled_node EXTRA_FLAGS="$EXTRA_FLAGS"
 
 						make TARGET=sky clean -f Makefile_controller_node
-						make TARGET=sky -f Makefile_controller_node
+						make TARGET=sky -f Makefile_controller_node EXTRA_FLAGS="$EXTRA_FLAGS"
 					)
 
 					#controller recompilation
 					(
 						cd $controller_build_dir
 						# changing serial server expected port
-						sed -i.bak "s,<number>60.*,<number>${port}</number>," ../controller-pc/mainwindow.ui
-						$QMAKE ../controller-pc/controller-pc.pro
+						sed -i.bak "s,<number>60.*,<number>${port}</number>," ../mainwindow.ui
+						$QMAKE ../controller-pc.pro
 						$MAKE clean
 						$MAKE
 					)
@@ -262,8 +274,8 @@ kill ${pidController[@]}
 (
 	cd $controller_build_dir
 	# changing serial server expected port
-	sed -i.bak "s,<number>60.*,<number>60001</number>," ../controller-pc/mainwindow.ui
-	$QMAKE ../controller-pc/controller-pc.pro
+	sed -i.bak "s,<number>60.*,<number>60001</number>," ../mainwindow.ui
+	$QMAKE ../controller-pc.pro
 	$MAKE clean
 	$MAKE
 )

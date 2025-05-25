@@ -302,6 +302,8 @@ void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
     SDN_DEBUG("\tSubpacotes: %d\n", num_sub);
     
     for (int i = 0; i < num_sub; i++) {
+      //uint8_t seq_no = p[deslocamento];
+      deslocamento++;
       uint16_t len_sub = p[deslocamento];
       SDN_DEBUG("\tSub pacote #%d (len %d): ", i, len_sub);
       deslocamento++;
@@ -334,9 +336,10 @@ uint16_t sdn_merged_new_length(uint8_t *p, uint8_t header_size) {
 
   
   for (int i = 0; i < num_subpackets; i++) {
-      uint8_t sub_len = p[offset];  // subpacket length
-      new_len += 1 + sub_len;         // byte that stores subpacket len + subpacket len
-      offset += 1 + sub_len;
+    offset ++; // skip the seq no
+    uint8_t sub_len = p[offset];  // subpacket length
+    new_len += 2 + sub_len;         // byte that stores the seq no + the subpacket len + subpacket len
+    offset += 1 + sub_len;
   }
   return new_len;
 }
@@ -348,9 +351,11 @@ uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos
   //SDN_DEBUG("max_pack: %d, len1: %d, len2: %d\n", SDN_MAX_PACKET_SIZE, p1_len, *p2_len);
 
   uint8_t num_sub_p1 = SDN_GET_NUM_SUBPACKETS(p1, header_size);
+  uint8_t seq_no_p1 = SDN_HEADER(p1)->seq_no;
   uint8_t offset_p1 = header_size; // set offset_p1 to skip the header
   
   uint8_t num_sub_p2 = SDN_GET_NUM_SUBPACKETS(p2, header_size);
+  uint8_t seq_no_p2 = SDN_HEADER(p2)->seq_no;
   uint8_t offset_p2 = header_size;
 
     
@@ -366,15 +371,17 @@ uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos
   else{
     // if p2 is not merged, reajust the p2 structure to match the merged structure
     SDN_PACKET_SET_MERGED(p2);
-    uint8_t extra_bytes = 2;
+    uint8_t extra_bytes = 3;
     uint16_t p2_payload_len = *p2_len - header_size;
 
-    //open space to input the extra bytes to store the #subpackets and the first subpacket length
+    //open space to input the extra bytes to store the #subpackets, the first seq number and the first subpacket length
     for (int i = *p2_len + (extra_bytes - 1); i > header_size; i--) {
       p2[i] = p2[i-extra_bytes];
     }
 
     p2[offset_p2] = 1; // initialize the number of subpacket to 1
+    offset_p2++;
+    p2[offset_p2] = seq_no_p2; // insert the first subpacket seq number
     offset_p2++;
     p2[offset_p2] = p2_payload_len; // insert the first subpacket len
     offset_p2++; // payload 1 already inserted
@@ -390,8 +397,14 @@ uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos
 
     // insert the subpackets in p1 to p2, one by one
     for(int i = 0; i < num_sub_p1; i++){
+      uint8_t p1_sub_payload_seq_no = p1[offset_p1];
+      offset_p1 ++;
       p1_sub_payload_len = p1[offset_p1];
       offset_p1++;
+
+      //insert p1 subpacket seq number in p2
+      p2[offset_p2] = p1_sub_payload_seq_no;
+      offset_p2 ++;
 
       //insert p1 subpacket payload len in p2
       p2[offset_p2] = p1_sub_payload_len;
@@ -411,7 +424,8 @@ uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos
   else{
 
     //if p1 is not merged, insert the only p1 subpacket in p2
-    
+    p2[offset_p2] = seq_no_p1;
+    offset_p2++;
     p2[offset_p2] = p1_sub_payload_len;
     offset_p2++;
 
@@ -423,17 +437,18 @@ uint8_t sdn_recv_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos
 
     num_sub_p2++;
   }
-  //ajust the number of subpackets in p1 after inserting all the p2 subpackets in p1
+  //ajust the number of subpackets in p2 after inserting all the p1 subpackets in to p2
   p2[header_size] = num_sub_p2;
   
   *p2_len = sdn_merged_new_length(p2, header_size);
 
 
   //eliminate p1 packet
-  //sdn_packetbuf_pool_put((sdn_packetbuf *) p1);
+  SDN_METRIC_MERGE(p1);
+  sdn_packetbuf_pool_put((sdn_packetbuf *) p1);
 
   SDN_DEBUG("merging packets...\n");
-  imprimir(p2, *p2_len, header_size);
+  //imprimir(p2, *p2_len, header_size);
   sdn_recv_queue_print();
 
   return 1;
@@ -477,6 +492,7 @@ void sdn_get_src_routing_info(uint8_t *p, uint16_t p_len, uint8_t header_size, s
 
   // go through all the subpackets
   for (int i = 0; i < num_subpackets; i++) {
+    offset++; // seq no
     uint16_t len = *offset;
     offset++;
     offset += len;
@@ -557,7 +573,8 @@ uint8_t sdn_recv_queue_combine_src_packets(uint8_t *p1, uint16_t p1_len, uint8_t
 uint8_t sdn_recv_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t pos, uint8_t header_size) {
 
   //eliminate the old packet
-  //sdn_packetbuf_pool_put((sdn_packetbuf *)sdn_recv_queue_data[pos].data);
+  SDN_METRIC_REPLACE(data);
+  sdn_packetbuf_pool_put((sdn_packetbuf *)sdn_recv_queue_data[pos].data);
 
   //replace by the new one
   sdn_recv_queue_data[pos].len = len;
@@ -568,7 +585,7 @@ uint8_t sdn_recv_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t p
 #endif
 
   SDN_DEBUG ("Old duplicate packet has been replaced by the new one\n");
-  imprimir(data, len, header_size);
+  //imprimir(data, len, header_size);
   return 1;
 
 }
@@ -613,15 +630,17 @@ uint8_t sdn_recv_queue_delete_subpacket(uint8_t *p, uint16_t p_len, uint8_t subp
 
   // move to the start of the subpacket that will be removed
   while(current_subpacket < subpacket_num) {
-    uint8_t len = p[offset];       // current packet lenght
+    offset++;                      // skip deq no
+    uint8_t len = p[offset];       // current packet length
     offset += 1 + len;             // skip 1 byte (that stores the len) + packet lenght
     current_subpacket++;
   }
 
+  offset++; // skip the seq no
   uint8_t len_to_remove = p[offset];
-  uint8_t total_remove_len = 1 + len_to_remove;
+  uint8_t total_remove_len = 2 + len_to_remove; // payload len + byte that stores the length and the seq no
 
-  uint16_t remaining_bytes = p_len - (offset + total_remove_len);
+  uint16_t remaining_bytes = p_len - (offset - 1 + total_remove_len); // -1 to go back to the start of the subpacket (in the seq no)
 
   // deslocate the content after the removed packet 
   memmove(&p[offset], &p[offset + total_remove_len], remaining_bytes);
@@ -653,6 +672,7 @@ uint8_t sdn_recv_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2
 
   // go through all p1 subpackets
   for (uint8_t i = 0; i < num_sub_p1; i++) {
+    offset1 += is_p1_merged ? 1 : 0;  // skip the seq no if merged
     uint8_t len1 = is_p1_merged ? p1[offset1++] : (p1_len - header_size);
     uint8_t *payload1 = p1 + offset1;
 
@@ -661,6 +681,7 @@ uint8_t sdn_recv_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2
 
     // compare it to all of the p2 subpackets
     for (uint8_t j = 0; j < num_sub_p2; j++) {
+      offset2 += is_p2_merged ? 1 : 0;  // skip the seq no if merged
       uint8_t len2 = is_p2_merged ? p2[offset2++] : (p2_len - header_size);
       uint8_t *payload2 = p2 + offset2;
       p2_subpacket_num++;
@@ -753,7 +774,7 @@ uint8_t sdn_recv_queue_determine_pckt_action(uint8_t *p1, uint8_t *p2, uint16_t 
 
     case SDN_PACKET_DATA:
       *header_size = sizeof(sdn_data_t);
-      compare_size = 0; // compare all the payload after the struct
+      //compare_size = 0; // compare all the payload after the struct
       //return sdn_recv_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos);
       return SDN_QUEUE_ACTION_MERGE; // always merge
 

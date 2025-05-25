@@ -125,8 +125,9 @@ size_t sdn_get_src_rtd_merged_subpackets_len(uint8_t *packet) {
   size_t total_size = 0;
  
   for(uint8_t i = 0; i < num_sub; i++) {
+      p++; // skip the seq no byte
       uint8_t len = *p++;
-      total_size += 1 + len; // byte that stores the length + length
+      total_size += 1 + len; // byte that stores the seq no + byte that stores len + length
       p += len;
   }
  
@@ -140,7 +141,7 @@ sdnaddr_t *sdn_packet_get_next_src_addr(uint8_t *p, size_t pkt_type_size) {
     uint8_t *path_len_ptr = p
       + sizeof(sdn_header_t) // header
       + sizeof(sdnaddr_t) // destination
-      + 1
+      + 1 // no of subpackets
       + sub_len
       + sizeof(sdnaddr_t);
 

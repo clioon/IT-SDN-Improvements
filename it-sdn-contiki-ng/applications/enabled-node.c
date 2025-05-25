@@ -100,7 +100,7 @@ PROCESS_THREAD(sdn_test_process, ev, data)
     printf("#A color=BLUE\n");
   }
 
-  etimer_set(&periodic_timer, (60 + random_rand() % SENSING_AT_SECONDS) * CLOCK_SECOND) ;
+  etimer_set(&periodic_timer, (120 + random_rand() % SENSING_AT_SECONDS) * CLOCK_SECOND) ;
 
   PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&periodic_timer));
 
@@ -114,11 +114,11 @@ PROCESS_THREAD(sdn_test_process, ev, data)
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&periodic_timer));
 
-    sprintf(data, "teste %d", i++);
-
-    SDN_DEBUG("Sending data to flow %d\n", sink);
-
-    sdn_send((uint8_t*) data, 10, sink);
+    for(int j = 0; j < 3; j++) {
+      sprintf(data, "teste %d", i++);
+      SDN_DEBUG("Sending data to flow %d\n", sink);
+      sdn_send((uint8_t*) data, 10, sink);
+    }
 
     etimer_restart(&periodic_timer);
 
