@@ -127,7 +127,7 @@ size_t sdn_get_src_rtd_merged_subpackets_len(uint8_t *packet) {
   for(uint8_t i = 0; i < num_sub; i++) {
       p++; // skip the seq no byte
       uint8_t len = *p++;
-      total_size += 1 + len; // byte that stores the seq no + byte that stores len + length
+      total_size += 2 + len; // byte that stores the seq no + byte that stores len + length
       p += len;
   }
  

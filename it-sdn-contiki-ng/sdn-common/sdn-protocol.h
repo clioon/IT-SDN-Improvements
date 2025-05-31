@@ -594,7 +594,7 @@ sdnaddr_t *sdn_packet_get_next_src_addr(uint8_t *p, size_t pkt_type_size);
 */
 #define SDN_HEADER(packet_ptr) ((sdn_header_t *) packet_ptr)
 
-//#ifdef SDN_ENABLED_NODE
+#ifdef ENABLE_SDN_TREATMENT
 static inline uint8_t sdn_get_header_size(uint8_t *packet) {
   uint8_t type = SDN_HEADER(packet)->type;
 
@@ -623,7 +623,7 @@ static inline uint8_t sdn_get_header_size(uint8_t *packet) {
       return sizeof(sdn_header_t);
   }
 }
-//#endif
+#endif
 
 #ifdef __cplusplus
 }

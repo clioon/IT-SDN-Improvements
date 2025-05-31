@@ -898,6 +898,7 @@ uint8_t check_packet_len() {
   return ret;
 }
 
+#ifdef ENABLE_SDN_TREATMENT
 void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret){
   uint8_t header_size = sdn_get_header_size(packet);
   uint8_t num_subpackets = SDN_GET_NUM_SUBPACKETS(packet, header_size);
@@ -979,6 +980,7 @@ void sdn_treat_merged_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
     sdn_treat_packet(individual_packet, (subpacket_len + header_size), time, action_ret);
   }
 }
+#endif
 
 sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret) {
     action_t action = SDN_ACTION_DROP;
