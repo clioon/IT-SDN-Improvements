@@ -3,20 +3,29 @@
 #set -x
 #set -v
 
+if [ "$1" = "enable" ]; then
+  EXTRA_FLAGS="-DENABLE_SDN_TREATMENT"
+	echo "sdn treatment enabled"
+else
+  EXTRA_FLAGS=""
+fi
+
 # Simulation set configuration
+#quantidade de vezes que a simulacao sera rodada
 MIN_ITER=1
-MAX_ITER=2
+MAX_ITER=1
 # MIN_ITER=1
 # MAX_ITER=2
-COOJA_INSTANCES=2 #max simulations running in parallel
+COOJA_INSTANCES=1 #max simulations running in parallel
 COOJA_CURRENT_INSTANCE=1
 
 DO_NOT_OVERWRITE=true
 
+#quantidades de nos, pega o mais de baixo
 nodes_v=(25 16 9)
 nodes_v=(100 81 64 49 36 25 16 169 256)
 nodes_v=(16 25 36 49 64 81 100)
-nodes_v=(49)
+nodes_v=(81)
 # topologies=(GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 # topologies=(BERLIN-FULL BERLIN-RND BERLIN-CTA BERLIN-SPN GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 #topologies=(GRID-SPN BERLIN-SPN)
@@ -33,11 +42,12 @@ nd_possibilities=(NV-NV)
 # taxa com que os pacotes de dados sao gerados - pacotes/min
 # datarates=(0.2 2)
 datarates=(1)
+# tempo da simulacao
 # SIM_TIME_MS=6000   # 0.1 minute
 # SIM_TIME_MS=60000   # 1 minute
 # SIM_TIME_MS=180000   # 3 minutes
-# SIM_TIME_MS=300000  # 5 minutes
- SIM_TIME_MS=600000  # 10 minutes
+ SIM_TIME_MS=300000  # 5 minutes
+# SIM_TIME_MS=600000  # 10 minutes
 # SIM_TIME_MS=1200000 # 20 minutes
 # SIM_TIME_MS=1800000 # 30 minutes
 # SIM_TIME_MS=3600000 # 60 minutes
@@ -184,10 +194,10 @@ for nnodes in "${nodes_v[@]}"; do
 						# make TARGET=sky -f Makefile_enabled_node enabled-node
 
 						make TARGET=sky clean -f Makefile_enabled_node
-						make TARGET=sky -f Makefile_enabled_node
+						make TARGET=sky -f Makefile_enabled_node EXTRA_FLAGS="$EXTRA_FLAGS"
 
 						make TARGET=sky clean -f Makefile_controller_node
-						make TARGET=sky -f Makefile_controller_node
+						make TARGET=sky -f Makefile_controller_node EXTRA_FLAGS="$EXTRA_FLAGS"
 					)
 
 					#controller recompilation
