@@ -315,7 +315,7 @@ void ndcd_input(uint8_t* packet_ptr, uint16_t packet_len) {
 #endif
         list_add(ri_list, r);
       } else {
-        printf("TACHEIO\n");
+        SDN_DEBUG("TACHEIO\n");
       }
     }
 
