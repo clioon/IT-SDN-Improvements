@@ -65,8 +65,8 @@ def parse_file(filename):
     rx = defaultdict(list)
     txb = {}
     energy = {}
-    merged_packets = defaultdict(int)
-    replaced_packets = defaultdict(int)
+    merged_packets = defaultdict(lambda: defaultdict(int))
+    replaced_packets = defaultdict(lambda: defaultdict(int))
     fg_time = -1
 
     expression = re.compile(r"""
@@ -90,8 +90,8 @@ def parse_file(filename):
         =(?P<NN>[0-9]*) # number of nodes
         """, re.X) #re.X: verbose so we can comment along
     
-    mg_expression = re.compile(r"=MG=(?P<MG_TYPE>[0-9A-F]{2})")
-    rp_expression = re.compile(r"=RP=(?P<RP_TYPE>[0-9A-F]{2})")
+    mg_expression = re.compile(r"=MG=(?P<MG_DIR>RX|TX)=(?P<MG_TYPE>[0-9A-F]{2})")
+    rp_expression = re.compile(r"=RP=(?P<RP_DIR>RX|TX)=(?P<RP_TYPE>[0-9A-F]{2})")
 
     energy_expression = re.compile(r"""
         (?P<TIME>.*) # First field is time, we do not match any pattern
@@ -220,14 +220,15 @@ def parse_file(filename):
 
                         s_mg = mg_expression.search(l)
                         if s_mg:
+                            mg_dir = s_mg.group('MG_DIR')
                             mg_type = s_mg.group('MG_TYPE')
-                            merged_packets[mg_type] += 1
+                            merged_packets[mg_dir][mg_type] += 1
                         else:
-                            # Verificar RP
                             s_rp = rp_expression.search(l)
                             if s_rp:
+                                rp_dir = s_rp.group('RP_DIR')
                                 rp_type = s_rp.group('RP_TYPE')
-                                replaced_packets[rp_type] += 1
+                                replaced_packets[rp_dir][rp_type] += 1
 
     except IOError:
         print("Error reading file:", filename)
@@ -354,13 +355,15 @@ def parse_file(filename):
         totalDelay = sum(delay_type.values())
         print("%.2f" % (totalDelay / totalRecv,))
 
-    print("\nMerged packets (MG) by type:")
-    for pkt_type, count in sorted(merged_packets.items()):
-        print(f"Type {pkt_type}: {count} vezes")
+    print("\nMerged packets (MG) by direction and type:")
+    for direction in sorted(merged_packets.keys()):
+        for pkt_type, count in sorted(merged_packets[direction].items()):
+            print(f"Direction {direction}, Type {pkt_type}: {count} vezes")
 
-    print("\nReplaced packets (RP) by type:")
-    for pkt_type, count in sorted(replaced_packets.items()):
-        print(f"Type {pkt_type}: {count} vezes")
+    print("\nReplaced packets (RP) by direction and type:")
+    for direction in sorted(replaced_packets.keys()):
+        for pkt_type, count in sorted(replaced_packets[direction].items()):
+            print(f"Direction {direction}, Type {pkt_type}: {count} vezes")
 
     delivery_data = -1
     delivery_ctrl = -1

@@ -13,11 +13,11 @@ fi
 # Simulation set configuration
 #quantidade de vezes que a simulacao sera rodada
 MIN_ITER=1
-MAX_ITER=1
+MAX_ITER=3
 # MIN_ITER=1
 # MAX_ITER=2
-COOJA_INSTANCES=1 #max simulations running in parallel
-COOJA_CURRENT_INSTANCE=1
+COOJA_INSTANCES=3 #max simulations running in parallel
+COOJA_CURRENT_INSTANCE=3
 
 DO_NOT_OVERWRITE=true
 
@@ -30,6 +30,7 @@ nodes_v=(81)
 # topologies=(BERLIN-FULL BERLIN-RND BERLIN-CTA BERLIN-SPN GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 #topologies=(GRID-SPN BERLIN-SPN)
 #topologies=(GRID-RND GRID-CTA GRID-SPN)
+#topologies=(BERLIN-FULL)
 topologies=(GRID-FULL)
 #nd_possibilities=(NV CL BL) # Naive Collect and Baseline
 # nd_possibilities=(NV-NV IM-NV CL NV-SC IM-SC)
@@ -46,11 +47,11 @@ datarates=(1)
 # SIM_TIME_MS=6000   # 0.1 minute
 # SIM_TIME_MS=60000   # 1 minute
 # SIM_TIME_MS=180000   # 3 minutes
- SIM_TIME_MS=300000  # 5 minutes
+# SIM_TIME_MS=300000  # 5 minutes
 # SIM_TIME_MS=600000  # 10 minutes
 # SIM_TIME_MS=1200000 # 20 minutes
 # SIM_TIME_MS=1800000 # 30 minutes
-# SIM_TIME_MS=3600000 # 60 minutes
+ SIM_TIME_MS=3600000 # 60 minutes
 
 ## datadistrs=(CTE EXP)
 ### datadistrs=(CTE)

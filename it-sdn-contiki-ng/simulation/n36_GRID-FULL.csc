@@ -2295,12 +2295,12 @@
   <plugin>
     org.contikios.cooja.plugins.ScriptRunner
     <plugin_config>
-      <script>TIMEOUT(1800000);
+      <script>TIMEOUT(600000);
 &#xD;
 sim.setSpeedLimit(4);&#xD;
 &#xD;
 FileWriter=Java.type("java.io.FileWriter");&#xD;
-my_output = new FileWriter("/dev/null");
+my_output = new FileWriter("/home/lion/ic/itsdn/it-sdn-contiki-ng/simulation/TESTE/cooja_n36_topGRID-FULL_ndNV-NV_l1_i1.txt");
 &#xD;
 while (true) {&#xD;
     my_output.write(time + ":" + id + ":" + msg + "\n");&#xD;

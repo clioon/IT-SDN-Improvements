@@ -935,6 +935,7 @@ void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t ti
 
     // restore the original seq no
     SDN_HEADER(individual_packet)->seq_no = seq_no;
+    SDN_DEBUG("after unmerged seq no: %x", SDN_HEADER(individual_packet)->seq_no);
 
     // copy the tail to the end of the individual packet
     memcpy(individual_packet + header_size + subpacket_len, tail, tail_len);
@@ -974,9 +975,10 @@ void sdn_treat_merged_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
 
     // restore the original seq no
     SDN_HEADER(individual_packet)->seq_no = seq_no;
+    SDN_DEBUG("after unmerged seq no: %x", SDN_HEADER(individual_packet)->seq_no);
 
     // treat this subpacket
-    printf("treating packet %d\n", i);
+    SDN_DEBUG("treating packet %d\n", i);
     sdn_treat_packet(individual_packet, (subpacket_len + header_size), time, action_ret);
   }
 }
@@ -1053,15 +1055,15 @@ sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
 
 #ifdef ENABLE_SDN_TREATMENT
         if (SDN_PACKET_IS_MERGED(packet)) {
-          sdn_header_t *header = (sdn_header_t *)packet;
+          //sdn_header_t *header = (sdn_header_t *)packet;
           switch(SDN_HEADER(packet)->type) {
             case SDN_PACKET_SRC_ROUTED_ACK:
             case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
             case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
-              SDN_DEBUG("processing src routed merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
+              //SDN_DEBUG("processing src routed merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
               sdn_treat_merged_src_rtd_packet(packet, len, time, action_ret);
           }
-          printf("processing merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
+          //SDN_DEBUG("processing merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
           sdn_treat_merged_packet(packet, len, time, action_ret);
           return NULL;
         }
