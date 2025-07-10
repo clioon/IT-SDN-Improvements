@@ -31,9 +31,9 @@ unsigned long energy;
 
 struct ctimer periodic_timer;
 
-float cpu_i = 2.33;
-float lpm_i = 0.180;
-float rx_i = 22;
+float cpu_i = 0; //2.33
+float lpm_i = 0; //0.180
+float rx_i = 0; //22
 float tx_i = 21.7;
 
 uint8_t battery_level_previous;
