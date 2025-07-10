@@ -899,7 +899,7 @@ uint8_t check_packet_len() {
 }
 
 #ifdef ENABLE_SDN_TREATMENT
-void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret){
+void sdn_treat_merged_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret, uint8_t is_src_rtd){
   uint8_t header_size = sdn_get_header_size(packet);
   uint8_t num_subpackets = SDN_GET_NUM_SUBPACKETS(packet, header_size);
   uint16_t offset = header_size + 1; //header and number of subpackets
@@ -911,18 +911,23 @@ void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t ti
   SDN_PACKET_SET_NOT_MERGED(individual_packet);
   
   // copy the tail of the src routed packet that will also be added to the end of the individual packet
-  uint8_t tail[SDN_MAX_PACKET_SIZE];
-  memset(tail, 0, SDN_MAX_PACKET_SIZE);
-  size_t body_len = sdn_get_src_rtd_merged_subpackets_len(packet);
-  uint8_t tail_len = len - (body_len + header_size);
-  memcpy(tail, (packet + body_len), tail_len);
+  uint8_t tail[SDN_MAX_PACKET_SIZE] = {0};
+  uint8_t tail_len = 0;
 
+  if (is_src_rtd) {
+    size_t body_len = sdn_get_src_rtd_merged_subpackets_len(packet);
+    tail_len = len - (body_len + header_size);
+    if(tail_len > 0 && tail_len < SDN_MAX_PACKET_SIZE) memcpy(tail, (packet + header_size + body_len), tail_len);
+  }
+  
   // for every subpacket in packet
   for (int i = 0; i < num_subpackets; i++) { 
-    
-    if (offset >= len) break;
+    if (offset + 2 + LINKADDR_SIZE > len) break;
 
     uint8_t seq_no = packet[offset++];
+    sdnaddr_t source;
+    memcpy(&source, &packet[offset], LINKADDR_SIZE);
+    offset += LINKADDR_SIZE;
     uint8_t subpacket_len = packet[offset++];
 
     if ((offset+subpacket_len) > len) break;
@@ -935,51 +940,23 @@ void sdn_treat_merged_src_rtd_packet(uint8_t * packet, uint16_t len, uint32_t ti
 
     // restore the original seq no
     SDN_HEADER(individual_packet)->seq_no = seq_no;
-    SDN_DEBUG("after unmerged seq no: %x", SDN_HEADER(individual_packet)->seq_no);
+    // SDN_DEBUG("after unmerged seq no: %x", SDN_HEADER(individual_packet)->seq_no);
 
-    // copy the tail to the end of the individual packet
-    memcpy(individual_packet + header_size + subpacket_len, tail, tail_len);
+    // restore the original source
+    SDN_HEADER(individual_packet)->source = source;
+    // SDN_DEBUG("after unmerged source: %02x:%02x", SDN_HEADER(individual_packet)->source.u8[0], SDN_HEADER(individual_packet)->source.u8[1]);
 
+
+    uint16_t individual_len = header_size + subpacket_len;
+
+    if (is_src_rtd) {
+      // copy the tail to the end of the individual packet
+      individual_len += tail_len; 
+      if (tail_len > 0) memcpy(individual_packet + header_size + subpacket_len, tail, tail_len);
+    }
     //treat this subpacket
-    SDN_DEBUG("treating packet %d\n", i);
+    //printf("treating packet %d\n", i);
     sdn_treat_packet(individual_packet, (subpacket_len + header_size + tail_len), time, action_ret);
-  }
-}
-
-void sdn_treat_merged_packet(uint8_t * packet, uint16_t len, uint32_t time, action_t *action_ret) {
-  uint8_t header_size = sdn_get_header_size(packet);
-  uint8_t num_subpackets = SDN_GET_NUM_SUBPACKETS(packet, header_size);
-  uint16_t offset = header_size + 1; //header and number of subpackets
-
-  // copy of the packet header that will be used separate the subpackets into idividual packets
-  uint8_t individual_packet[SDN_MAX_PACKET_SIZE];
-  memset(individual_packet, 0, SDN_MAX_PACKET_SIZE);
-  memcpy(individual_packet, packet, header_size);
-  SDN_PACKET_SET_NOT_MERGED(individual_packet);
-  
-  // for every subpacket in packet
-  for (int i = 0; i < num_subpackets; i++) { 
-    
-    if (offset + 2 > len) break;
-
-    uint8_t seq_no = packet[offset++];
-    uint8_t subpacket_len = packet[offset++];
-
-    if ((offset+subpacket_len) > len) break;
-
-    memset(individual_packet + header_size, 0, SDN_MAX_PACKET_SIZE - header_size);
-
-    // copy the subpacket payload to individual_packet after the header
-    memcpy(individual_packet + header_size, packet + offset, subpacket_len);
-    offset += subpacket_len;
-
-    // restore the original seq no
-    SDN_HEADER(individual_packet)->seq_no = seq_no;
-    SDN_DEBUG("after unmerged seq no: %x", SDN_HEADER(individual_packet)->seq_no);
-
-    // treat this subpacket
-    SDN_DEBUG("treating packet %d\n", i);
-    sdn_treat_packet(individual_packet, (subpacket_len + header_size), time, action_ret);
   }
 }
 #endif
@@ -1055,16 +1032,18 @@ sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
 
 #ifdef ENABLE_SDN_TREATMENT
         if (SDN_PACKET_IS_MERGED(packet)) {
+          //printf("Pacote MERGED recebido, tipo=%02x, len=%u, num_subpackets=%d\n", SDN_HEADER(packet)->type, len, SDN_GET_NUM_SUBPACKETS(packet, sdn_get_header_size(packet)));
           //sdn_header_t *header = (sdn_header_t *)packet;
           switch(SDN_HEADER(packet)->type) {
             case SDN_PACKET_SRC_ROUTED_ACK:
             case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
             case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
-              //SDN_DEBUG("processing src routed merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
-              sdn_treat_merged_src_rtd_packet(packet, len, time, action_ret);
+              //printf("processing src routed merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
+              sdn_treat_merged_packet(packet, len, time, action_ret, 1);
+              return NULL;
           }
-          //SDN_DEBUG("processing merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
-          sdn_treat_merged_packet(packet, len, time, action_ret);
+          //printf("processing merged packet! reserved: %d, type: %x\n", header->reserved, header->type);
+          sdn_treat_merged_packet(packet, len, time, action_ret, 0);
           return NULL;
         }
 #endif

@@ -54,6 +54,10 @@
 #endif
 #endif
 
+#ifdef SDN_ENABLED_NODE
+#include "sdn-send.h"
+#endif
+
 typedef struct {
   uint8_t head;
   uint8_t tail;
@@ -127,8 +131,6 @@ sdn_send_queue_data_t* sdn_send_queue_dequeue() {
 
   return t;
 }
-
-
 
 sdn_send_queue_data_t* sdn_send_queue_find_by_type(uint8_t type) {
   uint8_t indexCount, indexPacket;
@@ -243,6 +245,8 @@ sdn_recv_queue_data_t* sdn_recv_queue_dequeue() {
 
 #ifdef ENABLE_SDN_TREATMENT
 
+volatile uint8_t sdn_processing_send_queue = 0;
+
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  print packet (including merged ones)
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -265,6 +269,7 @@ void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
     for (int i = 0; i < num_sub; i++) {
       //uint8_t seq_no = p[deslocamento];
       deslocamento++;
+      deslocamento += LINKADDR_SIZE; // source
       uint16_t len_sub = p[deslocamento];
       SDN_DEBUG("\tSub pacote #%d (len %d): ", i, len_sub);
       deslocamento++;
@@ -295,33 +300,32 @@ uint16_t sdn_merged_new_length(uint8_t *p, uint8_t header_size) {
   new_len += 1;  // byte that stores the number of subpackets
   offset++;
 
-  
   for (int i = 0; i < num_subpackets; i++) {
     offset ++; // skip the seq no
+    offset += LINKADDR_SIZE; // skip the source
     uint8_t sub_len = p[offset];  // subpacket length
-    new_len += 2 + sub_len;         // byte that stores the seq no + the subpacket len + subpacket len
+    new_len += 2 + LINKADDR_SIZE + sub_len;         // byte that stores the seq no + source  + the subpacket len + subpacket len
     offset += 1 + sub_len;
   }
   return new_len;
 }
 
 uint8_t sdn_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uint8_t header_size, uint8_t queue) {
-  
+
   uint8_t *p2 = (queue == SDN_SEND_QUEUE) ? sdn_send_queue_data[pos].data : sdn_recv_queue_data[pos].data;
   uint16_t *p2_len = (queue == SDN_SEND_QUEUE) ? &(sdn_send_queue_data[pos].len) : &(sdn_recv_queue_data[pos].len); 
-  //SDN_DEBUG("max_pack: %d, len1: %d, len2: %d\n", SDN_MAX_PACKET_SIZE, p1_len, *p2_len);
 
   uint8_t num_sub_p1 = SDN_GET_NUM_SUBPACKETS(p1, header_size);
   uint8_t seq_no_p1 = SDN_HEADER(p1)->seq_no;
+  sdnaddr_t source_p1 = SDN_HEADER(p1)->source;
   uint8_t offset_p1 = header_size; // set offset_p1 to skip the header
   
   uint8_t num_sub_p2 = SDN_GET_NUM_SUBPACKETS(p2, header_size);
   uint8_t seq_no_p2 = SDN_HEADER(p2)->seq_no;
+  sdnaddr_t source_p2 = SDN_HEADER(p2)->source;
   uint8_t offset_p2 = header_size;
 
-  SDN_DEBUG("seq no before merge: %x", seq_no_p1);
-
-  if (num_sub_p1 > SDN_MAX_SUBPACKETS || num_sub_p2 > SDN_MAX_SUBPACKETS) {
+  if (num_sub_p1 + num_sub_p2 > SDN_MAX_SUBPACKETS) {
     SDN_DEBUG("Max number of subpackets reached");
     return 0;
   }
@@ -338,10 +342,10 @@ uint8_t sdn_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uin
   else{
     // if p2 is not merged, reajust the p2 structure to match the merged structure
     SDN_PACKET_SET_MERGED(p2);
-    uint8_t extra_bytes = 3;
+    uint8_t extra_bytes = 3 + LINKADDR_SIZE; // #packtes (1), seqno (1), source(LINKADDR_SIZE), length(1)
     uint16_t p2_payload_len = *p2_len - header_size;
 
-    //open space to input the extra bytes to store the #subpackets, the first seq number and the first subpacket length
+    //open space to input the extra bytes to store the #subpackets, the first seq number, the first source and the first subpacket length
     for (int i = *p2_len + (extra_bytes - 1); i > header_size; i--) {
       p2[i] = p2[i-extra_bytes];
     }
@@ -350,13 +354,14 @@ uint8_t sdn_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uin
     offset_p2++;
     p2[offset_p2] = seq_no_p2; // insert the first subpacket seq number
     offset_p2++;
+    memcpy(&p2[offset_p2], source_p2.u8, LINKADDR_SIZE);
+    offset_p2 += LINKADDR_SIZE;
     p2[offset_p2] = p2_payload_len; // insert the first subpacket len
     offset_p2++; // payload 1 already inserted
     offset_p2 += p2_payload_len;
   }
 
   // analize the p1 packet
-  
   uint16_t p1_sub_payload_len = p1_len - header_size;
 
   if (SDN_PACKET_IS_MERGED(p1)){
@@ -365,19 +370,25 @@ uint8_t sdn_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uin
     // insert the subpackets in p1 to p2, one by one
     for(int i = 0; i < num_sub_p1; i++){
       uint8_t p1_sub_payload_seq_no = p1[offset_p1];
-      offset_p1 ++;
+      offset_p1++;
+      sdnaddr_t p1_sub_payload_source;
+      memcpy(&p1_sub_payload_source, &p1[offset_p1], LINKADDR_SIZE);
+      offset_p1 += LINKADDR_SIZE;
+
       p1_sub_payload_len = p1[offset_p1];
       offset_p1++;
 
-      //insert p1 subpacket seq number in p2
+      // insert p1 subpacket seq number in p2
       p2[offset_p2] = p1_sub_payload_seq_no;
       offset_p2 ++;
+      // insert p1 subpacket source in p2
+      memcpy(&p2[offset_p2], &p1_sub_payload_source, LINKADDR_SIZE);
+      offset_p2 += LINKADDR_SIZE;
 
-      //insert p1 subpacket payload len in p2
+      // insert p1 subpacket payload len in p2
       p2[offset_p2] = p1_sub_payload_len;
       offset_p2++;
-
-      //insert p1 subpacket payload in p2
+      // insert p1 subpacket payload in p2
       memcpy(&p2[offset_p2], &p1[offset_p1], p1_sub_payload_len);
 
 
@@ -392,9 +403,10 @@ uint8_t sdn_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uin
     //if p1 is not merged, insert the only p1 subpacket in p2
     p2[offset_p2] = seq_no_p1;
     offset_p2++;
+    memcpy(&p2[offset_p2], &source_p1, LINKADDR_SIZE);
+    offset_p2 += LINKADDR_SIZE;
     p2[offset_p2] = p1_sub_payload_len;
     offset_p2++;
-
     memcpy(&p2[offset_p2], &p1[offset_p1], p1_sub_payload_len);
 
 
@@ -411,15 +423,13 @@ uint8_t sdn_queue_combine_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos, uin
 
   //eliminate p1 packet
   if (queue == SDN_SEND_QUEUE) {
-    SDN_METRIC_MERGE_TX(p1);
+    SDN_METRIC_MERGE_TX(p1, p2);
+    sdn_send_queue_print();
   } else {
-    SDN_METRIC_MERGE_RX(p1);
+    SDN_METRIC_MERGE_RX(p1, p2);
+    sdn_recv_queue_print();
   }
   sdn_packetbuf_pool_put((sdn_packetbuf *) p1);
-
-  SDN_DEBUG("merging packets...\n");
-  //imprimir(p2, *p2_len, header_size);
-  //sdn_recv_queue_print();
 
   return 1;
 }
@@ -463,6 +473,7 @@ void sdn_get_src_routing_info(uint8_t *p, uint16_t p_len, uint8_t header_size, s
   // go through all the subpackets
   for (int i = 0; i < num_subpackets; i++) {
     offset++; // seq no
+    offset += LINKADDR_SIZE; // source
     uint16_t len = *offset;
     offset++;
     offset += len;
@@ -575,10 +586,7 @@ uint8_t sdn_queue_replace_old_packet(uint8_t *data, uint16_t len, uint8_t pos, u
     SDN_METRIC_REPLACE_TX(data);
   }
 
-  SDN_DEBUG ("Old duplicate packet has been replaced by the new one\n");
-  //imprimir(data, len, header_size);
   return 1;
-
 }
 
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -609,7 +617,7 @@ uint8_t sdn_get_routing_dest(uint8_t *p, uint8_t **dest, size_t *dest_len) {
 //  delete a specific subpacket from a merged packet
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-uint8_t  sdn_queue_delete_subpacket(uint8_t *p, uint16_t p_len, uint8_t subpacket_num, uint8_t header_size, uint8_t p_pos, uint8_t queue) {
+uint8_t  sdn_queue_delete_subpacket(uint8_t *p, uint16_t *p_len, uint8_t subpacket_num, uint8_t header_size, uint8_t p_pos, uint8_t queue) {
 
   uint8_t *num_subpackets_ptr = p + header_size;
   uint8_t num_subpackets = *num_subpackets_ptr;
@@ -621,27 +629,31 @@ uint8_t  sdn_queue_delete_subpacket(uint8_t *p, uint16_t p_len, uint8_t subpacke
 
   // move to the start of the subpacket that will be removed
   while(current_subpacket < subpacket_num) {
-    offset++;                      // skip deq no
+    offset++;                      // skip seq no
+    offset += LINKADDR_SIZE;       // skip source
     uint8_t len = p[offset];       // current packet length
     offset += 1 + len;             // skip 1 byte (that stores the len) + packet lenght
     current_subpacket++;
   }
 
   offset++; // skip the seq no
+  offset += LINKADDR_SIZE; // skip the source
   uint8_t len_to_remove = p[offset];
-  uint8_t total_remove_len = 2 + len_to_remove; // payload len + byte that stores the length and the seq no
+  uint8_t total_remove_len = 2 + LINKADDR_SIZE + len_to_remove; // payload len + byte that stores the length and the seq no + LINKADDR_SIZE bytes that stores the source
 
-  uint16_t remaining_bytes = p_len - (offset - 1 + total_remove_len); // -1 to go back to the start of the subpacket (in the seq no)
+  uint16_t start_of_subpacket = offset - 1 - LINKADDR_SIZE;
+  uint16_t remaining_bytes = *p_len - (start_of_subpacket + total_remove_len); // -1 to go back to the start of the subpacket (in the seq no)
 
   // deslocate the content after the removed packet 
-  memmove(&p[offset], &p[offset + total_remove_len], remaining_bytes);
+  memmove(&p[start_of_subpacket], &p[start_of_subpacket + total_remove_len], remaining_bytes);
 
   // update the num of subpackets
   (*num_subpackets_ptr)--;
 
   // update the packet lenght in the queue
-  if (queue == SDN_RECEIVE_QUEUE) sdn_recv_queue_data[p_pos].len = p_len - total_remove_len;
-  else sdn_send_queue_data[p_pos].len = p_len - total_remove_len;
+  *p_len = *p_len - total_remove_len;
+  if (queue == SDN_RECEIVE_QUEUE) sdn_recv_queue_data[p_pos].len = *p_len;
+  else sdn_send_queue_data[p_pos].len = *p_len;
 
   return 1;
 }
@@ -650,55 +662,79 @@ uint8_t  sdn_queue_delete_subpacket(uint8_t *p, uint16_t p_len, uint8_t subpacke
 //  compare a speciffic field after the "header" (header_size)
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-uint8_t sdn_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2, uint16_t p2_len, uint8_t header_size, uint8_t compare_size, uint8_t p2_pos, uint8_t queue) {
+uint8_t sdn_queue_compare_packets(uint8_t *new_packet, uint16_t new_len, uint8_t *old_packet, uint16_t old_len, uint8_t header_size, uint8_t compare_size, uint8_t old_packet_pos, uint8_t queue, uint8_t same_src) {
   
-  // p1 is the new packet and p2 is the packet already in the queue
-  uint8_t is_p1_merged = SDN_PACKET_IS_MERGED(p1);
-  uint8_t is_p2_merged = SDN_PACKET_IS_MERGED(p2);
+  uint8_t is_new_merged = SDN_PACKET_IS_MERGED(new_packet);
+  uint8_t is_old_merged = SDN_PACKET_IS_MERGED(old_packet);
 
-  uint8_t num_sub_p1 = SDN_GET_NUM_SUBPACKETS(p1, header_size);
-  uint8_t num_sub_p2 = SDN_GET_NUM_SUBPACKETS(p2, header_size);
+  uint8_t new_subs = SDN_GET_NUM_SUBPACKETS(new_packet, header_size);
+  uint8_t old_subs = SDN_GET_NUM_SUBPACKETS(old_packet, header_size);
 
-  uint8_t offset1 = header_size + (is_p1_merged ? 1 : 0);
-  uint8_t offset2_start = header_size + (is_p2_merged ? 1 : 0);
+  uint8_t offset_new = header_size + (is_new_merged ? 1 : 0);
 
-  // go through all p1 subpackets
-  for (uint8_t i = 0; i < num_sub_p1; i++) {
-    offset1 += is_p1_merged ? 1 : 0;  // skip the seq no if merged
-    uint8_t len1 = is_p1_merged ? p1[offset1++] : (p1_len - header_size);
-    uint8_t *payload1 = p1 + offset1;
+  // array that will store the duplicate subpackets that will be deleted
+  uint8_t duplicates[old_subs];
+  uint8_t duplicate_count = 0;
 
-    uint8_t offset2 = offset2_start;
-    uint8_t p2_subpacket_num = 0;
+  // go through all of the new packet subpackets
+  for (uint8_t i = 0; i < new_subs; i++) {
+    sdnaddr_t new_src;
+    if (is_new_merged) {
+      offset_new++; // seq no
+      memcpy(&new_src, new_packet + offset_new, LINKADDR_SIZE);
+      offset_new += LINKADDR_SIZE; // src
+    }
 
-    // compare it to all of the p2 subpackets
-    for (uint8_t j = 0; j < num_sub_p2; j++) {
-      offset2 += is_p2_merged ? 1 : 0;  // skip the seq no if merged
-      uint8_t len2 = is_p2_merged ? p2[offset2++] : (p2_len - header_size);
-      uint8_t *payload2 = p2 + offset2;
-      p2_subpacket_num++;
+    uint8_t len_new = is_new_merged ? new_packet[offset_new++] : (new_len - header_size);
+    uint8_t *payload_new = new_packet + offset_new;
+
+    uint8_t offset_old = header_size + (is_old_merged ? 1 : 0);
+
+    // compare it to all of the old packet subpackets
+    for (uint8_t j = 0; j < old_subs; j++) {
+      sdnaddr_t old_src;
+      if (is_old_merged) {
+        offset_old++; // seq no
+        memcpy(&old_src, old_packet + offset_old, LINKADDR_SIZE);
+        offset_old += LINKADDR_SIZE; // src
+      }
+
+      uint8_t len_old = is_old_merged ? old_packet[offset_old++] : (old_len - header_size);
+      uint8_t *payload_old = old_packet + offset_old;
+
+      if (is_new_merged && is_old_merged && !sdnaddr_cmp(&new_src, &old_src)) {
+        offset_old += len_old;
+        continue;
+      }
       
       // if compare_size that was passed == 0, that means that we want to compare the entire payload
-      uint8_t cmp_len = compare_size == 0 ? (len1 < len2 ? len1 : len2) : compare_size;
+      uint8_t cmp_len = compare_size == 0 ? MIN(len_new, len_old) : compare_size;
 
       // if the area that we are interested in are the same:
-      if (memcmp(payload1, payload2, cmp_len) == 0) {
-        if (is_p1_merged && !is_p2_merged) {
-          return SDN_QUEUE_ACTION_REPLACE;
+      if (memcmp(payload_new, payload_old, cmp_len) == 0) {
+        // case: data always merge
+        if (SDN_HEADER(new_packet)->type == SDN_PACKET_DATA) return SDN_QUEUE_ACTION_MERGE;
+
+        // case: old is not merged
+        if (!is_old_merged) {
+          return same_src? SDN_QUEUE_ACTION_REPLACE : SDN_QUEUE_ACTION_NONE;
         }
-        else if (!is_p1_merged && !is_p2_merged) {
-          return SDN_QUEUE_ACTION_REPLACE;
-        }
-        else {
-          // if p1 is not merged and p2 is merged / if p1 and p2 are merged: delete the duplicate subpacket in p2, then merge them
-           sdn_queue_delete_subpacket(p2, p2_len, p2_subpacket_num, header_size, p2_pos, queue);
-          return SDN_QUEUE_ACTION_MERGE;
+
+        // case: old is merged: register the subpacket index that need to be deleted
+        if (duplicate_count < old_subs) {
+          duplicates[duplicate_count++] = j + 1;
         }
       }
-      offset2 += len2;
+      offset_old += len_old;
     }
-    offset1 += len1;
+    offset_new += len_new;
   }
+
+  // remove all of the old packet duplicate subpackets
+  for (uint8_t i = duplicate_count; i > 0; i--) {
+    sdn_queue_delete_subpacket(old_packet, &old_len, duplicates[i-1], header_size, old_packet_pos, queue);
+  }
+
   return SDN_QUEUE_ACTION_MERGE;
 }
 
@@ -706,22 +742,20 @@ uint8_t sdn_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2, uin
 //  determine action: merge/replace/nothing
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-uint8_t sdn_queue_determine_pckt_action(uint8_t *p1, uint8_t *p2, uint16_t p1_len, uint16_t p2_len, uint8_t *header_size, uint8_t p2_pos, uint8_t queue) {
+uint8_t sdn_queue_determine_pckt_action(uint8_t *new_packet, uint8_t *old_packet, uint16_t new_len, uint16_t old_len, uint8_t *header_size, uint8_t old_packet_pos, uint8_t queue, uint8_t is_src_routed) {
   
   // if types are different dont compare;
-  uint8_t type = SDN_HEADER(p1)->type;
-  if (type != SDN_HEADER(p2)->type) return SDN_QUEUE_ACTION_NONE;
+  uint8_t type = SDN_HEADER(new_packet)->type;
+  if (type != SDN_HEADER(old_packet)->type) return SDN_QUEUE_ACTION_NONE;
 
-  //verify if the origin of the packets are the same
-  if (sdnaddr_cmp(&SDN_HEADER(p1)->source, &SDN_HEADER(p2)->source) != 0) return SDN_QUEUE_ACTION_NONE;
+  //verify if the origin of the src rtd packets are the same
+  uint8_t same_src = sdnaddr_cmp(&SDN_HEADER(new_packet)->source, &SDN_HEADER(old_packet)->source) == 0;
 
   // verify if the destination of the packets are the same
   uint8_t *dest1, *dest2;
   size_t dest_len1, dest_len2;
 
-  if (!sdn_get_routing_dest(p1, &dest1, &dest_len1) || !sdn_get_routing_dest(p2, &dest2, &dest_len2)) {
-    return SDN_QUEUE_ACTION_NONE;
-  }
+  if (!sdn_get_routing_dest(new_packet, &dest1, &dest_len1) || !sdn_get_routing_dest(old_packet, &dest2, &dest_len2)) return SDN_QUEUE_ACTION_NONE;
 
   if (dest_len1 != dest_len2) return SDN_QUEUE_ACTION_NONE;
   if (memcmp(dest1, dest2, dest_len1) != 0) return SDN_QUEUE_ACTION_NONE;
@@ -732,62 +766,62 @@ uint8_t sdn_queue_determine_pckt_action(uint8_t *p1, uint8_t *p2, uint16_t p1_le
     case SDN_PACKET_CONTROL_FLOW_SETUP:
       *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
       compare_size = sizeof(sdnaddr_t); // route_destination
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_DATA_FLOW_SETUP:
       *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
       compare_size = sizeof(flowid_t); // flowid
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_CONTROL_FLOW_REQUEST:
       *header_size = sizeof(sdn_header_t) + sizeof(flowid_t);
       compare_size = sizeof(sdnaddr_t); // address
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_DATA_FLOW_REQUEST:
       *header_size = sizeof(sdn_header_t) + sizeof(flowid_t);
       compare_size = sizeof(flowid_t); // flowid
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);      
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);      
 
     case SDN_PACKET_REGISTER_FLOWID:
       *header_size = sizeof(sdn_header_t) + sizeof(flowid_t);
       compare_size = sizeof(flowid_t); // flowid
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_ACK_BY_FLOW_ADDRESS:
       *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
       compare_size = sizeof(uint8_t) * 2; // acked_packed_type and acked_packed_seqno
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_ACK_BY_FLOW_ID:
       *header_size = sizeof(sdn_header_t) + sizeof(flowid_t);
       compare_size = 0; // compare all the payload after the struct
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_DATA:
-      *header_size = sizeof(sdn_data_t);
-      //compare_size = 0; // compare all the payload after the struct
-      //return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
-      return SDN_QUEUE_ACTION_MERGE; // always merge
+      *header_size = sizeof(sdn_header_t) + sizeof(flowid_t);
+      compare_size = sizeof(flowid_t); // flowid
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_NEIGHBOR_REPORT:
+      if (!same_src) return SDN_QUEUE_ACTION_NONE;
       *header_size = sizeof(sdn_header_t);
       return SDN_QUEUE_ACTION_REPLACE; // always replace
 
     case SDN_PACKET_SRC_ROUTED_ACK:
       *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
       compare_size = sizeof(uint8_t) * 2; // acked_packed_type and acked_packed_seqno;
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
 
     case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
       *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
       compare_size = sizeof(sdnaddr_t); // flow_setup.route_destination
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
     
     case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
       *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
       compare_size = sizeof(flowid_t); // flow_setup.flowid
-      return sdn_queue_compare_packets(p1, p1_len, p2, p2_len, *header_size, compare_size, p2_pos, queue);
+      return sdn_queue_compare_packets(new_packet, new_len, old_packet, old_len, *header_size, compare_size, old_packet_pos, queue, same_src);
     
     default:
       return SDN_QUEUE_ACTION_NONE;
@@ -834,7 +868,7 @@ uint8_t sdn_queue_process_new_packet(uint8_t *new_packet, uint16_t new_len, uint
       uint8_t *old_packet = sdn_recv_queue_data[pos].data;
       uint16_t old_len = sdn_recv_queue_data[pos].len;
 
-      uint8_t action = sdn_queue_determine_pckt_action(new_packet, old_packet, new_len, old_len, &header_size, pos, queue);
+      uint8_t action = sdn_queue_determine_pckt_action(new_packet, old_packet, new_len, old_len, &header_size, pos, queue, is_src_routed);
 
       if (action == SDN_QUEUE_ACTION_REPLACE) {
         SDN_DEBUG("RECEIVE QUEUE: Duplicate packet (type: %x) found, replacing the old one...\n", SDN_HEADER(new_packet)->type);
@@ -854,11 +888,18 @@ uint8_t sdn_queue_process_new_packet(uint8_t *new_packet, uint16_t new_len, uint
     uint8_t pos = sdn_send_queue.head;
     uint8_t header_size;
 
+#ifdef SDN_ENABLED_NODE
+    if (sdn_get_send_status() != SDN_SEND_IDLE) {
+      if (sdn_send_queue.size == 1) return 0;
+      pos = (pos+1) % sdn_send_queue.max_size;
+    }
+#endif
+
     while (pos != sdn_send_queue.tail) {
       uint8_t *old_packet = sdn_send_queue_data[pos].data;
       uint16_t old_len = sdn_send_queue_data[pos].len;
 
-      uint8_t action = sdn_queue_determine_pckt_action(new_packet, old_packet, new_len, old_len, &header_size, pos, queue);
+      uint8_t action = sdn_queue_determine_pckt_action(new_packet, old_packet, new_len, old_len, &header_size, pos, queue, is_src_routed);
 
       if (action == SDN_QUEUE_ACTION_REPLACE) {
         SDN_DEBUG("SEND QUEUE: Duplicate packet (type: %x) found, replacing the old one...\n", SDN_HEADER(new_packet)->type);
@@ -890,7 +931,7 @@ uint8_t sdn_is_final_destination(uint8_t* packet) {
     struct data_flow_entry *dfe = sdn_dataflow_get(SDN_GET_PACKET_FLOW(packet));
     if(dfe == NULL) return 0;
     else if(dfe->action == SDN_ACTION_RECEIVE){
-      SDN_DEBUG("packet is in the destination, not proceding the verification\n");
+      //SDN_DEBUG("packet is in the destination, not proceding the verification\n");
       return 1;
     }
   } 
@@ -899,7 +940,7 @@ uint8_t sdn_is_final_destination(uint8_t* packet) {
     struct control_flow_entry *cfe = sdn_controlflow_get(SDN_GET_PACKET_ADDR(packet));
     if(cfe == NULL) return 0;
     if(cfe->action == SDN_ACTION_RECEIVE){
-      SDN_DEBUG("packet is in the destination, not proceding the verification\n");
+      //SDN_DEBUG("packet is in the destination, not proceding the verification\n");
       return 1;
     }
   }
@@ -907,14 +948,14 @@ uint8_t sdn_is_final_destination(uint8_t* packet) {
   else if (SDN_ROUTED_BY_SRC(packet)) {
     sdnaddr_t * next_hop = &SDN_GET_PACKET_ADDR(packet);
     if (sdnaddr_cmp(next_hop, &sdn_node_addr) == SDN_EQUAL){
-      SDN_DEBUG("packet is in the destination, not proceding the verification\n");
+      //SDN_DEBUG("packet is in the destination, not proceding the verification\n");
       return 1;
     }
   }
 
   else if (SDN_ROUTED_NOT(packet)) {
     if (sdnaddr_cmp(&((sdn_header_t*)packet)->source, &sdn_node_addr) != SDN_EQUAL){
-      SDN_DEBUG("packet is in the destination, not proceding the verification\n");
+      //SDN_DEBUG("packet is in the destination, not proceding the verification\n");
       return 1;
     }
   }
@@ -1005,11 +1046,14 @@ uint8_t sdn_send_queue_enqueue_custom(uint8_t *data, uint16_t len, uint32_t time
 #endif //SDN_CONTROLLER_PC
   if (sdn_send_queue_size() < sdn_send_queue_maxSize()) {
 #ifdef ENABLE_SDN_TREATMENT
+  sdn_processing_send_queue = 1;
   // verify if packet needs treatment, if so, treat it and if the treatment went well, returns success
   if(sdn_queue_process_new_packet(data, len, SDN_SEND_QUEUE)){
+    sdn_processing_send_queue = 0;
     SDN_DEBUG("send queue packet enqueued\n");
     return SDN_SUCCESS;
   }
+  sdn_processing_send_queue = 0;
 #endif
 
     sdn_send_queue_data[sdn_send_queue.tail].data = data;
