@@ -78,7 +78,7 @@ void sdn_receive() {
 
 #ifdef ENABLE_SDN_TREATMENT
   if(SDN_PACKET_IS_MERGED(packet)) {
-    printf("controller: merged packet received (type %02x, num_subpackets=%d)\n", SDN_HEADER(packet)->type, SDN_GET_NUM_SUBPACKETS(packet, sdn_get_header_size(packet)));
+    SDN_DEBUG ("controller: merged packet received (type %02x, num_subpackets=%d)\n", SDN_HEADER(packet)->type, SDN_GET_NUM_SUBPACKETS(packet, sdn_get_header_size(packet)));
     uint8_t header_size = sdn_get_header_size(packet);
     uint8_t num_sub = SDN_GET_NUM_SUBPACKETS(packet, header_size);
     uint16_t offset = header_size + 1;

@@ -1,16 +1,18 @@
 import re, math, random, operator, copy
 from collections import defaultdict
+from functools import reduce
 
-numbers = range(4,11)
-numbers = map(lambda x: x*x, numbers)
+numbers = [169]
+# numbers = range(4,11)
+# numbers = map(lambda x: x*x, numbers)
 # numbers=(16,)
 
 for n in numbers:
-  fin = file("n"+repr(n)+".matrix")
-  fout1 = file("links"+repr(n)+"_berlin-full.dat", 'w')
-  print "Generating links"+repr(n)+"_berlin-full.dat ..."
-  fout2 = file("links"+repr(n)+"_berlin-cta.dat", 'w')
-  print "Generating links"+repr(n)+"_berlin-cta.dat ..."
+  fin = open("n"+repr(n)+".matrix")
+  fout1 = open("links"+repr(n)+"_berlin-full.dat", 'w')
+  print ("Generating links"+repr(n)+"_berlin-full.dat ...")
+  fout2 = open("links"+repr(n)+"_berlin-cta.dat", 'w')
+  print ("Generating links"+repr(n)+"_berlin-cta.dat ...")
 
   fout1.write("#SRC DST PRR . . . RSSI . .\n")
   fout2.write("#SRC DST PRR . . . RSSI . .\n")
@@ -18,7 +20,7 @@ for n in numbers:
   for line in fin:
     spl = line.split()
     if len(spl) != n:
-      print "Unexpected line len", len(spl), n, line
+      print ("Unexpected line len", len(spl), n, line)
       break
     for column in range(line_number, n):
       # print line_number+1, column+1,
@@ -43,10 +45,10 @@ powerful_range = 2
 down_prob = 0.15
 
 for n in numbers:
-  print "Generating links"+repr(n)+"_berlin-spn.dat ..."
+  print ("Generating links"+repr(n)+"_berlin-spn.dat ...")
   powerful_nodes = random.sample( range(1, n+1), int(round(powerful_prob*n)) )
 
-  fin = file("n"+repr(n)+".ns2")
+  fin = open("n"+repr(n)+".ns2")
   Xs = {}
   Ys = {}
   for line in fin:
@@ -62,7 +64,7 @@ for n in numbers:
 
   links = defaultdict(list)
 
-  fout = file("links"+repr(n)+"_berlin-spn.dat_temp", 'w')
+  fout = open("links"+repr(n)+"_berlin-spn.dat_temp", 'w')
   fout.write("#SRC DST PRR . . . RSSI . .\n")
   for i in range(1, n+1):
     for j in range (i+1, n+1):
@@ -80,7 +82,7 @@ for n in numbers:
         fout.write("%d %d 1 ? ? ? 0 ? ?\n" % (j, i))
   fout.close()
 
-  print "Generating links"+repr(n)+"_berlin-rnd.dat ..."
+  print ("Generating links"+repr(n)+"_berlin-rnd.dat ...")
   link_pairs = map(lambda x: [(x[0],j) for j in x[1]] if len(x[1]) > 1 else [], links.iteritems())
   link_pairs = reduce(operator.add, link_pairs)
   down_number = int(round(down_prob*len(link_pairs)))
@@ -132,12 +134,12 @@ for n in numbers:
           break
     there_is_a_bidirectional_component = len(visited) == n
     if there_is_a_bidirectional_component:
-      print "There is a bidirectionally connected component,", attempts, "attempts"
+      print ("There is a bidirectionally connected component,", attempts, "attempts")
     else:
       # print "There is NOT a bidirectionally connected component"
       attempts += 1
 
-  fout = file("links"+repr(n)+"_berlin-rnd.dat_temp", 'w')
+  fout = open("links"+repr(n)+"_berlin-rnd.dat_temp", 'w')
   fout.write("#SRC DST PRR . . . RSSI . .\n")
   for i,v in links.iteritems():
     for j in v:

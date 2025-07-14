@@ -152,7 +152,7 @@ uint8_t sdn_get_routing_dest(uint8_t *p, uint8_t **dest, size_t *dest_len);
 
 uint8_t  sdn_queue_delete_subpacket(uint8_t *p, uint16_t *p_len, uint8_t subpacket_num, uint8_t header_size, uint8_t p_pos, uint8_t queue);
 
-uint8_t sdn_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2, uint16_t p2_len, uint8_t header_size, uint8_t compare_size, uint8_t p2_pos, uint8_t queue, uint8_t same_src);
+uint8_t sdn_queue_compare_packets(uint8_t *p1, uint16_t p1_len, uint8_t *p2, uint16_t p2_len, uint8_t header_size, uint8_t compare_size, uint8_t p2_pos, uint8_t queue);
 
 uint8_t sdn_queue_determine_pckt_action(uint8_t *p1, uint8_t *p2, uint16_t p1_len, uint16_t p2_len, uint8_t *header_size, uint8_t p2_pos, uint8_t queue, uint8_t is_src_routed);
 
