@@ -27,6 +27,6 @@ SDN_CONF_CD="symmcheck_sdn_cd" SDN_CONF_ND="improved_naive_sdn_nd" ./change_to_u
 	sed -i.bak "s,^DEFINES += RDC_CONF_UNIDIR_SUPPORT=1,# DEFINES += RDC_CONF_UNIDIR_SUPPORT=1," ./controller-pc/controller-pc.pro
 
     sed -i.bak "s,^#\s*DEFINES += SDN_NEIGHBORINFO_NEIGHBORS_TO_SRC,DEFINES += SDN_NEIGHBORINFO_NEIGHBORS_TO_SRC," ./controller-pc/controller-pc.pro
-	sed -i.bak "^s,#\s*DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS,DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS," ./controller-pc/controller-pc.pro
+	sed -i.bak "s,^#\s*DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS,DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS," ./controller-pc/controller-pc.pro
 	touch sdn-process-packets-controller.c
 )
