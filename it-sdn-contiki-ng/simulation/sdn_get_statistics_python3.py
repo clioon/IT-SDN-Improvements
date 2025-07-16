@@ -374,18 +374,18 @@ def parse_file(filename):
     if sent_type['05']:
         delivery_data = 100.0*received_type['05']/sent_type['05']
 
-    if sum(v if k not in ('05', '0A', '0B') else 0 in sent_type.items()):
-        delivery_ctrl = 100.0*sum(v if k not in ('05', '0A', '0B') else 0 in received_type.items()) \
-                            / sum(v if k not in ('05', '0A', '0B') else 0 in sent_type.items())
+    if sum(v if k not in ('05', '0A', '0B') else 0 for k,v in sent_type.items()):
+        delivery_ctrl = 100.0*sum(v if k not in ('05', '0A', '0B') else 0 for k,v in received_type.items()) \
+                            / sum(v if k not in ('05', '0A', '0B') else 0 for k,v in sent_type.items())
 
     if received_type['05']:
         delay_data = delay_type['05'] / received_type['05']
 
-    if sum(v if k not in ('05', '0A', '0B') else 0 in received_type.items()):
-        delay_ctrl = sum(v if k not in ('05', '0A', '0B') else 0 in delay_type.items()) \
-                / sum(v if k not in ('05', '0A', '0B') else 0 in received_type.items())
+    if sum(v if k not in ('05', '0A', '0B') else 0 for k,v in received_type.items()):
+        delay_ctrl = sum(v if k not in ('05', '0A', '0B') else 0 for k,v in delay_type.items()) \
+                / sum(v if k not in ('05', '0A', '0B') else 0 for k,v in received_type.items())
 
-    ctrl_overhead = sum(v if k not in ('05',) else 0 in sent_type.items())
+    ctrl_overhead = sum(v if k not in ('05',) else 0 for k,v in sent_type.items())
 
     if energy:
         energy_avg = sum(energy.values())/len(energy)
@@ -470,9 +470,9 @@ if __name__ == "__main__":
                             r = parse_file(results_dir + filename)
                             partial_results[scenario] += [r[:-1]]
                             partial_results_packet_count[scenario] += [r[-1]]
-                        except:
+                        except Exception as e:
                             # problematic_files += [filename]
-                            print ("problem parsing", filename)
+                            print ("problem parsing", filename, ":", e)
 
     metric_names = ("delivery_data", "delivery_ctrl", "delay_data", "delay_ctrl", "ctrl_overhead", "fg_time", "energy")
     f_all.write("scenario;")
