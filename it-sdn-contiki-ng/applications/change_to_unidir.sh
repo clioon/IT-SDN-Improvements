@@ -25,7 +25,11 @@ fi
 	cd $controller_dir
 	sed -i.bak "s,#\s*DEFINES += SDN_NEIGHBORINFO_NEIGHBORS_TO_SRC,DEFINES += SDN_NEIGHBORINFO_NEIGHBORS_TO_SRC," ./controller-pc/controller-pc.pro
 	sed -i.bak "s,^DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS,#DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS," ./controller-pc/controller-pc.pro
-	sed -i.bak "s,^#DEFINES += SDN_INFORM_NEW_EDGE_SERIAL,DEFINES += SDN_INFORM_NEW_EDGE_SERIAL," ./controller-pc/controller-pc.pro
+	if [ "$SDN_CONF_CD" == "naive_directed_cd" ]; then
+        sed -i.bak "s,^#DEFINES += SDN_INFORM_NEW_EDGE_SERIAL,DEFINES += SDN_INFORM_NEW_EDGE_SERIAL," ./controller-pc/controller-pc.pro
+    else
+        sed -i.bak "s,^DEFINES += SDN_INFORM_NEW_EDGE_SERIAL,#DEFINES += SDN_INFORM_NEW_EDGE_SERIAL," ./controller-pc/controller-pc.pro
+    fi
 	touch sdn-process-packets-controller.c
 )
 

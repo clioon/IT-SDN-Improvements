@@ -220,8 +220,7 @@ void process_neighbor_report(sdn_neighbor_report_t* sdn_neighbor_report, void* n
          free(temp_packet);
          SDN_DEBUG_ERROR ("Error on packet enqueue.\n");
        } else {
-         if (sdn_send_queue_size() == 1)
-           sdn_send_down_once();
+         sdn_send_down_once();
        }
      }
 #endif
