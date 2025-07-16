@@ -284,7 +284,10 @@ void improved_naive_nd_input(uint8_t* packet_ptr, uint16_t packet_len) {
   if (n) {
     info = n->extra_info;
     if ( ((sdn_header_t*) packet_ptr)->type == SDN_PACKET_ND) {
-      info->expected_time_to_beacon = *(uint16_t *)(packet_ptr + sizeof(sdn_header_t)); //TODO: improve readability
+      // info->expected_time_to_beacon = *(uint16_t *)(packet_ptr + sizeof(sdn_header_t)); //TODO: improve readability
+      uint16_t tmp;
+      memcpy(&tmp, packet_ptr + sizeof(sdn_header_t), sizeof(uint16_t));
+      info->expected_time_to_beacon = tmp;
       // info->expected_time_to_beacon should be in terms of RECEIVE_BEACON_UNIT
       info->expected_time_to_beacon = 1 + info->expected_time_to_beacon / RECEIVE_BEACON_UNIT;
       SDN_DEBUG("imp_nd: expected_time_to_beacon: %d\n", info->expected_time_to_beacon);

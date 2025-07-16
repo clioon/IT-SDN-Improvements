@@ -1,4 +1,4 @@
-CONTIKI=/home/lion/ic/contiki-ng
+CONTIKI?=/home/lion/ic/contiki-ng
 
 EXTERNALDIRS += ../contiki-sdn/
 EXTERNALDIRS += ../sdn-common/

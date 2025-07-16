@@ -1,6 +1,6 @@
 CONTIKI_PROJECT = enabled-node sink-node
 
-CONTIKI=/home/lion/ic/contiki-ng
+CONTIKI?=/home/lion/ic/contiki-ng
 
 # CONTIKIDIRS
 EXTERNALDIRS += ../contiki-sdn/
