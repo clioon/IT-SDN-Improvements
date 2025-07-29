@@ -391,7 +391,7 @@ def parse_file(filename):
         energy_avg = sum(energy.values())/len(energy)
 
     print ()
-    print ("results_summary = (delivery_data, delivery_ctrl, delay_data, delay_ctrl, ctrl_overhead, fg_time)")
+    print ("results_summary = (delivery_data, delivery_ctrl, delay_data, delay_ctrl, ctrl_overhead, fg_time, energy, )")
     results_summary = (delivery_data, delivery_ctrl, delay_data, delay_ctrl, ctrl_overhead, fg_time, energy_avg, sent_type)
     print (results_summary)
     return results_summary
