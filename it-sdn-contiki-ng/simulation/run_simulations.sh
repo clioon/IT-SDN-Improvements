@@ -13,11 +13,11 @@ fi
 # Simulation set configuration
 #quantidade de vezes que a simulacao sera rodada
 MIN_ITER=1
-MAX_ITER=3
+MAX_ITER=10
 # MIN_ITER=1
 # MAX_ITER=2
-COOJA_INSTANCES=3 #max simulations running in parallel
-COOJA_CURRENT_INSTANCE=3
+COOJA_INSTANCES=5 #max simulations running in parallel
+COOJA_CURRENT_INSTANCE=5
 
 DO_NOT_OVERWRITE=true
 
@@ -25,13 +25,13 @@ DO_NOT_OVERWRITE=true
 nodes_v=(25 16 9)
 nodes_v=(100 81 64 49 36 25 16 169 256)
 nodes_v=(16 25 36 49 64 81 100)
-nodes_v=(81)
+nodes_v=(16)
 # topologies=(GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 # topologies=(BERLIN-FULL BERLIN-RND BERLIN-CTA BERLIN-SPN GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 #topologies=(GRID-SPN BERLIN-SPN)
 #topologies=(GRID-RND GRID-CTA GRID-SPN)
-#topologies=(BERLIN-FULL)
-topologies=(GRID-FULL)
+topologies=(BERLIN-FULL)
+#topologies=(GRID-FULL)
 #nd_possibilities=(NV CL BL) # Naive Collect and Baseline
 # nd_possibilities=(NV-NV IM-NV CL NV-SC IM-SC)
 # nd_possibilities=(IM-SC CL NV-NV)
@@ -39,7 +39,7 @@ topologies=(GRID-FULL)
 # nd_possibilities=(IM-SC-unidir)
 # nd_possibilities=(NV-NV-unidir)
 # nd_possibilities=(IM-SC-nullrdc-bidir IM-SC-nullrdc-unidir)
-nd_possibilities=(IM-SC-nullrdc-unidir)
+nd_possibilities=(IM-SC-nullrdc-truebidir)
 # nd_possibilities=(NV-NV)
 # taxa com que os pacotes de dados sao gerados - pacotes/min
 # datarates=(0.2 2)
@@ -173,6 +173,8 @@ for nnodes in "${nodes_v[@]}"; do
 							./change_to_IM-SC_nullrdc-unidir.sh
 						elif [ "$nd" == "IM-SC-nullrdc-bidir" ]; then
 							./change_to_IM-SC_nullrdc-bidir.sh
+						elif [ "$nd" == "IM-SC-nullrdc-truebidir" ]; then
+							./change_to_IM-SC_nullrdc-truebidir.sh
 						elif [ "$nd" == "IM-SC-unidir" ]; then
 							./change_to_IM-SC_unidirRDC.sh
 						elif [ "$nd" == "IM-SC-contikimac" ]; then

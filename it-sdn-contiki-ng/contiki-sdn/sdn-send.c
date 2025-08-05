@@ -461,6 +461,8 @@ uint8_t sld_await_ack(uint8_t* packet, uint8_t len) {
   uint8_t i;
   uint8_t is_redundant;
 
+  if (SDN_HEADER(packet)->reserved & 0x1) return SDN_SUCCESS;
+
   if (! (SDN_HEADER(packet)->type == SDN_PACKET_NEIGHBOR_REPORT || \
       SDN_HEADER(packet)->type == SDN_PACKET_DATA_FLOW_REQUEST || \
       SDN_HEADER(packet)->type == SDN_PACKET_CONTROL_FLOW_REQUEST || \

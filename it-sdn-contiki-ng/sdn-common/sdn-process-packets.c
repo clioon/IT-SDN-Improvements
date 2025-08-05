@@ -1032,7 +1032,7 @@ sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
 
 #ifdef ENABLE_SDN_TREATMENT
         if (SDN_PACKET_IS_MERGED(packet)) {
-          //printf("Pacote MERGED recebido, tipo=%02x, len=%u, num_subpackets=%d\n", SDN_HEADER(packet)->type, len, SDN_GET_NUM_SUBPACKETS(packet, sdn_get_header_size(packet)));
+          SDN_DEBUG("Pacote MERGED recebido, tipo=%02x, len=%u, num_subpackets=%d\n", SDN_HEADER(packet)->type, len, SDN_GET_NUM_SUBPACKETS(packet, sdn_get_header_size(packet)));
           //sdn_header_t *header = (sdn_header_t *)packet;
           switch(SDN_HEADER(packet)->type) {
             case SDN_PACKET_SRC_ROUTED_ACK:
@@ -1059,7 +1059,7 @@ sdnaddr_t * sdn_treat_packet(uint8_t * packet, uint16_t len, uint32_t time, acti
         next_hop = NULL;
       break;
       default:
-        SDN_DEBUG("\nUnknown action\n");
+        //SDN_DEBUG("\nUnknown action\n");
         next_hop = NULL;
     }
 

@@ -404,6 +404,7 @@ def pretty_scenario(name):
     pretty_nd['IM-NV'] = "IM-NV"
     pretty_nd['NV-SC'] = "NV-SC"
     pretty_nd['IM-SC'] = "Improved"
+    pretty_nd['IM-SC-nullrdc-truebidir'] = "TrueBidir"
 
     n = repr(name[0])
     topo = name[1]
@@ -424,20 +425,20 @@ if __name__ == "__main__":
         parse_file(sys.argv[1])
         exit(0)
 
-    nodes_v = (16, 25, 36, 49, 64, 81, 100)
-    nodes_v = (16, 25, 36, 49, 64)
+    nodes_v = (16, 25, 36, 49, 64, 81, 169)
+    #nodes_v = (81, 169)
     topology_types = ('GRID', 'BERLIN')
-    topology_types = ('GRID', )
+    topology_types = ('GRID', 'BERLIN')
     link_types = ('FULL', 'RND', 'CTA', 'SPN')
     link_types = ('FULL', )
     topologies = [t + '-' + l for t in topology_types for l in link_types]
-    nd_possibilities = ('IM-SC-nullrdc-bidir', 'IM-SC-nullrdc-unidir')
+    nd_possibilities = ('IM-SC-nullrdc-truebidir',)
     fileprefix = ""
     datarates = (1,)
     MIN_ITER = 1
     MAX_ITER = 10
-    sim_time = 30.0
-    results_dir = "./port_tests/"
+    sim_time = 3600.0
+    results_dir = "../"
     partial_results = defaultdict(list)
     partial_results_packet_count = defaultdict(list)
 
@@ -632,7 +633,7 @@ if __name__ == "__main__":
     plt.rcParams.update({'font.size': 16, 'legend.fontsize': 14})
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting delivery")
     i_metric = 0
@@ -661,7 +662,7 @@ if __name__ == "__main__":
     for chosen_n in (9,25):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+        plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
         print ()
         print ("ploting delivery for slides", chosen_n)
         i_metric = 0
@@ -721,7 +722,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting delivery data only")
     i_metric = 0
@@ -777,7 +778,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     ax.set_yscale('log')#, basex=2)
     print ()
     print ("ploting delay")
@@ -812,7 +813,7 @@ if __name__ == "__main__":
     for chosen_n in (9,25):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+        plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
         print ()
         print ("ploting delay for slides", chosen_n)
         i_metric = 2
@@ -877,7 +878,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting overhead")
     i_metric = 4
@@ -911,7 +912,7 @@ if __name__ == "__main__":
     for chosen_n in (9,25):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+        plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
         print ()
         print ("ploting overhead for slides", chosen_n)
         i_metric = 4
@@ -974,7 +975,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting time to full network")
     i_metric = 5

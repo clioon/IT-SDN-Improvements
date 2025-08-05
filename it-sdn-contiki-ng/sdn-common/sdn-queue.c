@@ -363,43 +363,43 @@ void sdn_recv_queue_print() {
 #ifdef ENABLE_SDN_TREATMENT
 volatile uint8_t sdn_processing_send_queue = 0;
 
-void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
-  SDN_DEBUG("Header e flowid: ");
-  for (int i = 0; i < header_size; i++){
-      SDN_DEBUG("%02X ", p[i]);
-  }
+// void imprimir(uint8_t *p, uint16_t len, uint8_t header_size) {
+//   SDN_DEBUG("Header e flowid: ");
+//   for (int i = 0; i < header_size; i++){
+//       SDN_DEBUG("%02X ", p[i]);
+//   }
 
-  SDN_DEBUG("\ntamanho completo: %d\n", len);
+//   SDN_DEBUG("\ntamanho completo: %d\n", len);
 
   
-  if (SDN_PACKET_IS_MERGED(p)) {
-    uint8_t deslocamento = header_size;
-    uint8_t num_sub = p[deslocamento];
-    deslocamento++;
-    SDN_DEBUG("\tSubpacotes: %d\n", num_sub);
+//   if (SDN_PACKET_IS_MERGED(p)) {
+//     uint8_t deslocamento = header_size;
+//     uint8_t num_sub = p[deslocamento];
+//     deslocamento++;
+//     SDN_DEBUG("\tSubpacotes: %d\n", num_sub);
     
-    for (int i = 0; i < num_sub; i++) {
-      // uint8_t seq_no = p[deslocamento];
-      deslocamento++;
-      deslocamento += LINKADDR_SIZE; // source
-      uint16_t len_sub = p[deslocamento];
-      SDN_DEBUG("\tSub pacote #%d (len %d): ", i, len_sub);
-      deslocamento++;
-      for (int j = 0; j < len_sub; j++) {
-        SDN_DEBUG("%c ", p[deslocamento + j]);
-      }
-      deslocamento += len_sub;
-      SDN_DEBUG("\n");
-    }
-  } else {
-    SDN_DEBUG("\tPayload: ");
+//     for (int i = 0; i < num_sub; i++) {
+//       // uint8_t seq_no = p[deslocamento];
+//       deslocamento++;
+//       deslocamento += LINKADDR_SIZE; // source
+//       uint16_t len_sub = p[deslocamento];
+//       SDN_DEBUG("\tSub pacote #%d (len %d): ", i, len_sub);
+//       deslocamento++;
+//       for (int j = 0; j < len_sub; j++) {
+//         SDN_DEBUG("%c ", p[deslocamento + j]);
+//       }
+//       deslocamento += len_sub;
+//       SDN_DEBUG("\n");
+//     }
+//   } else {
+//     SDN_DEBUG("\tPayload: ");
     
-    for (int i = header_size; i < len; i++){
-      SDN_DEBUG("%c ", p[i]);
-    }
-    SDN_DEBUG("\n");
-  }
-}
+//     for (int i = header_size; i < len; i++){
+//       SDN_DEBUG("%c ", p[i]);
+//     }
+//     SDN_DEBUG("\n");
+//   }
+// }
 
 uint16_t sdn_merged_new_length(uint8_t *p, uint8_t header_size) {
   uint16_t new_len = header_size; // header length
@@ -624,7 +624,7 @@ uint8_t sdn_queue_combine_src_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos,
   // verify if after the merge it exceeds max packet size
   uint16_t merged_payload_max = SDN_MAX_PACKET_SIZE - tail_len2;
   if ((p1_len - tail_len1) + (*p2_len - tail_len2) > merged_payload_max) {
-    SDN_DEBUG("Merged payload exceeds max size when considering tail\n");
+    //SDN_DEBUG_ERROR("Merged payload exceeds max size when considering tail\n");
     return 0;
   }
 
@@ -637,7 +637,7 @@ uint8_t sdn_queue_combine_src_packets(uint8_t *p1, uint16_t p1_len, uint8_t pos,
   // "cut off" the tail and combine packets
   *p2_len = *p2_len - tail_len2;
   if (!sdn_queue_combine_packets(p1, (p1_len - tail_len1), pos, header_size, queue)) {
-    SDN_DEBUG("error on combining src routed packets\n");
+    //SDN_DEBUG_ERROR("error on combining src routed packets\n");
     return 0;
   }
 
