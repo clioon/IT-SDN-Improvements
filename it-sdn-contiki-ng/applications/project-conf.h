@@ -28,10 +28,10 @@
 #endif
 
 // #define SDN_CONF_ND dummy_sdn_nd
-#define SDN_CONF_ND collect_sdn_nd
+#define SDN_CONF_ND improved_naive_sdn_nd
 /*#define SDN_CONF_ND collect_sdn_nd*/
 /*#define SDN_CONF_CD null_sdn_cd*/
-#define SDN_CONF_CD null_sdn_cd
+#define SDN_CONF_CD symmcheck_sdn_cd
 
 /* COLLECT_CONF_ANNOUNCEMENTS defines if the Collect implementation
    should use Contiki's announcement primitive to announce its routes
@@ -39,8 +39,8 @@
 //#define COLLECT_CONF_ANNOUNCEMENTS 0
 
 // Need to uncomment this line if "CONTIKI_WITH_RIME = 0" in Makefile
-// #undef NETSTACK_CONF_NETWORK
-// #define NETSTACK_CONF_NETWORK sdn_network_driver
+#undef NETSTACK_CONF_NETWORK
+#define NETSTACK_CONF_NETWORK sdn_network_driver
 
 #define NETSTACK_CONF_RDC nullrdc_driver
 // #define NULLRDC_CONF_ADDRESS_FILTER 0

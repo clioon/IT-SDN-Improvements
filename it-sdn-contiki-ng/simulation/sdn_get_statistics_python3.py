@@ -270,6 +270,16 @@ def parse_file(filename):
                 if (rx_time - tx_time) < 0:
                     print("negative time", k, v)
 
+    if replaced_packets.get('TX'):
+        for pkt_type, rp_count in replaced_packets['TX'].items():
+            if sent_type.get(pkt_type):
+                sent_type[pkt_type] = max(0, sent_type[pkt_type] - rp_count)
+
+    if replaced_packets.get('RX'):
+        for pkt_type, rp_count in replaced_packets['RX'].items():
+            if sent_type.get(pkt_type):
+                sent_type[pkt_type] = max(0, sent_type[pkt_type] - rp_count)
+
     print("node", end=";")
     for t in sorted(sent_type.keys()):
         print(t, end=";")

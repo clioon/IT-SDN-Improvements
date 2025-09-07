@@ -7,9 +7,10 @@
   <project EXPORT="discard">[APPS_DIR]/collect-view</project>
   <project EXPORT="discard">[APPS_DIR]/powertracker</project>
   <simulation>
-    <title>n169_BERLIN-FULL</title>
+    <title>n144_BERLIN-FULL</title>
     <speedlimit>4.0</speedlimit>
     <randomseed>generated</randomseed>
+    <randomseed>123456</randomseed>
     <motedelay_us>1000000</motedelay_us>
     <radiomedium>
       org.contikios.cooja.radiomediums.DirectedGraphMedium
@@ -89,7 +90,7 @@
         <source>1</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>8</radio>
+          <radio>9</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -101,7 +102,7 @@
         <source>1</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>16</radio>
+          <radio>15</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -257,7 +258,7 @@
         <source>2</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
+          <radio>14</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -267,282 +268,6 @@
       </edge>
       <edge>
         <source>2</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>2</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>2</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>1</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>4</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>7</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>8</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>3</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>1</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>3</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>7</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>8</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>9</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>12</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>15</radio>
@@ -554,19 +279,7 @@
         </dest>
       </edge>
       <edge>
-        <source>4</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>5</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>1</radio>
@@ -578,7 +291,7 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>2</radio>
@@ -590,19 +303,7 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>3</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>5</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>4</radio>
@@ -614,7 +315,19 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
+        <source>3</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>5</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>6</radio>
@@ -626,7 +339,7 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>7</radio>
@@ -638,7 +351,7 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>8</radio>
@@ -650,7 +363,7 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>10</radio>
@@ -662,7 +375,19 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
+        <source>3</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>11</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>13</radio>
@@ -674,307 +399,7 @@
         </dest>
       </edge>
       <edge>
-        <source>5</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>16</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>5</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>19</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>5</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>5</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>1</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>3</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>4</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>7</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>8</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>9</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>12</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>6</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>1</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>3</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>4</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>8</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>7</source>
+        <source>3</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>15</radio>
@@ -986,7 +411,7 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>1</radio>
@@ -998,7 +423,7 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>2</radio>
@@ -1010,7 +435,7 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>3</radio>
@@ -1022,19 +447,7 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>4</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>5</radio>
@@ -1046,7 +459,7 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>6</radio>
@@ -1058,7 +471,7 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>7</radio>
@@ -1070,10 +483,10 @@
         </dest>
       </edge>
       <edge>
-        <source>8</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>16</radio>
+          <radio>8</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1082,175 +495,7 @@
         </dest>
       </edge>
       <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>4</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>12</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>14</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>20</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>9</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>10</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>10</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>10</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>10</source>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>9</radio>
@@ -1262,7 +507,19 @@
         </dest>
       </edge>
       <edge>
-        <source>10</source>
+        <source>4</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>10</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>4</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>11</radio>
@@ -1274,7 +531,247 @@
         </dest>
       </edge>
       <edge>
-        <source>10</source>
+        <source>4</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>12</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>4</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>14</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>4</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>15</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>1</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>2</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>3</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>4</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>6</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>7</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>8</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>9</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>14</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>5</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>15</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>1</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>2</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>3</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>4</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>5</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>7</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>8</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>6</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>13</radio>
@@ -1286,10 +783,406 @@
         </dest>
       </edge>
       <edge>
-        <source>10</source>
+        <source>6</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
+          <radio>15</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>1</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>2</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>3</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>4</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>5</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>6</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>8</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>9</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>13</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>7</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>15</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>2</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>3</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>4</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>5</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>6</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>7</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>9</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>10</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>11</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>12</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>13</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>8</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>15</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>1</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>2</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>4</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>5</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>7</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>8</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>10</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>11</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>12</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>14</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>9</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>15</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1301,7 +1194,7 @@
         <source>10</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
+          <radio>2</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1313,7 +1206,7 @@
         <source>10</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>20</radio>
+          <radio>3</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1325,7 +1218,7 @@
         <source>10</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
+          <radio>4</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1337,7 +1230,55 @@
         <source>10</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
+          <radio>8</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>10</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>9</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>10</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>11</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>10</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>12</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>10</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>14</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1385,7 +1326,7 @@
         <source>11</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
+          <radio>8</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1433,55 +1374,7 @@
         <source>11</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>14</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>11</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>11</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>11</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>11</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
+          <radio>13</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1517,7 +1410,7 @@
         <source>12</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
+          <radio>8</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1530,6 +1423,18 @@
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>9</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>12</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>10</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1562,18 +1467,6 @@
         </dest>
       </edge>
       <edge>
-        <source>12</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>15</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
         <source>13</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
@@ -1589,7 +1482,7 @@
         <source>13</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
+          <radio>3</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1601,7 +1494,7 @@
         <source>13</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
+          <radio>6</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1613,7 +1506,43 @@
         <source>13</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
+          <radio>7</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>13</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>8</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>13</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>11</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>13</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>16</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1634,10 +1563,10 @@
         </dest>
       </edge>
       <edge>
-        <source>13</source>
+        <source>14</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>19</radio>
+          <radio>2</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1646,10 +1575,10 @@
         </dest>
       </edge>
       <edge>
-        <source>13</source>
+        <source>14</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>22</radio>
+          <radio>4</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1658,22 +1587,10 @@
         </dest>
       </edge>
       <edge>
-        <source>13</source>
+        <source>14</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>13</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
+          <radio>5</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1697,7 +1614,7 @@
         <source>14</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
+          <radio>10</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1721,7 +1638,7 @@
         <source>14</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>20</radio>
+          <radio>17</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1730,10 +1647,10 @@
         </dest>
       </edge>
       <edge>
-        <source>14</source>
+        <source>15</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>25</radio>
+          <radio>1</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1742,10 +1659,10 @@
         </dest>
       </edge>
       <edge>
-        <source>14</source>
+        <source>15</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>26</radio>
+          <radio>2</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1754,10 +1671,10 @@
         </dest>
       </edge>
       <edge>
-        <source>14</source>
+        <source>15</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>34</radio>
+          <radio>3</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1770,6 +1687,30 @@
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>4</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>15</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>5</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>15</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>6</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1793,7 +1734,7 @@
         <source>15</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>12</radio>
+          <radio>8</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -1803,6 +1744,30 @@
       </edge>
       <edge>
         <source>15</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>9</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>16</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>13</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>16</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>24</radio>
@@ -1814,403 +1779,7 @@
         </dest>
       </edge>
       <edge>
-        <source>15</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>47</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
         <source>16</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>1</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>16</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>16</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>8</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>16</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>19</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>16</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>27</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>16</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>147</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>9</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>13</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>20</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>21</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>17</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>9</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>13</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>20</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>21</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>18</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>19</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>19</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>13</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>19</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>16</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>19</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>22</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>19</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>28</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>19</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>30</radio>
@@ -2222,10 +1791,10 @@
         </dest>
       </edge>
       <edge>
-        <source>19</source>
+        <source>16</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
+          <radio>61</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2234,31 +1803,7 @@
         </dest>
       </edge>
       <edge>
-        <source>20</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>9</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>20</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>20</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>14</radio>
@@ -2270,31 +1815,7 @@
         </dest>
       </edge>
       <edge>
-        <source>20</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>20</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>20</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>21</radio>
@@ -2306,10 +1827,10 @@
         </dest>
       </edge>
       <edge>
-        <source>21</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
+          <radio>26</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2318,91 +1839,7 @@
         </dest>
       </edge>
       <edge>
-        <source>21</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>21</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>20</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>21</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>93</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>21</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>117</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>22</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>13</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>22</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>19</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>22</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>23</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>22</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>28</radio>
@@ -2414,271 +1851,7 @@
         </dest>
       </edge>
       <edge>
-        <source>22</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>30</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>22</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>59</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>23</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>22</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>23</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>28</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>23</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>29</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>23</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>59</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>23</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>78</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>23</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>82</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>24</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>15</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>24</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>32</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>24</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>24</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>63</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>24</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>130</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>24</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>25</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>14</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>25</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>32</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>25</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>34</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>26</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>14</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>26</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>34</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>26</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>38</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>26</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>52</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>27</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>16</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>27</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>33</radio>
@@ -2690,10 +1863,10 @@
         </dest>
       </edge>
       <edge>
-        <source>27</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>147</radio>
+          <radio>34</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2702,10 +1875,10 @@
         </dest>
       </edge>
       <edge>
-        <source>28</source>
+        <source>17</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>19</radio>
+          <radio>143</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2714,10 +1887,10 @@
         </dest>
       </edge>
       <edge>
-        <source>28</source>
+        <source>18</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>22</radio>
+          <radio>13</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2726,79 +1899,7 @@
         </dest>
       </edge>
       <edge>
-        <source>28</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>23</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>28</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>30</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>28</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>59</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>29</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>23</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>29</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>39</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>29</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>82</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>30</source>
+        <source>18</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>19</radio>
@@ -2810,7 +1911,7 @@
         </dest>
       </edge>
       <edge>
-        <source>30</source>
+        <source>18</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>22</radio>
@@ -2822,19 +1923,7 @@
         </dest>
       </edge>
       <edge>
-        <source>30</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>28</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>30</source>
+        <source>18</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>31</radio>
@@ -2846,10 +1935,10 @@
         </dest>
       </edge>
       <edge>
-        <source>31</source>
+        <source>18</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>30</radio>
+          <radio>38</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2858,10 +1947,10 @@
         </dest>
       </edge>
       <edge>
-        <source>31</source>
+        <source>19</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>86</radio>
+          <radio>18</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2870,10 +1959,10 @@
         </dest>
       </edge>
       <edge>
-        <source>32</source>
+        <source>19</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>24</radio>
+          <radio>20</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2882,7 +1971,283 @@
         </dest>
       </edge>
       <edge>
-        <source>32</source>
+        <source>19</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>22</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>19</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>31</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>20</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>19</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>20</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>62</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>20</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>91</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>17</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>23</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>26</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>27</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>28</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>32</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>33</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>21</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>143</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>22</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>18</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>22</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>19</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>22</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>31</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>22</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>38</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>23</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>21</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>23</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>32</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>23</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>35</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>23</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>65</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>23</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>87</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>24</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>16</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>24</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>25</radio>
@@ -2894,10 +2259,490 @@
         </dest>
       </edge>
       <edge>
-        <source>32</source>
+        <source>24</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>37</radio>
+          <radio>39</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>24</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>61</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>24</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>24</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>88</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>25</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>24</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>25</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>29</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>25</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>44</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>25</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>25</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>88</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>25</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>124</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>26</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>17</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>26</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>21</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>26</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>28</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>26</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>34</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>26</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>140</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>27</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>21</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>27</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>28</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>27</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>32</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>27</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>33</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>27</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>40</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>27</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>143</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>17</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>21</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>26</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>27</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>32</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>33</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>28</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>143</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>29</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>25</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>29</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>47</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>29</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>29</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>109</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>29</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>124</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>30</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>16</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>30</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>36</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>30</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>61</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>31</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>18</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>31</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>19</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>31</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>22</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>31</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>80</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>31</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>82</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2909,7 +2754,7 @@
         <source>32</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>63</radio>
+          <radio>21</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2921,7 +2766,79 @@
         <source>32</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>130</radio>
+          <radio>23</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>32</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>27</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>32</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>28</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>32</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>33</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>32</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>143</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>33</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>17</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>33</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>21</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2945,7 +2862,7 @@
         <source>33</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>35</radio>
+          <radio>28</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -2955,198 +2872,6 @@
       </edge>
       <edge>
         <source>33</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>43</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>33</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>33</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>51</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>33</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>147</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>34</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>14</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>34</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>25</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>34</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>26</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>34</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>38</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>35</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>33</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>35</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>36</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>35</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>40</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>35</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>49</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>35</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>35</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>51</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>36</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>35</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>36</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>37</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>32</radio>
@@ -3158,10 +2883,10 @@
         </dest>
       </edge>
       <edge>
-        <source>37</source>
+        <source>33</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>44</radio>
+          <radio>62</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3170,10 +2895,10 @@
         </dest>
       </edge>
       <edge>
-        <source>37</source>
+        <source>33</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>54</radio>
+          <radio>143</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3182,10 +2907,10 @@
         </dest>
       </edge>
       <edge>
-        <source>37</source>
+        <source>34</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>130</radio>
+          <radio>17</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3194,7 +2919,7 @@
         </dest>
       </edge>
       <edge>
-        <source>38</source>
+        <source>34</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>26</radio>
@@ -3206,43 +2931,7 @@
         </dest>
       </edge>
       <edge>
-        <source>38</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>34</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>38</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>124</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>39</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>29</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>39</source>
+        <source>34</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>41</radio>
@@ -3254,10 +2943,10 @@
         </dest>
       </edge>
       <edge>
-        <source>39</source>
+        <source>34</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>46</radio>
+          <radio>140</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3266,10 +2955,10 @@
         </dest>
       </edge>
       <edge>
-        <source>39</source>
+        <source>35</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>82</radio>
+          <radio>23</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3278,10 +2967,10 @@
         </dest>
       </edge>
       <edge>
-        <source>39</source>
+        <source>35</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>83</radio>
+          <radio>87</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3290,10 +2979,10 @@
         </dest>
       </edge>
       <edge>
-        <source>40</source>
+        <source>35</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>35</radio>
+          <radio>89</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3302,10 +2991,10 @@
         </dest>
       </edge>
       <edge>
-        <source>40</source>
+        <source>36</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>49</radio>
+          <radio>30</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3314,10 +3003,10 @@
         </dest>
       </edge>
       <edge>
-        <source>40</source>
+        <source>36</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
+          <radio>37</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3326,10 +3015,10 @@
         </dest>
       </edge>
       <edge>
-        <source>40</source>
+        <source>37</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>51</radio>
+          <radio>36</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3338,31 +3027,7 @@
         </dest>
       </edge>
       <edge>
-        <source>40</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>149</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>41</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>39</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>41</source>
+        <source>37</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>42</radio>
@@ -3374,10 +3039,190 @@
         </dest>
       </edge>
       <edge>
+        <source>37</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>48</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>37</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>51</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>37</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>52</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>37</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>53</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>37</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>63</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>38</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>18</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>38</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>22</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>38</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>86</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>39</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>24</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>39</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>66</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>39</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>39</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>136</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>40</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>27</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
         <source>41</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>58</radio>
+          <radio>34</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>41</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>43</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>41</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>46</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3389,7 +3234,19 @@
         <source>42</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>41</radio>
+          <radio>37</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>42</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>52</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3413,7 +3270,7 @@
         <source>42</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>64</radio>
+          <radio>54</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3425,7 +3282,7 @@
         <source>43</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>33</radio>
+          <radio>41</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3437,7 +3294,7 @@
         <source>43</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
+          <radio>69</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3449,7 +3306,19 @@
         <source>43</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>51</radio>
+          <radio>74</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>43</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>85</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3461,7 +3330,7 @@
         <source>44</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>37</radio>
+          <radio>25</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3494,6 +3363,42 @@
         </dest>
       </edge>
       <edge>
+        <source>44</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>106</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>44</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>108</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>44</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>124</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
         <source>45</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
@@ -3509,7 +3414,7 @@
         <source>45</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>55</radio>
+          <radio>49</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3521,7 +3426,31 @@
         <source>45</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>88</radio>
+          <radio>57</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>45</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>106</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>45</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>108</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3533,7 +3462,7 @@
         <source>46</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>39</radio>
+          <radio>41</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3545,43 +3474,7 @@
         <source>46</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>60</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>46</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>65</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>46</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>83</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>46</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>159</radio>
+          <radio>50</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3593,7 +3486,43 @@
         <source>47</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>15</radio>
+          <radio>29</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>47</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>67</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>47</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>47</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>109</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3605,7 +3534,7 @@
         <source>48</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>24</radio>
+          <radio>37</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3615,198 +3544,6 @@
       </edge>
       <edge>
         <source>48</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>63</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>48</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>68</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>48</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>73</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>48</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>130</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>48</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>48</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>141</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>49</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>35</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>49</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>40</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>49</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>49</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>149</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>33</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>35</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>36</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>40</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>43</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>49</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>50</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>51</radio>
@@ -3818,10 +3555,82 @@
         </dest>
       </edge>
       <edge>
-        <source>51</source>
+        <source>48</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>33</radio>
+          <radio>52</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>49</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>45</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>49</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>59</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>49</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>68</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>49</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>106</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>50</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>46</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>50</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>58</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3833,7 +3642,7 @@
         <source>51</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>35</radio>
+          <radio>37</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3845,7 +3654,7 @@
         <source>51</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>40</radio>
+          <radio>48</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3857,19 +3666,7 @@
         <source>51</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>43</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>51</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>50</radio>
+          <radio>52</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3881,7 +3678,7 @@
         <source>52</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>26</radio>
+          <radio>37</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3893,7 +3690,7 @@
         <source>52</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>79</radio>
+          <radio>42</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3905,7 +3702,43 @@
         <source>52</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>85</radio>
+          <radio>48</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>52</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>51</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>52</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>53</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>53</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>37</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3929,7 +3762,7 @@
         <source>53</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>57</radio>
+          <radio>52</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3941,7 +3774,7 @@
         <source>53</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>76</radio>
+          <radio>90</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3953,7 +3786,7 @@
         <source>54</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>37</radio>
+          <radio>42</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3965,7 +3798,7 @@
         <source>54</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>98</radio>
+          <radio>55</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3977,7 +3810,31 @@
         <source>54</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>105</radio>
+          <radio>64</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>54</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>71</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>54</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>101</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -3989,7 +3846,7 @@
         <source>55</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>45</radio>
+          <radio>54</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4001,7 +3858,7 @@
         <source>55</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
+          <radio>60</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4013,19 +3870,7 @@
         <source>55</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>97</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>55</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
+          <radio>101</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4038,30 +3883,6 @@
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>44</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>56</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>98</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>56</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>105</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4085,7 +3906,7 @@
         <source>57</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>53</radio>
+          <radio>45</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4097,7 +3918,19 @@
         <source>57</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>84</radio>
+          <radio>99</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>57</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>106</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4109,7 +3942,7 @@
         <source>58</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>41</radio>
+          <radio>50</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4121,19 +3954,7 @@
         <source>58</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>66</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>58</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>132</radio>
+          <radio>111</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4145,7 +3966,7 @@
         <source>59</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>22</radio>
+          <radio>49</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4157,7 +3978,7 @@
         <source>59</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>23</radio>
+          <radio>75</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4167,42 +3988,6 @@
       </edge>
       <edge>
         <source>59</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>28</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>60</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>46</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>60</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>74</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>81</radio>
@@ -4217,42 +4002,6 @@
         <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>83</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>60</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>95</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>60</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>159</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>61</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>55</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
@@ -4262,10 +4011,10 @@
         </dest>
       </edge>
       <edge>
-        <source>61</source>
+        <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
+          <radio>79</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4274,10 +4023,10 @@
         </dest>
       </edge>
       <edge>
-        <source>61</source>
+        <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>97</radio>
+          <radio>84</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4286,10 +4035,10 @@
         </dest>
       </edge>
       <edge>
-        <source>61</source>
+        <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
+          <radio>96</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4298,10 +4047,10 @@
         </dest>
       </edge>
       <edge>
-        <source>61</source>
+        <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>110</radio>
+          <radio>101</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4310,67 +4059,7 @@
         </dest>
       </edge>
       <edge>
-        <source>61</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>116</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>61</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>62</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>62</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>92</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>62</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>97</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>62</source>
+        <source>60</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>102</radio>
@@ -4382,10 +4071,10 @@
         </dest>
       </edge>
       <edge>
-        <source>62</source>
+        <source>61</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>106</radio>
+          <radio>16</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4394,43 +4083,7 @@
         </dest>
       </edge>
       <edge>
-        <source>62</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>110</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>62</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>116</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>62</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>63</source>
+        <source>61</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>24</radio>
@@ -4442,10 +4095,46 @@
         </dest>
       </edge>
       <edge>
-        <source>63</source>
+        <source>61</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>32</radio>
+          <radio>30</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>61</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>88</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>62</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>20</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>62</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>33</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4457,31 +4146,7 @@
         <source>63</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>63</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>130</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>63</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
+          <radio>37</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4493,7 +4158,7 @@
         <source>64</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>42</radio>
+          <radio>54</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4503,198 +4168,6 @@
       </edge>
       <edge>
         <source>64</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>67</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>65</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>46</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>65</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>82</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>65</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>83</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>65</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>159</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>66</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>58</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>66</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>121</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>66</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>132</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>67</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>64</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>67</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>86</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>68</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>68</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>69</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>68</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>70</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>68</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>68</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>141</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>69</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>68</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>69</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>71</radio>
@@ -4706,10 +4179,154 @@
         </dest>
       </edge>
       <edge>
-        <source>69</source>
+        <source>64</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>91</radio>
+          <radio>101</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>65</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>23</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>66</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>39</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>66</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>66</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>112</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>66</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>136</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>67</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>47</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>67</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>83</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>67</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>103</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>67</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>142</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>68</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>49</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>68</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>73</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>68</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>108</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4721,7 +4338,19 @@
         <source>69</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>141</radio>
+          <radio>43</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>69</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>138</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4733,7 +4362,7 @@
         <source>70</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>68</radio>
+          <radio>24</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4745,7 +4374,7 @@
         <source>70</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>77</radio>
+          <radio>25</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4757,7 +4386,55 @@
         <source>70</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>141</radio>
+          <radio>29</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>70</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>39</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>70</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>47</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>70</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>66</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>70</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>124</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4769,7 +4446,19 @@
         <source>71</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>69</radio>
+          <radio>54</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>71</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>64</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4793,7 +4482,7 @@
         <source>71</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>75</radio>
+          <radio>101</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4817,7 +4506,7 @@
         <source>73</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
+          <radio>68</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -4827,1590 +4516,6 @@
       </edge>
       <edge>
         <source>73</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>73</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>166</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>73</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>169</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>74</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>60</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>74</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>83</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>74</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>95</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>74</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>96</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>74</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>159</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>75</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>71</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>75</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>80</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>76</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>53</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>76</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>121</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>77</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>70</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>78</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>23</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>79</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>52</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>79</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>90</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>80</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>75</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>80</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>94</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>80</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>139</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>81</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>60</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>82</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>23</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>82</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>29</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>82</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>39</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>82</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>65</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>83</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>39</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>83</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>46</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>83</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>60</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>83</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>65</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>83</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>74</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>83</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>159</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>84</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>57</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>84</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>99</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>84</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>100</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>84</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>115</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>85</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>52</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>85</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>89</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>85</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>119</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>86</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>31</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>86</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>67</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>86</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>87</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>87</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>86</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>87</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>142</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>88</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>45</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>88</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>129</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>89</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>85</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>89</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>101</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>89</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>113</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>90</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>79</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>91</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>69</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>92</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>92</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>107</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>92</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>116</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>92</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>93</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>21</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>93</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>117</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>94</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>80</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>94</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>127</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>95</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>60</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>95</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>74</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>95</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>120</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>95</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>159</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>96</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>74</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>97</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>55</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>97</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>97</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>97</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>97</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>110</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>97</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>98</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>54</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>98</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>56</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>98</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>105</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>98</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>111</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>99</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>84</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>100</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>84</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>100</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>125</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>100</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>162</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>101</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>89</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>101</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>112</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>101</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>143</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>55</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>97</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>103</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>104</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>110</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>102</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>166</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>103</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>103</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>104</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>103</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>110</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>103</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>118</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>103</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>103</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>166</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>104</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>104</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>103</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>104</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>110</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>104</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>118</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>104</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>104</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>166</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>105</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>54</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>105</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>56</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>105</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>98</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>105</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>111</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>106</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>107</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>92</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>107</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>114</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>107</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>135</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>107</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>144</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>108</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>56</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>108</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>109</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>109</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>108</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>109</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>157</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>97</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>103</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>104</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>110</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>163</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>111</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>98</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>111</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>105</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>111</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>137</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>112</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>101</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>113</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>89</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>114</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>107</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>114</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>123</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>115</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>84</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>116</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>116</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>116</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>92</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>117</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>21</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>117</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>93</radio>
@@ -6422,10 +4527,10 @@
         </dest>
       </edge>
       <edge>
-        <source>118</source>
+        <source>73</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>103</radio>
+          <radio>108</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -6434,10 +4539,10 @@
         </dest>
       </edge>
       <edge>
-        <source>118</source>
+        <source>74</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>104</radio>
+          <radio>43</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -6446,10 +4551,10 @@
         </dest>
       </edge>
       <edge>
-        <source>118</source>
+        <source>74</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>122</radio>
+          <radio>77</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -6458,10 +4563,10 @@
         </dest>
       </edge>
       <edge>
-        <source>118</source>
+        <source>74</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>140</radio>
+          <radio>78</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -6470,7 +4575,7 @@
         </dest>
       </edge>
       <edge>
-        <source>119</source>
+        <source>74</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>85</radio>
@@ -6482,10 +4587,10 @@
         </dest>
       </edge>
       <edge>
-        <source>120</source>
+        <source>75</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>95</radio>
+          <radio>59</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -6494,19 +4599,7 @@
         </dest>
       </edge>
       <edge>
-        <source>121</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>66</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>121</source>
+        <source>75</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>76</radio>
@@ -6518,10 +4611,10 @@
         </dest>
       </edge>
       <edge>
-        <source>121</source>
+        <source>76</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>132</radio>
+          <radio>75</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -6530,1075 +4623,7 @@
         </dest>
       </edge>
       <edge>
-        <source>121</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>134</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>121</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>151</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>122</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>118</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>122</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>140</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>123</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>114</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>124</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>38</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>125</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>100</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>125</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>126</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>125</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>128</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>125</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>133</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>125</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>162</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>126</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>125</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>126</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>133</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>126</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>158</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>126</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>162</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>127</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>94</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>127</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>138</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>127</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>155</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>128</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>125</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>129</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>88</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>129</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>145</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>129</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>150</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>130</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>24</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>130</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>32</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>130</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>37</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>130</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>130</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>63</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>130</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>24</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>63</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>68</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>73</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>130</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>131</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>141</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>132</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>58</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>132</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>66</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>132</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>121</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>133</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>125</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>133</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>126</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>133</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>162</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>134</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>121</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>134</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>151</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>135</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>107</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>135</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>136</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>136</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>135</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>137</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>111</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>138</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>127</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>139</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>80</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>139</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>161</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>140</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>118</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>140</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>122</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>141</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>48</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>141</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>68</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>141</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>69</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>141</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>70</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>141</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>131</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>142</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>87</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>143</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>101</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>144</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>107</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>144</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>146</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>145</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>129</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>145</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>154</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>146</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>144</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>146</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>148</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>147</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>16</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>147</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>27</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>147</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>33</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>148</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>146</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>148</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>156</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>149</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>40</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>149</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>49</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>149</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>152</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>149</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>153</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>150</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>129</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>151</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>121</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>151</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>134</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>152</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>149</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>153</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>149</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>153</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>165</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>154</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>145</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>155</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>127</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>156</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>148</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>157</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>109</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>157</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>160</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>158</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>126</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>159</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>46</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>159</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>60</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>159</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>65</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>159</source>
+        <source>77</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>74</radio>
@@ -7610,10 +4635,10 @@
         </dest>
       </edge>
       <edge>
-        <source>159</source>
+        <source>77</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>83</radio>
+          <radio>104</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7622,10 +4647,10 @@
         </dest>
       </edge>
       <edge>
-        <source>159</source>
+        <source>77</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>95</radio>
+          <radio>144</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7634,10 +4659,10 @@
         </dest>
       </edge>
       <edge>
-        <source>160</source>
+        <source>78</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>157</radio>
+          <radio>74</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7646,103 +4671,7 @@
         </dest>
       </edge>
       <edge>
-        <source>160</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>167</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>161</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>139</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>162</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>100</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>162</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>125</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>162</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>126</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>162</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>133</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>163</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>61</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>163</source>
-        <dest>
-          org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>62</radio>
-          <ratio>1.0</ratio>
-          <signal>0.0</signal>
-          <lqi>105</lqi>
-          <delay>0</delay>
-          <channel>-1</channel>
-        </dest>
-      </edge>
-      <edge>
-        <source>163</source>
+        <source>78</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>92</radio>
@@ -7754,10 +4683,10 @@
         </dest>
       </edge>
       <edge>
-        <source>163</source>
+        <source>79</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>97</radio>
+          <radio>60</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7766,7 +4695,31 @@
         </dest>
       </edge>
       <edge>
-        <source>163</source>
+        <source>79</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>96</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>79</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>100</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>79</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>102</radio>
@@ -7778,10 +4731,10 @@
         </dest>
       </edge>
       <edge>
-        <source>163</source>
+        <source>80</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>103</radio>
+          <radio>31</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7790,10 +4743,10 @@
         </dest>
       </edge>
       <edge>
-        <source>163</source>
+        <source>80</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>104</radio>
+          <radio>82</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7802,7 +4755,163 @@
         </dest>
       </edge>
       <edge>
-        <source>163</source>
+        <source>81</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>59</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>81</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>117</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>81</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>131</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>82</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>31</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>82</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>80</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>83</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>67</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>83</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>105</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>84</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>60</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>84</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>102</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>84</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>107</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>85</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>43</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>85</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>74</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>86</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>38</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>86</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>110</radio>
@@ -7814,10 +4923,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>87</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
+          <radio>23</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7826,10 +4935,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>87</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>3</radio>
+          <radio>35</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7838,10 +4947,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>88</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
+          <radio>24</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7850,10 +4959,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>88</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
+          <radio>25</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7862,10 +4971,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>88</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
+          <radio>61</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7874,10 +4983,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>89</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
+          <radio>35</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7886,10 +4995,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>89</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>13</radio>
+          <radio>128</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7898,10 +5007,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>89</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>17</radio>
+          <radio>135</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7910,10 +5019,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>90</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
+          <radio>53</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7922,10 +5031,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>90</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>19</radio>
+          <radio>93</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7934,10 +5043,10 @@
         </dest>
       </edge>
       <edge>
-        <source>164</source>
+        <source>90</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>168</radio>
+          <radio>95</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7946,10 +5055,10 @@
         </dest>
       </edge>
       <edge>
-        <source>165</source>
+        <source>91</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>153</radio>
+          <radio>20</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7958,7 +5067,43 @@
         </dest>
       </edge>
       <edge>
-        <source>166</source>
+        <source>92</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>78</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>92</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>132</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>92</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>137</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>93</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>73</radio>
@@ -7970,10 +5115,10 @@
         </dest>
       </edge>
       <edge>
-        <source>166</source>
+        <source>93</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>102</radio>
+          <radio>90</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7982,10 +5127,10 @@
         </dest>
       </edge>
       <edge>
-        <source>166</source>
+        <source>93</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>103</radio>
+          <radio>94</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -7994,7 +5139,703 @@
         </dest>
       </edge>
       <edge>
-        <source>166</source>
+        <source>94</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>93</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>94</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>94</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>122</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>95</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>90</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>96</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>60</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>96</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>79</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>96</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>97</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>96</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>101</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>96</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>134</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>97</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>96</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>97</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>101</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>97</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>134</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>94</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>118</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>119</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>121</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>126</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>130</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>98</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>141</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>99</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>57</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>100</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>79</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>54</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>55</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>60</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>64</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>71</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>96</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>101</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>97</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>102</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>60</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>102</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>79</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>102</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>84</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>103</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>67</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>103</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>129</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>103</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>142</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>104</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>77</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>104</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>113</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>104</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>115</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>104</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>116</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>104</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>144</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>105</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>83</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>106</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>44</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>106</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>45</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>106</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>49</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>106</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>57</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>106</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>108</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>107</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>84</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>108</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>44</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>108</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>45</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>108</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>56</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>108</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>68</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>108</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>73</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>108</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>106</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>109</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>29</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>109</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>47</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>110</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>86</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>111</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>58</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>112</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>66</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>113</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>104</radio>
@@ -8006,10 +5847,10 @@
         </dest>
       </edge>
       <edge>
-        <source>166</source>
+        <source>113</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>169</radio>
+          <radio>120</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8018,10 +5859,10 @@
         </dest>
       </edge>
       <edge>
-        <source>167</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>160</radio>
+          <radio>98</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8030,10 +5871,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>2</radio>
+          <radio>117</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8042,10 +5883,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>3</radio>
+          <radio>118</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8054,10 +5895,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>4</radio>
+          <radio>121</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8066,10 +5907,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>5</radio>
+          <radio>125</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8078,10 +5919,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>6</radio>
+          <radio>130</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8090,10 +5931,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>114</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>9</radio>
+          <radio>141</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8102,10 +5943,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>115</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>10</radio>
+          <radio>104</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8114,10 +5955,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>116</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>11</radio>
+          <radio>104</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8126,10 +5967,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>116</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>13</radio>
+          <radio>123</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8138,7 +5979,715 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>117</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>81</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>117</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>117</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>118</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>118</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>118</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>118</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>117</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>118</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>130</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>118</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>141</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>119</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>119</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>126</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>120</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>113</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>121</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>121</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>121</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>130</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>121</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>133</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>121</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>141</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>122</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>94</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>123</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>116</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>124</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>25</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>124</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>29</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>124</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>44</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>124</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>70</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>125</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>125</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>130</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>125</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>139</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>125</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>141</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>126</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>126</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>119</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>126</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>127</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>127</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>126</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>128</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>89</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>129</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>103</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>130</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>130</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>130</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>118</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>130</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>121</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>130</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>125</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>130</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>141</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>131</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>81</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>132</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>92</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>133</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>121</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>134</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>96</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>134</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>97</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>135</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>89</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>136</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>39</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>136</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>66</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>137</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>92</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>138</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>69</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>139</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>125</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>140</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>26</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>140</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>34</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>141</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>98</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>141</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>114</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>141</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>118</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>141</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>121</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>141</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>125</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>141</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>130</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>142</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>67</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>142</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>103</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>143</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
           <radio>17</radio>
@@ -8150,10 +6699,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>143</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>18</radio>
+          <radio>21</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8162,10 +6711,10 @@
         </dest>
       </edge>
       <edge>
-        <source>168</source>
+        <source>143</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>164</radio>
+          <radio>27</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8174,10 +6723,10 @@
         </dest>
       </edge>
       <edge>
-        <source>169</source>
+        <source>143</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>73</radio>
+          <radio>28</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8186,10 +6735,46 @@
         </dest>
       </edge>
       <edge>
-        <source>169</source>
+        <source>143</source>
         <dest>
           org.contikios.cooja.radiomediums.DGRMDestinationRadio
-          <radio>166</radio>
+          <radio>32</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>143</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>33</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>144</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>77</radio>
+          <ratio>1.0</ratio>
+          <signal>0.0</signal>
+          <lqi>105</lqi>
+          <delay>0</delay>
+          <channel>-1</channel>
+        </dest>
+      </edge>
+      <edge>
+        <source>144</source>
+        <dest>
+          org.contikios.cooja.radiomediums.DGRMDestinationRadio
+          <radio>104</radio>
           <ratio>1.0</ratio>
           <signal>0.0</signal>
           <lqi>105</lqi>
@@ -8204,7 +6789,7 @@
     <motetype>
       org.contikios.cooja.mspmote.SkyMoteType
       <identifier>sky2</identifier>
-      <description>controller</description>
+      <description>c</description>
       <firmware EXPORT="copy">[CONFIG_DIR]/../applications/controller-node.sky</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
@@ -8223,7 +6808,7 @@
       <mote>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="45.06040623219134" y="78.97618456408537" />
+          <pos x="8.106294391166792" y="48.56842143180333" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8239,7 +6824,7 @@
     <motetype>
       org.contikios.cooja.mspmote.SkyMoteType
       <identifier>sky3</identifier>
-      <description>sink</description>
+      <description>s</description>
       <firmware EXPORT="copy">[CONFIG_DIR]/../applications/sink-node.sky</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
@@ -8258,7 +6843,7 @@
       <mote>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="96.09952783342126" y="78.29579017970873" />
+          <pos x="64.66356419808497" y="49.5151850250376" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8274,7 +6859,7 @@
     <motetype>
       org.contikios.cooja.mspmote.SkyMoteType
       <identifier>sky1</identifier>
-      <description>enabled-node</description>
+      <description>e</description>
       <firmware EXPORT="copy">[CONFIG_DIR]/../applications/enabled-node.sky</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
@@ -8291,10 +6876,9 @@
       <moteinterface>org.contikios.cooja.mspmote.interfaces.MspDebugOutput</moteinterface>
       <moteinterface>org.contikios.cooja.mspmote.interfaces.SkyTemperature</moteinterface>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="27.551072164829293" y="41.97374785478624" />
+          <pos x="21.478451595400383" y="13.261611513035321" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8307,10 +6891,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="80.53277303196093" y="5.641805765812046" />
+          <pos x="21.59106747941426" y="19.876413030333463" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8323,10 +6906,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="13.20605632238534" y="2.3920278627765357" />
+          <pos x="20.155013595994998" y="8.120311494812182" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8339,10 +6921,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="57.133840718423286" y="7.533063811156926" />
+          <pos x="21.546215558368832" y="39.31596851517551" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8355,10 +6936,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="7.874118607075986" y="10.08571709839251" />
+          <pos x="34.71903494439626" y="69.0081039819066" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8371,10 +6951,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="73.0704324387259" y="56.33347935156894" />
+          <pos x="94.23941407122507" y="50.83722962185924" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8387,10 +6966,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="49.9611832225995" y="97.63202710104346" />
+          <pos x="31.597472485108735" y="93.59072667822166" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8403,10 +6981,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="80.53222791883066" y="36.062549604684676" />
+          <pos x="10.696200058232586" y="37.848344945808066" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8419,10 +6996,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="79.41022441639876" y="74.88284461916554" />
+          <pos x="60.26509982393527" y="6.229114558486382" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8435,10 +7011,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="29.977538489903665" y="24.356649389619665" />
+          <pos x="91.1199841356209" y="87.7983789495222" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8451,10 +7026,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="23.295978093222413" y="78.93537899652623" />
+          <pos x="71.27495063266733" y="64.81562653774925" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8467,10 +7041,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="19.400706218109665" y="9.804589522538576" />
+          <pos x="68.5246906424127" y="83.50892206878525" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8483,10 +7056,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="45.92446660688295" y="51.23206999341912" />
+          <pos x="69.64330369226282" y="59.26617629763054" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8499,10 +7071,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="40.946006145541844" y="84.59141329812692" />
+          <pos x="29.205245129354772" y="64.26977411589705" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8515,10 +7086,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="6.596918837688293" y="12.26166121400184" />
+          <pos x="91.3834432058082" y="23.42467214508265" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8531,10 +7101,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="31.490716213890877" y="11.871533346417262" />
+          <pos x="45.319963458748624" y="11.972709766641664" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8547,10 +7116,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="17.497833999917056" y="88.8415361089669" />
+          <pos x="87.43216768267142" y="20.483268498001237" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8563,10 +7131,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="8.251275256087053" y="26.516631854896588" />
+          <pos x="71.74244212205524" y="12.407829459129616" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8579,10 +7146,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="36.429392423024844" y="78.92236726861722" />
+          <pos x="76.80886264890272" y="55.099547193022666" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8595,10 +7161,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="31.659118361485483" y="6.437886148345617" />
+          <pos x="5.70057309638754" y="91.0860139782373" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8611,10 +7176,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="1.546931732664747" y="71.00835218646178" />
+          <pos x="59.608691310380344" y="15.250127688307213" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8627,10 +7191,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="25.257742944480157" y="52.39810383055613" />
+          <pos x="13.419801192844394" y="12.222881114857131" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8643,10 +7206,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="40.99659950146152" y="49.80538127056631" />
+          <pos x="91.31584157471124" y="53.98797690288788" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8659,10 +7221,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="34.178097596370314" y="75.87678651339492" />
+          <pos x="96.32764704522675" y="55.40659184188746" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8675,10 +7236,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="3.4991530659257974" y="45.20889154078978" />
+          <pos x="29.824681806399145" y="9.593581853125476" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8691,10 +7251,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="81.28114411184201" y="16.836941132685634" />
+          <pos x="82.09513168437972" y="79.4932938303217" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8707,10 +7266,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="26.482389091693193" y="20.273437161195705" />
+          <pos x="3.3077768450064604" y="4.491249511105422" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8723,10 +7281,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="93.17786351109444" y="81.81130599917388" />
+          <pos x="88.06377940746748" y="40.88694022650189" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8739,10 +7296,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="17.296054080234637" y="45.85570076692017" />
+          <pos x="74.43980411230751" y="4.54215255997531" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8755,10 +7311,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="0.34884559061691967" y="4.1594399388983465" />
+          <pos x="70.04755997612439" y="32.95936919743967" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8771,10 +7326,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="87.24175704297387" y="99.11733753923355" />
+          <pos x="19.182434026880678" y="5.1634534460288535" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8787,10 +7341,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="48.22593244521691" y="15.165387682083487" />
+          <pos x="65.1584548675286" y="45.28363034684189" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8803,10 +7356,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="75.44845869429507" y="22.377144805401716" />
+          <pos x="7.001677191829881" y="6.83375953916755" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8819,10 +7371,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="94.54341694765004" y="70.30559218562549" />
+          <pos x="88.67034010010092" y="31.858465925713418" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8835,10 +7386,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="93.79107005562909" y="33.71415685507485" />
+          <pos x="85.60813785392185" y="66.04254979517846" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8851,10 +7401,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="66.12882273057434" y="78.9125768153604" />
+          <pos x="0.9344985775796344" y="13.801325902462446" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8867,10 +7416,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="39.79255642785557" y="35.48296248835734" />
+          <pos x="94.60161029519107" y="48.17583606844658" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8883,10 +7431,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="32.63447250621289" y="27.924070992861317" />
+          <pos x="18.35453946049116" y="97.22599999920543" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8899,10 +7446,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="72.41327148376719" y="89.1852555618389" />
+          <pos x="77.22145189493563" y="54.19057376779619" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8915,10 +7461,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="50.998983478210505" y="97.7089026710916" />
+          <pos x="73.21957366364286" y="45.28097484051992" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8931,10 +7476,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="47.39708396362086" y="31.060909023416205" />
+          <pos x="32.14781150225306" y="54.64173133194977" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8947,10 +7491,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="91.59824694945416" y="27.307398850310793" />
+          <pos x="0.020552744763469022" y="24.625303941534426" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8963,10 +7506,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="21.931700414438716" y="81.86844286531053" />
+          <pos x="63.297943199154204" y="2.5521641360428338" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8979,10 +7521,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="72.46186566975358" y="70.95964111053993" />
+          <pos x="33.41127573471914" y="31.91734292682239" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -8995,10 +7536,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="81.24745631827598" y="44.60671229808041" />
+          <pos x="96.08628461393772" y="44.05677682499035" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9011,10 +7551,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="72.39394208927598" y="81.60173339112549" />
+          <pos x="86.33637699138272" y="62.08257521006095" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9027,10 +7566,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="16.819386756925926" y="96.813123496928" />
+          <pos x="45.873479462728895" y="34.447729947265294" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9043,10 +7581,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="36.585002447018454" y="80.10788555803668" />
+          <pos x="50.58389265389837" y="85.04196612886552" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9059,10 +7596,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="12.383441761748525" y="29.421592884632595" />
+          <pos x="46.462770338128124" y="52.371953032377014" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9075,10 +7611,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="22.010393670862292" y="2.4014894618548333" />
+          <pos x="39.118595813959054" y="64.99146359520503" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9091,10 +7626,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="21.298943649595238" y="95.27684232199839" />
+          <pos x="82.594232634577" y="90.09956323490943" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9107,10 +7641,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="95.6930958727128" y="27.046173396244754" />
+          <pos x="6.439463040220483" y="60.93326600231869" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9123,10 +7656,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="59.09285918224684" y="39.01865280049472" />
+          <pos x="65.45751569756852" y="60.0426235916841" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9139,10 +7671,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="11.316111058432066" y="51.389825178824786" />
+          <pos x="24.744117167519153" y="49.6150680300625" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9155,10 +7686,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="86.45153145503855" y="41.34615057769791" />
+          <pos x="50.24939779857127" y="72.54624998892582" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9171,10 +7701,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="61.69001667168268" y="18.540731675140385" />
+          <pos x="18.175263774213835" y="83.91642102148548" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9187,10 +7716,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="29.564428462078183" y="28.261397280960477" />
+          <pos x="11.637818840167636" y="6.324289082684176" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9203,10 +7731,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="72.64034362038129" y="75.11177178549754" />
+          <pos x="21.60765730155626" y="48.55147283773601" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9219,10 +7746,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="21.59157952871911" y="46.824230637720966" />
+          <pos x="69.49134419527846" y="58.132752222685646" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9235,10 +7761,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="52.84078392295343" y="21.42109973419437" />
+          <pos x="14.484399917497704" y="69.19134590352371" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9251,10 +7776,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="57.078819814440386" y="68.71480464285628" />
+          <pos x="32.161653912317966" y="43.166924313522784" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9267,10 +7791,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="2.282291653584212" y="73.2675911709411" />
+          <pos x="12.742070640552328" y="25.14216009631377" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9283,10 +7806,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="22.277271661414854" y="50.42230543836841" />
+          <pos x="97.67379142296161" y="41.47056437504768" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9299,10 +7821,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="66.17350863935646" y="95.02624744959945" />
+          <pos x="84.9257062834129" y="74.87792114507845" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9315,10 +7836,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="1.3675904924881577" y="1.521262174682525" />
+          <pos x="10.028904537828465" y="91.03390497004213" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9331,10 +7851,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="81.29013623512947" y="56.08970550891485" />
+          <pos x="92.67558877219582" y="29.290980546972854" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9347,10 +7866,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="0.31506618876123715" y="11.061305027343927" />
+          <pos x="5.03928757626011" y="6.344402414454542" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9363,10 +7881,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="26.743390777452646" y="61.011557684275445" />
+          <pos x="64.79370884215253" y="61.693367673117194" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9379,10 +7896,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="76.19563753347805" y="75.82081473807382" />
+          <pos x="30.21508549914994" y="16.49114150342542" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9395,10 +7911,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="62.87110864715642" y="73.41733662617786" />
+          <pos x="70.4321331384889" y="74.52457314765516" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9411,10 +7926,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="95.97981418852075" y="5.73487009524416" />
+          <pos x="79.66313732145942" y="32.49888042028629" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9427,10 +7941,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="20.95787034370997" y="96.1093127581205" />
+          <pos x="6.388885546355228" y="9.477494428331369" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9443,10 +7956,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="71.52339398287477" y="42.317154877964946" />
+          <pos x="27.13563924261878" y="55.8065057385315" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9459,10 +7971,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="16.68832022394615" y="47.008776684201145" />
+          <pos x="0.2878297438637434" y="85.36349696685308" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9475,10 +7986,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="59.4103142443674" y="79.90426663931906" />
+          <pos x="58.611623081229624" y="63.570680353985" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9491,10 +8001,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="73.99403931043061" y="30.798620349800732" />
+          <pos x="23.233073934369596" y="32.45727209485169" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9507,10 +8016,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="68.78096861169745" y="90.04780646928879" />
+          <pos x="26.37720865507831" y="60.06921519089601" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9523,10 +8031,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="9.069640868834206" y="8.431992520975108" />
+          <pos x="18.478936517285828" y="5.1865344024233035" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9539,10 +8046,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="66.7534118648966" y="2.790323551735119" />
+          <pos x="56.698218375387775" y="73.63876361381033" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9555,10 +8061,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="81.04649653255873" y="6.079014817767813" />
+          <pos x="76.29428855436396" y="49.693023111287445" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9571,10 +8076,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="99.83702298645412" y="29.749052549034303" />
+          <pos x="15.995604387214913" y="35.48332137801572" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9587,10 +8091,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="33.798394109771934" y="37.55002417754228" />
+          <pos x="7.513380315386464" y="67.75895611352284" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9603,10 +8106,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="87.11806796232163" y="31.197032276116065" />
+          <pos x="60.02222730567944" y="78.94716159889144" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9619,10 +8121,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="48.725822262506156" y="81.6551816098542" />
+          <pos x="0.6798908286718586" y="3.5742281266610165" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9635,10 +8136,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="74.17113248223697" y="39.41309059524571" />
+          <pos x="76.91837269904835" y="97.5090490571611" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9651,10 +8151,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="90.67524596342409" y="11.168457173754199" />
+          <pos x="50.07019954719857" y="20.458801423823438" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9667,10 +8166,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="38.764052686676095" y="83.6459885784212" />
+          <pos x="69.15007401548078" y="47.311976332931984" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9683,10 +8181,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="46.3848948148433" y="1.828635988034888" />
+          <pos x="47.52642970999075" y="77.53381085238324" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9699,10 +8196,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="94.55902932448865" y="96.71701082598783" />
+          <pos x="68.10327706241553" y="49.42018956702593" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9715,10 +8211,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="38.43509858474765" y="7.838005810028115" />
+          <pos x="71.6781303270481" y="43.97352163877185" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9731,10 +8226,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="67.18825166259231" y="71.62038559927582" />
+          <pos x="16.350285367720186" y="60.55619024750074" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9747,10 +8241,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="7.482309831472945" y="10.255373178968352" />
+          <pos x="38.95913941573609" y="44.32549815629028" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9763,10 +8256,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="99.25597519250032" y="28.960184097980935" />
+          <pos x="0.09215673682499981" y="34.61531214341211" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9779,10 +8271,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="24.872427240847284" y="73.1060335437641" />
+          <pos x="5.446667374616809" y="41.85258172290289" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9795,10 +8286,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="43.884812042119336" y="26.611780224344862" />
+          <pos x="42.71890111389903" y="85.02296044753606" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9811,10 +8301,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="58.29918499015342" y="61.466849919373104" />
+          <pos x="4.013493791378908" y="78.25961819924338" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9827,10 +8316,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="8.214266255106784" y="13.978685559759152" />
+          <pos x="40.463009977056174" y="97.66514324371146" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9843,10 +8331,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="20.172955486098832" y="29.686593735699606" />
+          <pos x="43.07998037492844" y="73.78997307715544" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9859,10 +8346,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="22.54366074065921" y="0.43242295281060716" />
+          <pos x="4.3329437499823875" y="1.8000783635673478" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9875,10 +8361,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="85.40764584543092" y="5.6649023883027505" />
+          <pos x="80.30587016651592" y="88.71852325097386" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9891,10 +8376,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="12.29667778745025" y="65.21243259504263" />
+          <pos x="76.42138398337279" y="21.597881836084277" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9907,10 +8391,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="49.469131652135026" y="19.069407071184898" />
+          <pos x="64.23599320986452" y="78.87373934605579" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9923,10 +8406,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="99.31522225812935" y="1.9004352213793485" />
+          <pos x="81.74526932873324" y="41.74533729608769" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9939,10 +8421,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="84.24637523767949" y="23.789522579191335" />
+          <pos x="30.00976824971795" y="78.0735997414884" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9955,10 +8436,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="27.748407409194463" y="30.68268243087122" />
+          <pos x="13.38541549203387" y="88.3188497566785" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9971,10 +8451,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="37.531414300731036" y="85.01393384115693" />
+          <pos x="61.000108415703515" y="79.27807385069492" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -9987,10 +8466,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="5.507374098096863" y="65.52466719259898" />
+          <pos x="94.18493599890714" y="60.734511515300895" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10003,10 +8481,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="58.990578618169266" y="62.2216522713053" />
+          <pos x="29.338692141216992" y="94.80154120627581" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10019,10 +8496,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="43.365872346735934" y="29.094676852247492" />
+          <pos x="13.907223570257553" y="35.33036745445873" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10035,10 +8511,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="42.27683849549882" y="55.17546773664155" />
+          <pos x="95.82496235757017" y="70.98664977407921" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10051,10 +8526,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="14.694076675126755" y="27.210609266629803" />
+          <pos x="68.75302591845876" y="77.7608063371085" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10067,10 +8541,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="68.6107748617976" y="60.72148227631459" />
+          <pos x="48.25625461871441" y="42.14847977879237" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10083,10 +8556,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="14.851506290827011" y="36.61211705771763" />
+          <pos x="78.63652809397821" y="55.06227405204173" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10099,10 +8571,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="64.42097939991942" y="44.78600416136512" />
+          <pos x="49.74472713048216" y="96.12427062351252" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10115,10 +8586,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="71.70326514091838" y="8.27823371276496" />
+          <pos x="85.70459820840406" y="82.59651807700224" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10131,10 +8601,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="35.59685938596117" y="83.31596637563791" />
+          <pos x="41.52860198436582" y="14.11616382056099" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10147,10 +8616,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="9.769460064625656" y="25.057304467728393" />
+          <pos x="40.27076184045163" y="3.143039399461134" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10163,10 +8631,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="78.1188256511689" y="95.86339661986733" />
+          <pos x="33.004415865374305" y="51.33710953581417" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10179,10 +8646,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="48.314988971638726" y="82.22720867872825" />
+          <pos x="13.583262436099686" y="0.6848018007982737" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10195,10 +8661,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="52.280921545416305" y="49.83763062799951" />
+          <pos x="23.503831306139766" y="63.84536331460093" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10211,10 +8676,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="77.31791492155547" y="36.37274622490085" />
+          <pos x="82.54913047744729" y="48.83598193891089" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10227,10 +8691,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="31.834716909978734" y="76.84807058813928" />
+          <pos x="42.451766995748905" y="18.40013804627848" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10243,10 +8706,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="99.73897844690009" y="18.704425781979573" />
+          <pos x="62.52563943331947" y="80.76141097808166" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10259,10 +8721,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="35.024298546312494" y="25.67992933696762" />
+          <pos x="97.14755765473588" y="64.64726419817228" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10275,10 +8736,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="9.80947994064616" y="59.13706095311139" />
+          <pos x="9.336422525220843" y="14.634568171214369" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10291,10 +8751,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="19.950987105177308" y="0.867385455721148" />
+          <pos x="59.12125081078029" y="6.843629825894871" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10307,10 +8766,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="37.054137610964425" y="66.02333670745702" />
+          <pos x="20.47872949643589" y="45.41330131067838" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10323,10 +8781,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="88.74140888532334" y="59.072777216946584" />
+          <pos x="52.88333146934847" y="0.9845467758946347" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10339,10 +8796,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="77.3019476356161" y="50.76007146582019" />
+          <pos x="73.70561238577861" y="12.655401500399089" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10355,10 +8811,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="23.769467481639406" y="76.00349647262912" />
+          <pos x="85.3967996826063" y="73.87887750463385" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10371,10 +8826,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="43.7807604372623" y="47.354118793758616" />
+          <pos x="95.37403553091892" y="16.363061782929222" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10387,10 +8841,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="53.314941655088745" y="58.79509767390157" />
+          <pos x="44.681166738753205" y="25.629547608660243" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10403,10 +8856,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="53.24742470507455" y="23.689011201466357" />
+          <pos x="33.666606629604054" y="92.986919820903" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10419,10 +8871,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="65.57957291455949" y="77.99134911759542" />
+          <pos x="23.971888029528177" y="34.26653319562679" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10435,10 +8886,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="49.61950793563423" y="6.3482187573874915" />
+          <pos x="66.47804296874787" y="94.725140584528" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10451,10 +8901,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="9.413975024325138" y="80.72957509781287" />
+          <pos x="89.60692389104595" y="40.02769472202772" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10467,10 +8916,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="7.328688326589661" y="85.53974806088978" />
+          <pos x="29.801737693718433" y="73.54646390778097" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10483,10 +8931,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="11.3612018619769" y="34.699220044504344" />
+          <pos x="0.5326255565157756" y="92.00933979082087" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10499,10 +8946,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="31.129496997823104" y="45.48033364049442" />
+          <pos x="50.18941530111767" y="41.81185394659226" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10515,10 +8961,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="24.05867998947826" y="39.02799109460863" />
+          <pos x="22.689861058648574" y="97.57020215368189" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10531,10 +8976,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="21.827365213171134" y="91.52402631292736" />
+          <pos x="80.55692620575724" y="22.267824810493597" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10547,10 +8991,9 @@
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
       <mote>
-        <breakpoints/>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="96.4602246290931" y="32.5450181528703" />
+          <pos x="28.671549287568755" y="16.864193782387993" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.mspmote.interfaces.MspClock
@@ -10562,409 +9005,9 @@
         </interface_config>
         <motetype_identifier>sky1</motetype_identifier>
       </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="37.73109381952137" y="54.785493510491115" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>145</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="15.982238899475497" y="76.8939182939817" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>146</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="89.91929213485056" y="32.87572378237918" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>147</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="34.21884180632987" y="97.67729589945775" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>148</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="41.90736501145231" y="29.938331248147055" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>149</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="17.42269579339739" y="23.102729484006513" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>150</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="78.21827769712472" y="47.18614280920194" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>151</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="0.06268551768624508" y="69.3007765158571" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>152</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="84.84132148443348" y="26.766245384280683" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>153</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="2.4344486464764836" y="23.36719260019621" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>154</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="81.69015826964849" y="95.6404337417345" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>155</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="62.94095566690593" y="68.95188525824332" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>156</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="32.96443808095542" y="94.3076664792942" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>157</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="42.14111736249831" y="70.52024134605676" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>158</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="66.7349194633797" y="8.104204225593946" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>159</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="62.28556830028867" y="77.83064875922227" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>160</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="77.00518793842306" y="70.42113774329054" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>161</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="34.55862495425743" y="64.22473412629049" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>162</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="87.78536593335593" y="49.841477905546505" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>163</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="1.7996742923103493" y="64.47105623113725" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>164</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="93.11464222834333" y="12.720513324897242" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>165</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="40.6992416170756" y="9.533335737788528" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>166</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="74.1966496594907" y="13.35214477774629" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>167</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="51.40553216629017" y="57.08275638079313" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>168</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
-      <mote>
-        <breakpoints/>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="45.509393778979735" y="73.25603794667278" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspClock
-          <deviation>1.0</deviation>
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.mspmote.interfaces.MspMoteID
-          <id>169</id>
-        </interface_config>
-        <motetype_identifier>sky1</motetype_identifier>
-      </mote>
     </motetype>
   </simulation>
- <plugin>
+  <plugin>
     org.contikios.cooja.plugins.SimControl
     <width>280</width>
     <z>5</z>
@@ -11148,31 +9191,6 @@
       <mote>141</mote>
       <mote>142</mote>
       <mote>143</mote>
-      <mote>144</mote>
-      <mote>145</mote>
-      <mote>146</mote>
-      <mote>147</mote>
-      <mote>148</mote>
-      <mote>149</mote>
-      <mote>150</mote>
-      <mote>151</mote>
-      <mote>152</mote>
-      <mote>153</mote>
-      <mote>154</mote>
-      <mote>155</mote>
-      <mote>156</mote>
-      <mote>157</mote>
-      <mote>158</mote>
-      <mote>159</mote>
-      <mote>160</mote>
-      <mote>161</mote>
-      <mote>162</mote>
-      <mote>163</mote>
-      <mote>164</mote>
-      <mote>165</mote>
-      <mote>166</mote>
-      <mote>167</mote>
-      <mote>168</mote>
       <showRadioRXTX />
       <showRadioHW />
       <showLEDs />

@@ -53,7 +53,7 @@ DEFINES += WEIGHT_ENERGY=0.0
 #DEFINES += MANAGEMENT
 
 # DEFINES += RDC_CONF_UNIDIR_SUPPORT=1
-DEFINES += CONTROLLER_BIDIR_ROUTES_ONLY=0
+DEFINES += CONTROLLER_BIDIR_ROUTES_ONLY=1
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
