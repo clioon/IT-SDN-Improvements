@@ -46,6 +46,31 @@ def print_topo(links, topo_size, side):
 		print(links)
 	print("-" * (side * 4 - 2))
 
+def print_ring(links, topo_size):
+	print("-" * (topo_size * 5))
+
+	for i in range(1, topo_size+1):
+		print("%02d" % i, end="")
+
+		next_node = (i % topo_size) + 1
+
+		if next_node in links[i] and i in links[next_node]:
+			print("<->", end="")
+			links[i].remove(next_node)
+			links[next_node].remove(i)
+		elif next_node in links[i]:
+			print("->", end="")
+			links[i].remove(next_node)
+		elif i in links[next_node]:
+			print("<-", end="")
+			links[next_node].remove(i)
+		else:
+			print("   ", end="")
+
+	print()
+	print("-" * (topo_size * 5))
+
+
 txt="""| [ 01 01 ] --100--> [ 02 02 ] (1) |
 | [ 01 01 ] -- 64--> [ 05 05 ] (1) |
 | [ 04 04 ] --100--> [ 08 08 ] (1) |
@@ -143,7 +168,8 @@ if __name__ == "__main__":
 		topo_size = side * side
 
 	for topo in topos:
-		print_topo(topo, topo_size, side)
+		#print_topo(topo, topo_size, side)
+		print_ring(topo, 25)
 		print()
 
 	if (len(sys.argv) == 1):

@@ -659,7 +659,8 @@ def pretty_scenario(name, show_nodes=True, show_nd=True):
     pretty_nd['IM-SC-nullrdc-truebidir'] = "IM-SC"
 
     pretty_qt = {
-        'EN': "com tratamento de fila",
+        #'EN': "com tratamento de fila",
+        'EN': "with queue treatment",
         'DIS': ""
     }
 
@@ -667,9 +668,11 @@ def pretty_scenario(name, show_nodes=True, show_nd=True):
     topo = name[1]
     if topo.startswith('GRID-FULL'):
         #topo = topo [len("GRID-"):]
-        topo = "Topologia em grade"
+        #topo = "Topologia em grade"
+        topo = "GRID topology"
     else:
-        topo = "Topologia aleatória"
+        #topo = "Topologia aleatória"
+        topo = "RANDOM topology"
 
     nd = name[2]
     if name[2] in pretty_nd.keys():
@@ -889,7 +892,8 @@ def plot_metric_single_l(summary, results_dir, fmt, show_preview, i_metric, titl
         color = topo_colors.get(topo, 'tab:gray')
         ax.errorbar(x_vals, y_vals, yerr=err_vals, label=label, marker='o', linestyle=linestyle, color=color)
 
-    ax.set_xlabel('Número de nós')
+    #ax.set_xlabel('Número de nós')
+    ax.set_xlabel('Number of nodes')
     ax.set_ylabel(ylabel)
     ax.set_title(title)
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
@@ -982,7 +986,8 @@ def open_plots_window(summary, results_dir, sim_time):
         
         if var_delivery_data_only_l.get():
             log("Gerando: Delivery (Data only Column)...")
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Entrega de pacotes de dados", "Entrega de dados [%]", y_limits=(0, 105))
+            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Entrega de pacotes de dados", "Entrega de dados [%]", y_limits=(0, 105))
+            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Data Packets Delivery", "Data Delivery [%]", y_limits=(0, 105))
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
 
@@ -1018,7 +1023,8 @@ def open_plots_window(summary, results_dir, sim_time):
         
         if var_energy_l.get():
             log("Gerando: Energy...")
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energia", "Energia [mJ]", y_limits=(0, 70))
+            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energia", "Energia [mJ]", y_limits=(0, 70))
+            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energy", "Energy [mJ]", y_limits=(0, 70))
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
 
