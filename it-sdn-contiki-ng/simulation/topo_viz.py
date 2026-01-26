@@ -2,8 +2,8 @@ import re, math, sys
 from collections import defaultdict
 
 def print_topo(links, topo_size, side):
-	# topo_size = 16
-	# side = int(math.sqrt(topo_size))
+	topo_size = 36
+	side = int(math.sqrt(topo_size))
 
 	print("-" * (side * 4 - 2))
 
@@ -168,8 +168,8 @@ if __name__ == "__main__":
 		topo_size = side * side
 
 	for topo in topos:
-		#print_topo(topo, topo_size, side)
-		print_ring(topo, 25)
+		print_topo(topo, topo_size, side)
+		#print_ring(topo, 25)
 		print()
 
 	if (len(sys.argv) == 1):

@@ -25,6 +25,10 @@
  *
  */
 
+#ifndef MIN
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#endif
+
 #define SDN_QUEUE_ACTION_NONE 0
 #define SDN_QUEUE_ACTION_REPLACE 1
 #define SDN_QUEUE_ACTION_MERGE 2
@@ -843,14 +847,38 @@ uint8_t sdn_queue_compare_packets(uint8_t *new_packet, uint16_t new_len, uint8_t
   return SDN_QUEUE_ACTION_MERGE;
 }
 
+uint8_t sdn_compare_src_rtd_tails(uint8_t *p1, uint16_t p1_len, uint8_t *p2, uint16_t p2_len, uint8_t header_size) {
+  sdnaddr_t real_dest1, real_dest2;
+  uint8_t path_len1, path_len2;
+  sdnaddr_t *path1, *path2;
+
+  sdn_get_src_routing_info(p1, p1_len, header_size, &real_dest1, &path_len1, &path1);
+  sdn_get_src_routing_info(p2, p2_len, header_size, &real_dest2, &path_len2, &path2);
+
+  return ((path_len1 == path_len2) && (sdnaddr_cmp(&real_dest1, &real_dest2) == 0) && (memcmp(path1, path2, path_len1 * sizeof(sdnaddr_t)) == 0));
+}
+
 uint8_t sdn_queue_determine_pckt_action(uint8_t *new_packet, uint8_t *old_packet, uint16_t new_len, uint16_t old_len, uint8_t *header_size, uint8_t old_packet_pos, uint8_t queue, uint8_t is_src_routed) {
   
   // if types are different dont compare;
   uint8_t type = SDN_HEADER(new_packet)->type;
   if (type != SDN_HEADER(old_packet)->type) return SDN_QUEUE_ACTION_NONE;
 
-  // verify if the origin of the src rtd packets are the same
-  uint8_t same_src = sdnaddr_cmp(&SDN_HEADER(new_packet)->source, &SDN_HEADER(old_packet)->source) == 0;
+  // verify src rtd packets tails
+  if (is_src_routed) {
+    switch (type) {
+      case SDN_PACKET_SRC_ROUTED_ACK:
+      case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
+      case SDN_PACKET_SRC_ROUTED_DATA_FLOW_SETUP:
+        *header_size = sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+        break;
+      default:
+        return SDN_QUEUE_ACTION_NONE;
+    }
+    if (!sdn_compare_src_rtd_tails(new_packet, new_len, old_packet, old_len, *header_size)) {
+      return SDN_QUEUE_ACTION_NONE;
+    }
+  }
 
   // verify if the destination of the packets are the same
   uint8_t *dest1, *dest2;
@@ -906,7 +934,7 @@ uint8_t sdn_queue_determine_pckt_action(uint8_t *new_packet, uint8_t *old_packet
       return SDN_QUEUE_ACTION_MERGE;
 
     case SDN_PACKET_NEIGHBOR_REPORT:
-      if (!same_src) return SDN_QUEUE_ACTION_NONE;
+      if (sdnaddr_cmp(&SDN_HEADER(new_packet)->source, &SDN_HEADER(old_packet)->source) != 0) return SDN_QUEUE_ACTION_NONE;
       *header_size = sizeof(sdn_header_t);
       return SDN_QUEUE_ACTION_REPLACE; // always replace
 
