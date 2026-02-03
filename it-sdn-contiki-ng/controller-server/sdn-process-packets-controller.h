@@ -60,6 +60,17 @@ void process_register_flowid(uint16_t flowid, unsigned char* target);
 
 void process_phase_info_controller(sdn_phase_info_flow_t *);
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void process_multiple_flow_setup();
+
+#ifdef __cplusplus
+}
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

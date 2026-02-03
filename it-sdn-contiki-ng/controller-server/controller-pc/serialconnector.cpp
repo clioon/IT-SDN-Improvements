@@ -28,6 +28,8 @@
 #include "serialconnector.h"
 #include "sdn-serial-send.h"
 #include "sdn-reliability.h"
+#include "sdn-process-packets-controller.h"
+#include "sdn-graph.h"
 
 #include <QTcpSocket>
 #include <QSerialPort>
@@ -187,7 +189,7 @@ void SerialConnector::decodeSerialPacket(sdn_serial_packet_t *packet) {
 //    }
 //    std::cout << "decodeSerialPacket end print" << std::endl;
 
-
+    static int countdown = 0;
     //qDebug() << "[MainWindow::decodePacket] New Packet";
     if(packet->header.msg_type == SDN_SERIAL_MSG_TYPE_PRINT) {
 
@@ -213,8 +215,15 @@ void SerialConnector::decodeSerialPacket(sdn_serial_packet_t *packet) {
         emit nackReceived(SERIAL_TX_NACK);
 
     } else if(packet->header.msg_type == SDN_SERIAL_MSG_TYPE_TIMER){
-
-        sdn_reliability_timer_event();
+#ifdef SDN_MFS
+        if (countdown > 0) {
+            countdown--;
+        } else {
+            process_multiple_flow_setup();
+            countdown = 10;
+        }
+        //sdn_reliability_timer_event();
+#endif
 
     } else if(packet->header.msg_type != SDN_SERIAL_MSG_TYPE_EMPTY){
 

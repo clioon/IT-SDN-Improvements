@@ -43,6 +43,8 @@ int send_src_rtd_ack(sdnaddr_t* packet_destination, uint8_t acked_packed_type, u
 
 int send_src_rtd_data_flow_setup(sdnaddr_t* packet_destination, flowid_t dest_flowid, sdnaddr_t* route_nexthop, action_t action);
 
+int send_mult_data_flow_setup(sdnaddr_t* packet_destination, flowid_t dest_flowid, uint8_t set_len, sdn_mult_flow_elem_t* sets);
+
 int send_src_rtd_control_flow_setup(sdnaddr_t* packet_destination, sdnaddr_t* route_destination, sdnaddr_t* route_nexthop, action_t action);
 
 uint8_t sdn_send_src_rtd_phase_addr(sdnaddr_t* packet_destination, sdnaddr_t* phase_receiver, uint16_t phase);

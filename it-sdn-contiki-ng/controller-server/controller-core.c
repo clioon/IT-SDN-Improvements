@@ -145,6 +145,12 @@ void controller_init(sdnaddr_t *address) {
   printf("SDN_SOURCE_ROUTED (undefined)\n");
 #endif
 
+#ifdef SDN_MFS
+  printf("SDN_MFS (defined)\n");
+#else
+  printf("SDN_MFS (undefined)\n");
+#endif
+
   printf("RDC_UNIDIR_SUPPORT %u\n", RDC_UNIDIR_SUPPORT);
   printf("CONTROLLER_BIDIR_ROUTES_ONLY %u\n", CONTROLLER_BIDIR_ROUTES_ONLY);
 

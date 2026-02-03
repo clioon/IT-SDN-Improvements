@@ -410,7 +410,7 @@ def parse_file(filename):
     print (results_summary)
     return results_summary
 
-def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, datarates, sim_time, fileprefix, results_dir, queue_treatment):
+def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, datarates, sim_time, fileprefix, results_dir, queue_treatment, mfs_options):
 
     partial_results = defaultdict(list)
     partial_results_packet_count = defaultdict(list)
@@ -437,51 +437,55 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
     missing_files = []
     parsed_examples = []
 
-    def make_filename(nnodes, topo, nd, datarate, i, qt):
-        return f"cooja_{fileprefix}n{nnodes}_top{topo}_nd{nd}_l{datarate}_i{i}_qt{qt}.txtpreproc"
+    def make_filename(nnodes, topo, nd, datarate, i, qt, mfs):
+        if mfs == "NO MFS":
+            return f"cooja_{fileprefix}n{nnodes}_top{topo}_nd{nd}_l{datarate}_i{i}_qt{qt}.txtpreproc"
+        else:
+            return f"cooja_{fileprefix}n{nnodes}_top{topo}_nd{nd}_l{datarate}_i{i}_qt{qt}_{mfs}.txtpreproc"
 
     for nnodes in nodes_v:
         for topo in topologies:
             for nd in nd_possibilities:
                 for datarate in datarates:
                     for qt in queue_treatment:
-                        scenario = (nnodes, topo, nd, datarate, qt)
-                        for i in range(MIN_ITER, MAX_ITER + 1):
-                            fname = make_filename(nnodes, topo, nd, datarate, i, qt)
-                            path = os.path.join(results_dir, fname)
-                            if not os.path.exists(path):
-                                missing_files.append(path)
-                                continue
-                            try:
-                                r = parse_file(path)
-                                if r is None:
-                                    print("parse_file retornou None para", path)
+                        for mfs in mfs_options:
+                            scenario = (nnodes, topo, nd, datarate, qt, mfs)
+                            for i in range(MIN_ITER, MAX_ITER + 1):
+                                fname = make_filename(nnodes, topo, nd, datarate, i, qt, mfs)
+                                path = os.path.join(results_dir, fname)
+                                if not os.path.exists(path):
                                     missing_files.append(path)
                                     continue
-                                if len(r) < 1:
-                                    print("parse_file retornou lista vazia para", path)
-                                    missing_files.append(path)
-                                    continue
+                                try:
+                                    r = parse_file(path)
+                                    if r is None:
+                                        print("parse_file retornou None para", path)
+                                        missing_files.append(path)
+                                        continue
+                                    if len(r) < 1:
+                                        print("parse_file retornou lista vazia para", path)
+                                        missing_files.append(path)
+                                        continue
 
-                                metrics = r[:-3]
-                                pkt_counts = r[-3]
-                                merged_packets = r[-2]
-                                replaced_packets = r[-1]
-                                partial_results_mgrp[scenario].append((merged_packets, replaced_packets))
-                                partial_results[scenario].append(metrics)
-                                partial_results_packet_count[scenario].append(pkt_counts)
-                                
-                                if len(parsed_examples) < 3:
-                                    parsed_examples.append({
-                                        "path": path,
-                                        "metrics_len": len(metrics),
-                                        "metrics_sample": metrics[:10],
-                                        "pkt_counts_sample": dict(list(pkt_counts.items())[:10])
-                                    })
-                            except Exception as e:
-                                print("problem parsing", path, ":", e)
-                                missing_files.append(path)
-                                continue
+                                    metrics = r[:-3]
+                                    pkt_counts = r[-3]
+                                    merged_packets = r[-2]
+                                    replaced_packets = r[-1]
+                                    partial_results_mgrp[scenario].append((merged_packets, replaced_packets))
+                                    partial_results[scenario].append(metrics)
+                                    partial_results_packet_count[scenario].append(pkt_counts)
+                                    
+                                    if len(parsed_examples) < 3:
+                                        parsed_examples.append({
+                                            "path": path,
+                                            "metrics_len": len(metrics),
+                                            "metrics_sample": metrics[:10],
+                                            "pkt_counts_sample": dict(list(pkt_counts.items())[:10])
+                                        })
+                                except Exception as e:
+                                    print("problem parsing", path, ":", e)
+                                    missing_files.append(path)
+                                    continue
 
     with open(os.path.join(results_dir, "stats_all.txt"), "w") as f_all:
         metric_names = ("delivery_data", "delivery_ctrl", "delay_data", "delay_ctrl", "ctrl_overhead", "fg_time", "energy")
@@ -573,9 +577,9 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
 
     packet_types_labels = {
     0: 'Control flow setup',
-    1: 'Flow setup',
+    1: 'Data flow setup',
     2: 'Control flow request',
-    3: 'Flow request',
+    3: 'Data flow request',
     4: 'Neighbor report',
     5: 'Data packet',
     6 + 0xE0 : 'SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP',
@@ -595,9 +599,12 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
 
     # escrever packet_count.txt
     scenarios = sorted(results_packet_count_avg.keys())
-    if len(scenarios) > 1:
+    if len(scenarios) > 0:
         with open(os.path.join(results_dir, "packet_count.txt"), "w") as f:
-            k = sorted(results_packet_count_avg[scenarios[1]].keys())
+            all_keys = set()
+            for sc in scenarios:
+                all_keys.update(results_packet_count_avg[sc].keys())
+            k = sorted(list(all_keys))
             labels = []
             for x in k:
                 try:
@@ -609,7 +616,7 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
             f.write("\n")
 
             for scenario in scenarios:
-                v = [results_packet_count_avg[scenario].get(key) for key in k]
+                v = [results_packet_count_avg[scenario].get(key, 0) for key in k]
                 v = [repr(x) for x in v]
                 f.write(repr(scenario) + ";" + ";".join(v) + "\n")
                 
@@ -649,48 +656,91 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
     return summary
 
 # Graficos
-def pretty_scenario(name, show_nodes=True, show_nd=True):
-    pretty_nd = {}
-    pretty_nd['CL'] = "Collect"
-    pretty_nd['NV-NV'] = "Simple"
-    pretty_nd['IM-NV'] = "IM-NV"
-    pretty_nd['NV-SC'] = "NV-SC"
-    pretty_nd['IM-SC'] = "Improved"
-    pretty_nd['IM-SC-nullrdc-truebidir'] = "IM-SC"
+def debug_scenario(s):
+    for i, val in enumerate(s):
+        print(f"s[{i}] = {val}")
 
-    pretty_qt = {
-        #'EN': "com tratamento de fila",
-        'EN': "with queue treatment",
-        'DIS': ""
+def parse_scenario(s):
+    #debug_scenario(s)
+    return {
+        'n': s[0],
+        'topo': s[1],
+        'nd': s[2],
+        'qt': s[4],
+        'mfs': s[5]
     }
 
-    n = repr(name[0])
-    topo = name[1]
-    if topo.startswith('GRID-FULL'):
-        #topo = topo [len("GRID-"):]
-        #topo = "Topologia em grade"
-        topo = "GRID topology"
-    else:
-        #topo = "Topologia aleatória"
-        topo = "RANDOM topology"
+TOPO_STYLE = {
+    'GRID-FULL': {
+        'label': 'GRID',
+        'color': 'tab:blue'
+    },
+    'BERLIN-FULL': {
+        'label': '',
+        'color': 'tab:orange'
+    }
+}
 
-    nd = name[2]
-    if name[2] in pretty_nd.keys():
-      nd = pretty_nd[name[2]]
-    else:
-      print("no pretty ND name for", name[2])
+QT_STYLE = {
+    'EN': {
+        'label': '',
+        'linestyle': '-'
+    },
+    'DIS': {
+        'label': '',
+        'linestyle': '--'
+    }
+}
 
-    qt = name[4]
-    if qt in pretty_qt:
-        qt = pretty_qt[qt]
-    else:
-        print("no pretty queue_treatment name for", qt)
+ND_STYLE = {
+    'CL': 'Collect',
+    'NV-NV': 'Simple',
+    'IM-NV': 'IM-NV',
+    'NV-SC': 'NV-SC',
+    'IM-SC': 'Improved',
+    'IM-SC-nullrdc-truebidir': 'IM-SC'
+}
 
-    if not show_nodes and not show_nd:
-        return "%s %s" % (topo, qt)
+MFS_STYLE = {
+    'NO MFS': {
+        'label': 'Source Routed',
+        'color': 'tab:blue'
+    },
+    'MFS5': {
+        'label': 'Multiple Flow Setup 5 segundos',
+        'color': 'tab:orange'
+    },
+    'MFS10': {
+        'label': 'Multiple Flow Setup 10 segundos',
+        'color': 'tab:red'
+    }
+}
+
+def pretty_scenario(s, show_nodes=True, show_nd=True):
+    info = parse_scenario(s)
+
+    topo = TOPO_STYLE.get(info['topo'], {}).get('label', info['topo'])
+    nd = ND_STYLE.get(info['nd'], info['nd'])
+    qt = QT_STYLE.get(info['qt'], {}).get('label', '')
+    mfs = MFS_STYLE.get(info['mfs'], {}).get('label', '')
+
+    parts = []
+
+    if show_nodes:
+        parts.append(f"n={info['n']}")
+
+    parts.append(topo)
+
+    if show_nd:
+        parts.append(nd)
+
+    if qt:
+        parts.append(qt)
     
-    return "n=%s, %s, %s, %s" % (n, topo, nd, qt)
-    # return "n=%s" % (n, )
+    if mfs:
+        parts.append(mfs)
+
+    return ", ".join(parts)
 
 def save_and_maybe_show(fig, results_dir, basename, fmt, show_preview):
     path = os.path.join(results_dir, f"{basename}.{fmt.lower()}")
@@ -723,7 +773,10 @@ def plot_delivery_grouped_c(summary, results_dir, fmt, show_preview):
     ax.bar(x - width/2, data_vals, width, yerr=data_err, label='Data', ecolor='black')
     ax.bar(x + width/2, ctrl_vals, width, yerr=ctrl_err, label='Control', ecolor='black')
     ax.set_xticks(x)
-    ax.set_xticklabels([pretty_scenario(s) for s in scenarios], rotation=45, ha='right')
+    ax.set_xticklabels(
+        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
+        rotation=45, ha='right'
+    )
     ax.set_ylabel('Delivery [%]')
     ax.set_title('Delivery (Data vs Control)')
     ax.legend()
@@ -754,7 +807,10 @@ def plot_delay_grouped_c(summary, results_dir, fmt, show_preview):
     ax.bar(x - width/2, data_vals, width, yerr=data_err, label='Data', ecolor='black')
     ax.bar(x + width/2, ctrl_vals, width, yerr=ctrl_err, label='Control', ecolor='black')
     ax.set_xticks(x)
-    ax.set_xticklabels([pretty_scenario(s) for s in scenarios], rotation=45, ha='right')
+    ax.set_xticklabels(
+        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
+        rotation=45, ha='right'
+    )
     ax.set_ylabel('Delay [s]')
     ax.set_title('Delay (Data vs Control)')
     ax.legend()
@@ -783,7 +839,10 @@ def plot_overhead_c(summary, results_dir, fmt, show_preview, sim_time):
     fig, ax = plt.subplots(figsize=(max(6, len(scenarios)*0.8),4))
     ax.bar(x, vals, yerr=errs, ecolor='black')
     ax.set_xticks(x)
-    ax.set_xticklabels([pretty_scenario(s) for s in scenarios], rotation=45, ha='right')
+    ax.set_xticklabels(
+        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
+        rotation=45, ha='right'
+    )
     ax.set_ylabel('Control Overhead [pkts/min/node]')
     ax.set_title('Control Overhead')
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
@@ -815,12 +874,30 @@ def plot_overhead_l(summary, results_dir, fmt, show_preview, sim_time, y_limits=
     for key, vals in grouped.items():
         sorted_data = sorted(zip(vals['x'], vals['y'], vals['err']))
         x_vals, y_vals, err_vals = zip(*sorted_data)
-        label = pretty_scenario((vals['x'][0],) + key, False, False)
-        ax.errorbar(x_vals, y_vals, yerr=err_vals, label=label, marker='o', linestyle='-')
 
-    ax.set_xlabel('Number of nodes')
-    ax.set_ylabel('Control Overhead [pkts/min/node]')
-    ax.set_title('Control Overhead')
+        scenario = (vals['x'][0],) + key
+        info = parse_scenario(scenario)
+
+        topo_style = TOPO_STYLE.get(info['topo'], {})
+        qt_style = QT_STYLE.get(info['qt'], {})
+        mfs_style = MFS_STYLE.get(info['mfs'], {})
+
+        label = pretty_scenario((vals['x'][0],) + key, False, False)
+        ax.errorbar(
+            x_vals, y_vals, yerr=err_vals,
+            label=pretty_scenario(scenario, show_nodes=False, show_nd=False),
+            marker='o',
+            linestyle=qt_style.get('linestyle', '-'),
+            #color=topo_style.get('color', 'tab:gray')
+            color=mfs_style.get('color', 'tab:gray')
+        )
+
+    #ax.set_xlabel('Number of nodes')
+    ax.set_xlabel('Número de nós')
+    # ax.set_ylabel('Control Overhead [pkts/min/node]')
+    ax.set_ylabel('Overhead de Controle [pkts/min/nó]')
+    #ax.set_title('Control Overhead')
+    ax.set_title('Overhead de Controle')
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
     ax.legend()
 
@@ -849,7 +926,10 @@ def plot_metric_single_c(summary, results_dir, fmt, show_preview, i_metric, titl
     fig, ax = plt.subplots(figsize=(max(6, len(scenarios)*0.8),4))
     ax.bar(x, vals, yerr=errs, ecolor='black')
     ax.set_xticks(x)
-    ax.set_xticklabels([pretty_scenario(s) for s in scenarios], rotation=45, ha='right')
+    ax.set_xticklabels(
+        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
+        rotation=45, ha='right'
+    )
     ax.set_ylabel(ylabel)
     ax.set_title(title)
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
@@ -877,23 +957,27 @@ def plot_metric_single_l(summary, results_dir, fmt, show_preview, i_metric, titl
 
     fig, ax = plt.subplots(figsize=(max(6, 4), 4))
 
-    topo_colors = {
-        'GRID-FULL' : 'tab:blue',
-        'BERLIN-FULL' : 'tab:orange'
-    }
-
     for key, vals in grouped.items():
         sorted_data = sorted(zip(vals['x'], vals['y'], vals['err']))
         x_vals, y_vals, err_vals = zip(*sorted_data)
-        label = pretty_scenario((vals['x'][0],) + key, False, False)
-        qt = key[3]
-        topo = key[0]
-        linestyle = '--' if qt == 'DIS' else '-'
-        color = topo_colors.get(topo, 'tab:gray')
-        ax.errorbar(x_vals, y_vals, yerr=err_vals, label=label, marker='o', linestyle=linestyle, color=color)
 
-    #ax.set_xlabel('Número de nós')
-    ax.set_xlabel('Number of nodes')
+        scenario = (vals['x'][0],) + key
+        info = parse_scenario(scenario)
+
+        topo_style = TOPO_STYLE.get(info['topo'], {})
+        qt_style = QT_STYLE.get(info['qt'], {})
+        mfs_style = MFS_STYLE.get(info['mfs'], {})
+
+        ax.errorbar(x_vals, y_vals, yerr=err_vals, 
+                    label=pretty_scenario(scenario, show_nodes=False, show_nd=False), 
+                    marker='o', 
+                    linestyle=qt_style.get('linestyle', '-'), 
+                    #color=topo_style.get('color', 'tab:gray')
+                    color=mfs_style.get('color', 'tab:gray')
+                )
+
+    ax.set_xlabel('Número de nós')
+    #ax.set_xlabel('Number of nodes')
     ax.set_ylabel(ylabel)
     ax.set_title(title)
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
@@ -986,8 +1070,8 @@ def open_plots_window(summary, results_dir, sim_time):
         
         if var_delivery_data_only_l.get():
             log("Gerando: Delivery (Data only Column)...")
-            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Entrega de pacotes de dados", "Entrega de dados [%]", y_limits=(0, 105))
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Data Packets Delivery", "Data Delivery [%]", y_limits=(0, 105))
+            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Entrega de pacotes de dados", "Entrega de dados [%]", y_limits=(0, 105))
+            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Data Packets Delivery", "Data Delivery [%]", y_limits=(0, 105))
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
 
@@ -1023,8 +1107,8 @@ def open_plots_window(summary, results_dir, sim_time):
         
         if var_energy_l.get():
             log("Gerando: Energy...")
-            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energia", "Energia [mJ]", y_limits=(0, 70))
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energy", "Energy [mJ]", y_limits=(0, 70))
+            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energia", "Energia [mJ]", y_limits=(0, 70))
+            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energy", "Energy [mJ]", y_limits=(0, 70))
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
 
@@ -1044,6 +1128,7 @@ def on_submit():
         selected_linktypes = [link for link, var in link_vars.items() if var.get()]
         selected_nd = [nd for nd, var in nd_vars.items() if var.get()]
         selected_qt = [qt for qt, var in qt_vars.items() if var.get()]
+        selected_mfs = [mfs for mfs, var in mfs_vars.items() if var.get()]
 
         datarates_str = entry_datarates.get()
         datarates = [int(x.strip()) for x in datarates_str.split(',') if x.strip()]
@@ -1071,6 +1156,9 @@ def on_submit():
         if not selected_qt:
             messagebox.showerror("Error", "Select at least one queue treatment.")
             return
+        if not selected_mfs:
+            messagebox.showerror("Error", "Select at least one mfs option.")
+            return
         if not datarates:
             messagebox.showerror("Error", "Inform at least one datarate.")
             return
@@ -1087,6 +1175,7 @@ def on_submit():
         print("TOPOLOGIES:", topologies)
         print("NEIGHBOR DISCOVERY:", selected_nd)
         print("QUEUE TREATMENTS:", selected_qt)
+        print("MFS:", selected_mfs)
         print("MIN_ITER:", min_iter)
         print("MAX_ITER:", max_iter)
         print("DATARATE:", datarates)
@@ -1096,7 +1185,7 @@ def on_submit():
 
         messagebox.showinfo("Data captured", "The variables were successfully received!")
 
-        summary = calculate_graphs(nodes_v, topologies, selected_nd, min_iter, max_iter, datarates, simulation_time, fileprefix, results_dir, selected_qt)
+        summary = calculate_graphs(nodes_v, topologies, selected_nd, min_iter, max_iter, datarates, simulation_time, fileprefix, results_dir, selected_qt, selected_mfs)
 
         if summary["missing_files"]:
             messagebox.showwarning("Missing files", f"{len(summary['missing_files'])} files not found.")
@@ -1212,6 +1301,18 @@ for qt in qt_options:
     cb = ttk.Checkbutton(qt_frame, text=qt, variable=var)
     cb.pack(anchor='w')
     qt_vars[qt] = var
+#------------------
+ttk.Label(scrollable_frame, text="Multiple Flow Setup:").pack(pady=5)
+mfs_frame = ttk.Frame(scrollable_frame)
+mfs_frame.pack()
+
+mfs_options = ["NO MFS", "MFS5", "MFS10"]
+mfs_vars = {}
+for mfs in mfs_options:
+    var = tk.BooleanVar(value=True)
+    cb = ttk.Checkbutton(mfs_frame, text=mfs, variable=var)
+    cb.pack(anchor='w')
+    mfs_vars[mfs] = var
 #------------------
 ttk.Label(scrollable_frame, text="Datarates").pack(pady=5)
 entry_datarates = ttk.Entry(scrollable_frame, width=50)

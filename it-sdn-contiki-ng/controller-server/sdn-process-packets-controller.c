@@ -36,6 +36,7 @@
 #include "control-flow-table.h"
 #include "data-flow-table.h"
 #include "sdn-queue.h"
+#include "sdn-graph.h"
 
 #include "sdn-send-packet.h"
 #include "sdn-send-packet-controller.h"
@@ -68,6 +69,39 @@ void process_control_flow_setup(flow_address_table_ptr routing_field);
 void enqueue_sdn_data_flow_request_to_controller(uint8_t *source);
 
 void update_flow_table_cache();
+
+void process_multiple_flow_setup();
+
+//####################################################################################
+#ifdef SDN_MFS
+#define MAX_MFS_ELEM 20
+
+void process_multiple_flow_setup() {
+  flow_id_list_table_ptr flowid = sdn_flow_id_list_table_get();
+
+  while (flowid != NULL) {
+    sdn_graph_path_list_ptr paths = sdn_process_table_graph(flowid->flowid);
+
+    while(paths != NULL) {
+      uint8_t set_len = paths->path.len - 1;
+      sdn_mult_flow_elem_t set_list[MAX_MFS_ELEM];
+      sdnaddr_t src_rtd_destination = paths->path.nodes[0];
+
+      for (int i = set_len; i > 0; i--) {
+        set_list[set_len - i].action_id = SDN_ACTION_FORWARD;
+        sdnaddr_copy(&set_list[set_len - i].action_parameter, &paths->path.nodes[i]);
+      }
+
+      send_mult_data_flow_setup(&src_rtd_destination, flowid->flowid, set_len, set_list);
+      
+      paths = paths->next;
+    }
+    
+    flowid = flowid->next;
+  }
+  
+}
+#endif
 
 //####################################################################################
 
@@ -273,13 +307,15 @@ void process_data_flow_request_packet(sdn_data_flow_request_t *sdn_data_flow_req
   flow_id_field = sdn_flow_id_table_find(sdn_data_flow_request->header.source.u8, sdn_data_flow_request->flowid);
 
   if(flow_id_field != NULL) {
-#if !SDN_TX_RELIABILITY
+#if !SDN_TX_RELIABILITY && !SDN_MFS
     process_data_flow_setup(flow_id_field);
+#elif SDN_MFS
+    flow_id_field->changed = 1;
 #else
     if (flow_id_field->online == 1) {
       process_data_flow_setup(flow_id_field);
     }
-#endif //!SDN_TX_RELIABILITY
+#endif //!SDN_TX_RELIABILITY && !SDN_MFS
   } else {
 
     route = get_flow_id_better_route(sdn_data_flow_request->header.source.u8, sdn_data_flow_request->flowid);
@@ -319,10 +355,18 @@ void process_control_flow_request(sdn_control_flow_request_t *sdn_control_flow_r
 
   if(routing_field != NULL) {
 #if !SDN_TX_RELIABILITY
+    #ifndef SDN_MFS
     process_control_flow_setup(routing_field);
+    #else
+    routing_field->changed = 1;
+    #endif //SDN_MFS
 #else
     if (routing_field->online == 1) {
+      #ifndef SDN_MFS
       process_control_flow_setup(routing_field);
+      #else
+      routing_field->changed = 1;
+      #endif //SDN_MFS
     }
 #endif //!SDN_TX_RELIABILITY
   } else {
@@ -345,7 +389,7 @@ void process_control_flow_request(sdn_control_flow_request_t *sdn_control_flow_r
 
 void configure_flow_id_route(uint16_t flowid, route_ptr route) {
   // SDN_DEBUG("configure_flow_id_route: configuring the following route for flowid %d :", flowid);
-
+  route_ptr route_to_free = route;
   route_ptr route_src = route;
   route_ptr current_route;
   flow_id_table_ptr flow_id_table_field;
@@ -406,7 +450,7 @@ void configure_flow_id_route(uint16_t flowid, route_ptr route) {
 
   }
 
-  dijkstra_free_route(route);
+  dijkstra_free_route(route_to_free);
 }
 
 void configure_flow_address_route(unsigned char* target, route_ptr route) {
@@ -541,7 +585,7 @@ void process_flow_address_table_changes() {
 
   flow_address_table_ptr flow_address_table_field = sdn_flow_address_table_get();
   printf("process_flow_address_table_changes()\n");
-
+#ifndef SDN_MFS
   while(flow_address_table_field != NULL) {
 
     if(flow_address_table_field->changed == 1) {
@@ -552,6 +596,7 @@ void process_flow_address_table_changes() {
 
     flow_address_table_field = flow_address_table_field->next;
   }
+#endif
 }
 
 void checks_flow_id_table_changes() {
@@ -606,7 +651,7 @@ void process_flow_id_table_changes() {
 
   flow_id_table_ptr flow_id_table_field = sdn_flow_id_table_get();
   printf("process_flow_id_table_changes()\n");
-
+#ifndef SDN_MFS
   while(flow_id_table_field != NULL) {
 
     if(flow_id_table_field->changed == 1) {
@@ -617,6 +662,7 @@ void process_flow_id_table_changes() {
 
     flow_id_table_field = flow_id_table_field->next;
   }
+#endif
 }
 
 void process_data_flow_setup(flow_id_table_ptr routing_field) {

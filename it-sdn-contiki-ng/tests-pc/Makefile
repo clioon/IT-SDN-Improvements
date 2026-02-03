@@ -32,6 +32,7 @@ CONTIKI?=/home/lion/ic/contiki-ng
 SRCS = ../sdn-common/data-flow-table.c ../sdn-common/control-flow-table.c ../sdn-common/sdn-debug.c \
 		 ../sdn-common/sdn-addr.c ../sdn-common/sdn-unknown-route.c ../sdn-common/sdn-send-packet.c \
 		 ../sdn-common/sdn-packetbuf.c ../sdn-common/sdn-queue.c ../sdn-common/sdn-process-packets.c \
+		 ../controller-server/sdn-graph.c \
 		 mock.c \
 		 $(CONTIKI)/os/lib/list.c $(CONTIKI)/os/net/linkaddr.c
 
@@ -47,19 +48,22 @@ OBJS = $(notdir $(SRCS:.c=.o))  #  Automatic conversion of .c to .o
 
 # Por enquanto tem dois arquivos de testes...
 # Cada um precisa ter uma regra propria (deve dar para fazer generico)
-TARGETS = flow-table-tests src-route-tests send-tests queue-tests
+TARGETS = flow-table-tests src-route-tests send-tests queue-tests graph-tests
 
 # Rule to link the object files into the final executable
-flow-table-tests: $(OBJS) flow-table-tests.o
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
+# flow-table-tests: $(OBJS) flow-table-tests.o
+# $(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
 
-src-route-tests: $(OBJS) src-route-tests.o
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
+# src-route-tests: $(OBJS) src-route-tests.o
+# $(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
 
-send-tests: $(OBJS) send-tests.o
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
+# send-tests: $(OBJS) send-tests.o
+# $(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
 
-queue-tests: $(OBJS) queue-tests.o
+# queue-tests: $(OBJS) queue-tests.o
+# $(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
+	
+graph-tests: $(OBJS) graph-tests.o
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $@.o
 
 # Default rule: what to build when you just type "make"
@@ -78,6 +82,9 @@ all: $(TARGETS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 %.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: ../controller-server/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 

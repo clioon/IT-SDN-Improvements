@@ -17,8 +17,8 @@ EXTRA_FLAGS="-DENABLE_SDN_TREATMENT"
 #EXTRA_FLAGS=""
 
 #quantidade de vezes que a simulacao sera rodada
-MIN_ITER=11
-MAX_ITER=20
+MIN_ITER=1
+MAX_ITER=10
 # MIN_ITER=1
 # MAX_ITER=2
 COOJA_INSTANCES=5 #max simulations running in parallel
@@ -30,13 +30,13 @@ DO_NOT_OVERWRITE=true
 nodes_v=(25 16 9)
 nodes_v=(100 81 64 49 36 25 16 169 256)
 nodes_v=(16 25 36 49 64 81 100)
-nodes_v=(36 49)
+nodes_v=(169)
 # topologies=(GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 # topologies=(BERLIN-FULL BERLIN-RND BERLIN-CTA BERLIN-SPN GRID-FULL GRID-RND GRID-CTA GRID-SPN)
 #topologies=(GRID-SPN BERLIN-SPN)
 #topologies=(GRID-RND GRID-CTA GRID-SPN)
-topologies=(GRID-FULL)
 #topologies=(GRID-FULL)
+topologies=(BERLIN-FULL)
 #nd_possibilities=(NV CL BL) # Naive Collect and Baseline
 # nd_possibilities=(NV-NV IM-NV CL NV-SC IM-SC)
 # nd_possibilities=(IM-SC CL NV-NV)
