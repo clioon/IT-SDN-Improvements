@@ -496,22 +496,21 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
             for metric_list in result_list:
                 if metric_list is None:
                     continue
-                f_all.write(repr(scenario) + ";")
+                row_vals = []
                 for i_metric, val in enumerate(metric_list):
                     if val is not None and val > 0:
                         results_n[scenario][i_metric] += 1
                         results_sum[scenario][i_metric] += val
                         results_sum2[scenario][i_metric] += val * val
-                        f_all.write(repr(val) + ";")
+                        row_vals.append(repr(val))
                     else:
-                        f_all.write("-1;")
-                
+                        row_vals.append("-1")
                 for i_metric in range(len(metric_list)):
                     if i_metric not in results_n[scenario]:
                         results_n[scenario][i_metric] = 0
                         results_sum[scenario][i_metric] = 0
                         results_sum2[scenario][i_metric] = 0
-                f_all.write("\n")
+                f_all.write(repr(scenario) + ";" + ";".join(row_vals) + "\n")
 
     # calcular médias e desvios
     for scenario in results_n.keys():
@@ -605,21 +604,71 @@ def calculate_graphs(nodes_v, topologies, nd_possibilities, MIN_ITER, MAX_ITER, 
             for sc in scenarios:
                 all_keys.update(results_packet_count_avg[sc].keys())
             k = sorted(list(all_keys))
-            labels = []
+
+            labels_avg = []
+            labels_std = []
+
             for x in k:
                 try:
-                    labels.append(packet_types_labels[int(x, 16)])
+                    name = packet_types_labels[int(x, 16)]
                 except Exception:
-                    labels.append(str(x))
+                    name = str(x)
+
+                labels_avg.append(f"{name}_avg")
+                labels_std.append(f"{name}_std")
+
             f.write("scenario;")
-            f.write(";".join(labels))
+            f.write(";".join(labels_avg + labels_std))
             f.write("\n")
 
             for scenario in scenarios:
-                v = [results_packet_count_avg[scenario].get(key, 0) for key in k]
-                v = [repr(x) for x in v]
-                f.write(repr(scenario) + ";" + ";".join(v) + "\n")
-                
+                avg_vals = [results_packet_count_avg[scenario].get(key, 0) for key in k]
+                std_vals = [results_packet_count_desv[scenario].get(key, 0) for key in k]
+
+                avg_vals = [str(float(x)) for x in avg_vals]
+                std_vals = [str(float(x)) for x in std_vals]
+
+                f.write(repr(scenario) + ";" + ";".join(avg_vals + std_vals) + "\n")
+
+# packet_count_all.txt
+
+    with open(os.path.join(results_dir, "packet_count_all.txt"), "w") as f_all:
+        all_keys = set()
+        for result_list in partial_results_packet_count.values():
+            for count_dict in result_list:
+                all_keys.update(count_dict.keys())
+
+        k = sorted(list(all_keys))
+
+        labels = []
+        for x in k:
+            try:
+                labels.append(packet_types_labels[int(x, 16)])
+            except Exception:
+                labels.append(str(x))
+
+        f_all.write("scenario;")
+        f_all.write(";".join(labels))
+        f_all.write("\n")
+
+        for scenario, result_list in sorted(partial_results_packet_count.items()):
+            for count_dict in result_list:
+
+                row_vals = []
+
+                for key in k:
+                    val = count_dict.get(key, 0)
+
+                    results_packet_count_n[scenario] += 1
+                    results_packet_count_sum[scenario][key] += val
+                    results_packet_count_sum2[scenario][key] += val * val
+
+                    row_vals.append(repr(val))
+
+                f_all.write(repr(scenario) + ";" + ";".join(row_vals) + "\n")
+
+
+# merge stats.txt            
     with open(os.path.join(results_dir, "merge_replace_stats.txt"), "w") as f:
         f.write("scenario;merges_avg;replaces_avg;data_merges\n")
 
@@ -707,14 +756,19 @@ MFS_STYLE = {
         'color': 'tab:blue'
     },
     'MFS5': {
-        'label': 'Multiple Flow Setup 5 segundos',
+        'label': 'Multiple Flow Setup',
         'color': 'tab:orange'
     },
     'MFS10': {
-        'label': 'Multiple Flow Setup 10 segundos',
+        'label': 'Multiple Flow Setup 10 s',
         'color': 'tab:red'
+    },
+    'MFS30': {
+        'label': 'Multiple Flow Setup 30 s',
+        'color': 'tab:green'
     }
 }
+
 
 def pretty_scenario(s, show_nodes=True, show_nd=True):
     info = parse_scenario(s)
@@ -740,7 +794,7 @@ def pretty_scenario(s, show_nodes=True, show_nd=True):
     if mfs:
         parts.append(mfs)
 
-    return ", ".join(parts)
+    return " ".join(parts)
 
 def save_and_maybe_show(fig, results_dir, basename, fmt, show_preview):
     path = os.path.join(results_dir, f"{basename}.{fmt.lower()}")
@@ -750,106 +804,7 @@ def save_and_maybe_show(fig, results_dir, basename, fmt, show_preview):
     plt.close(fig)
     return path
 
-def plot_delivery_grouped_c(summary, results_dir, fmt, show_preview):
-    results_avg = summary['results_avg']
-    results_desv = summary['results_desv']
-
-    i_data = 0
-    i_ctrl = 1
-    scenarios = sorted(results_avg.get(i_data, {}).keys())
-    if not scenarios:
-        messagebox.showwarning("Aviso", "Não há dados para plotar (delivery).")
-        return None
-
-    data_vals = [results_avg[i_data].get(s, 0) for s in scenarios]
-    ctrl_vals = [results_avg[i_ctrl].get(s, 0) for s in scenarios]
-    data_err = [results_desv[i_data].get(s, 0) for s in scenarios]
-    ctrl_err = [results_desv[i_ctrl].get(s, 0) for s in scenarios]
-
-    x = np.arange(len(scenarios))
-    width = 0.35
-
-    fig, ax = plt.subplots(figsize=(max(6, len(scenarios)*0.8),4))
-    ax.bar(x - width/2, data_vals, width, yerr=data_err, label='Data', ecolor='black')
-    ax.bar(x + width/2, ctrl_vals, width, yerr=ctrl_err, label='Control', ecolor='black')
-    ax.set_xticks(x)
-    ax.set_xticklabels(
-        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
-        rotation=45, ha='right'
-    )
-    ax.set_ylabel('Delivery [%]')
-    ax.set_title('Delivery (Data vs Control)')
-    ax.legend()
-    ax.grid(axis='y', linestyle='--', linewidth=0.5)
-
-    return save_and_maybe_show(fig, results_dir, 'r_delivery', fmt, show_preview)
-
-def plot_delay_grouped_c(summary, results_dir, fmt, show_preview):
-    # delay: i_metric 2 (data) and 3 (ctrl) — o código original divide por 1e6
-    results_avg = summary['results_avg']
-    results_desv = summary['results_desv']
-    i_data = 2
-    i_ctrl = 3
-    scenarios = sorted(results_avg.get(i_data, {}).keys())
-    if not scenarios:
-        messagebox.showwarning("Aviso", "Não há dados para plotar (delay).")
-        return None
-
-    data_vals = [results_avg[i_data].get(s, 0)/1e6 for s in scenarios]
-    ctrl_vals = [results_avg[i_ctrl].get(s, 0)/1e6 for s in scenarios]
-    data_err = [results_desv[i_data].get(s, 0)/1e6 for s in scenarios]
-    ctrl_err = [results_desv[i_ctrl].get(s, 0)/1e6 for s in scenarios]
-
-    x = np.arange(len(scenarios))
-    width = 0.35
-    fig, ax = plt.subplots(figsize=(max(6, len(scenarios)*0.8),4))
-    ax.set_yscale('log')
-    ax.bar(x - width/2, data_vals, width, yerr=data_err, label='Data', ecolor='black')
-    ax.bar(x + width/2, ctrl_vals, width, yerr=ctrl_err, label='Control', ecolor='black')
-    ax.set_xticks(x)
-    ax.set_xticklabels(
-        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
-        rotation=45, ha='right'
-    )
-    ax.set_ylabel('Delay [s]')
-    ax.set_title('Delay (Data vs Control)')
-    ax.legend()
-    ax.grid(axis='y', linestyle='--', linewidth=0.5)
-
-    return save_and_maybe_show(fig, results_dir, 'r_delay', fmt, show_preview)
-
-def plot_overhead_c(summary, results_dir, fmt, show_preview, sim_time):
-    results_avg = summary['results_avg']
-    results_desv = summary['results_desv']
-    i_metric = 4
-    scenarios = sorted(results_avg.get(i_metric, {}).keys())
-    if not scenarios:
-        messagebox.showwarning("Aviso", "Não há dados para plotar (overhead).")
-        return None
-
-    vals = []
-    errs = []
-    for s in scenarios:
-        y = results_avg[i_metric].get(s, 0) / sim_time / s[0]
-        e = results_desv[i_metric].get(s, 0) / sim_time / s[0]
-        vals.append(y)
-        errs.append(e)
-
-    x = np.arange(len(scenarios))
-    fig, ax = plt.subplots(figsize=(max(6, len(scenarios)*0.8),4))
-    ax.bar(x, vals, yerr=errs, ecolor='black')
-    ax.set_xticks(x)
-    ax.set_xticklabels(
-        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
-        rotation=45, ha='right'
-    )
-    ax.set_ylabel('Control Overhead [pkts/min/node]')
-    ax.set_title('Control Overhead')
-    ax.grid(axis='y', linestyle='--', linewidth=0.5)
-
-    return save_and_maybe_show(fig, results_dir, 'r_overhead', fmt, show_preview)
-
-def plot_overhead_l(summary, results_dir, fmt, show_preview, sim_time, y_limits=None):
+def plot_overhead_l(summary, lng, results_dir, fmt, show_preview, sim_time, y_limits=None):
     results_avg = summary['results_avg']
     results_desv = summary['results_desv']
     i_metric = 4
@@ -892,12 +847,16 @@ def plot_overhead_l(summary, results_dir, fmt, show_preview, sim_time, y_limits=
             color=mfs_style.get('color', 'tab:gray')
         )
 
-    #ax.set_xlabel('Number of nodes')
-    ax.set_xlabel('Número de nós')
-    # ax.set_ylabel('Control Overhead [pkts/min/node]')
-    ax.set_ylabel('Overhead de Controle [pkts/min/nó]')
-    #ax.set_title('Control Overhead')
-    ax.set_title('Overhead de Controle')
+    if lng == "pt":
+        ax.set_xlabel('Número de nós')
+        ax.set_ylabel('Overhead de Controle [pkts/min/nó]')
+        ax.set_title('Overhead de Controle')
+    else:
+        ax.set_xlabel('Number of nodes')
+        ax.set_ylabel('Control Overhead [pkts/min/node]')
+        ax.set_title('Control Overhead')
+
+
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
     ax.legend()
 
@@ -910,34 +869,7 @@ def plot_overhead_l(summary, results_dir, fmt, show_preview, sim_time, y_limits=
 
     return save_and_maybe_show(fig, results_dir, 'r_overhead_lines', fmt, show_preview)
 
-def plot_metric_single_c(summary, results_dir, fmt, show_preview, i_metric, title, ylabel, scale=1.0):
-    results_avg = summary['results_avg']
-    results_desv = summary['results_desv']
-
-    scenarios = sorted(results_avg.get(i_metric, {}).keys())
-    if not scenarios:
-        messagebox.showwarning("Aviso", f"Não há dados para plotar ({title}).")
-        return None
-
-    vals = [results_avg[i_metric].get(s, 0)/scale for s in scenarios]
-    errs = [results_desv[i_metric].get(s, 0)/scale for s in scenarios]
-
-    x = np.arange(len(scenarios))
-    fig, ax = plt.subplots(figsize=(max(6, len(scenarios)*0.8),4))
-    ax.bar(x, vals, yerr=errs, ecolor='black')
-    ax.set_xticks(x)
-    ax.set_xticklabels(
-        [pretty_scenario(s, show_nodes=True, show_nd=True) for s in scenarios],
-        rotation=45, ha='right'
-    )
-    ax.set_ylabel(ylabel)
-    ax.set_title(title)
-    ax.grid(axis='y', linestyle='--', linewidth=0.5)
-
-    basename = title.lower().replace(" ", "_")
-    return save_and_maybe_show(fig, results_dir, basename, fmt, show_preview)
-
-def plot_metric_single_l(summary, results_dir, fmt, show_preview, i_metric, title, ylabel, y_limits=None, scale=1.0):
+def plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, i_metric, title, ylabel, y_limits=None, scale=1.0):
     results_avg = summary['results_avg']
     results_desv = summary['results_desv']
 
@@ -976,8 +908,11 @@ def plot_metric_single_l(summary, results_dir, fmt, show_preview, i_metric, titl
                     color=mfs_style.get('color', 'tab:gray')
                 )
 
-    ax.set_xlabel('Número de nós')
-    #ax.set_xlabel('Number of nodes')
+    if lng == "pt":
+        ax.set_xlabel('Número de nós')
+    else:
+        ax.set_xlabel('Number of nodes')
+
     ax.set_ylabel(ylabel)
     ax.set_title(title)
     ax.grid(axis='y', linestyle='--', linewidth=0.5)
@@ -1003,37 +938,31 @@ def plot_metric_single_l(summary, results_dir, fmt, show_preview, i_metric, titl
 def open_plots_window(summary, results_dir, sim_time):
     win = tk.Toplevel(root)
     win.title("Generate graphics")
-    win.geometry("700x500")
+    win.geometry("700x700")
 
     ttk.Label(win, text="Choose graphics:").pack(pady=6)
 
     frame_checks = ttk.Frame(win)
     frame_checks.pack(fill='x', padx=12)
 
-    var_delivery = tk.BooleanVar(value=False)
-    var_delivery_data_only_c = tk.BooleanVar(value=False)
     var_delivery_data_only_l = tk.BooleanVar(value=True)
-    var_delay = tk.BooleanVar(value=False)
-    var_overhead_c = tk.BooleanVar(value=False)
     var_overhead_l = tk.BooleanVar(value=True)
-    var_fullnetwork_c = tk.BooleanVar(value=False)
     var_fullnetwork_l = tk.BooleanVar(value=True)
     var_energy_l = tk.BooleanVar(value=True)
 
-    chk1 = ttk.Checkbutton(frame_checks, text="Delivery (Data vs Control) - COLUMN", variable=var_delivery)
-    chk2 = ttk.Checkbutton(frame_checks, text="Delivery (apenas Data) - COLUMN", variable=var_delivery_data_only_c)
-    chk2_1 = ttk.Checkbutton(frame_checks, text="Delivery (apenas Data) - LINE", variable=var_delivery_data_only_l)
-    chk3 = ttk.Checkbutton(frame_checks, text="Delay (Data vs Control) - COLUMN", variable=var_delay)
-    chk4 = ttk.Checkbutton(frame_checks, text="Control Overhead - COLUMN", variable=var_overhead_c)
-    chk4_1 = ttk.Checkbutton(frame_checks, text="Control Overhead - LINE", variable=var_overhead_l)
-    chk5 = ttk.Checkbutton(frame_checks, text="Time to full network - COLUMN", variable=var_fullnetwork_c)
-    chk5_1 = ttk.Checkbutton(frame_checks, text="Time to full network - LINE", variable=var_fullnetwork_l)
-    chk6 = ttk.Checkbutton(frame_checks, text="Energy - LINE", variable=var_energy_l)
+    chk1 = ttk.Checkbutton(frame_checks, text="Delivery (apenas Data) - LINE", variable=var_delivery_data_only_l)
+    chk2 = ttk.Checkbutton(frame_checks, text="Control Overhead - LINE", variable=var_overhead_l)
+    chk3 = ttk.Checkbutton(frame_checks, text="Time to full network - LINE", variable=var_fullnetwork_l)
+    chk4 = ttk.Checkbutton(frame_checks, text="Energy - LINE", variable=var_energy_l)
 
-    for i, c in enumerate((chk1, chk2, chk3, chk4, chk5)):
-        c.grid(row=i, column=0, sticky='w', padx=12, pady=2)
-    for i, c in enumerate((chk2_1, chk4_1, chk5_1, chk6)):
+    for i, c in enumerate((chk1, chk2, chk3, chk4)):
         c.grid(row=i, column=2, sticky='w', padx=12, pady=2)
+
+    # language
+    lng_var = tk.StringVar(value="en")
+    ttk.Label(win, text="Language:").pack(pady=(10,0))
+    ttk.Radiobutton(win, text="EN", variable=lng_var, value="en").pack(anchor='w', padx=12)
+    ttk.Radiobutton(win, text="PT", variable=lng_var, value="pt").pack(anchor='w', padx=12)
 
     # formato
     fmt_var = tk.StringVar(value="eps")
@@ -1055,60 +984,42 @@ def open_plots_window(summary, results_dir, sim_time):
         fmt = fmt_var.get()
         show_preview = show_preview_var.get()
         generated = []
-
-        if var_delivery.get():
-            log("Gerando: Delivery (Data vs Control)...")
-            path = plot_delivery_grouped_c(summary, results_dir, fmt, show_preview)
-            log("Salvo em: " + str(path) if path else "No file generated.")
-            generated.append(path)
-
-        if var_delivery_data_only_c.get():
-            log("Gerando: Delivery (Data only Column)...")
-            p = plot_metric_single_c(summary, results_dir, fmt, show_preview, 0, "Data Delivery", "Data Delivery [%]")
-            log("Salvo em: " + str(p) if p else "No file generated.")
-            generated.append(p)
+        lng = lng_var.get()
         
         if var_delivery_data_only_l.get():
             log("Gerando: Delivery (Data only Column)...")
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Entrega de pacotes de dados", "Entrega de dados [%]", y_limits=(0, 105))
-            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 0, "Data Packets Delivery", "Data Delivery [%]", y_limits=(0, 105))
-            log("Salvo em: " + str(p) if p else "No file generated.")
-            generated.append(p)
+            if (lng == "pt"):
+                p = plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, 0, "Entrega de pacotes de dados", "Entrega de dados [%]", y_limits=(0, 105))
+            else:
+                p = plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, 0, "Data Packets Delivery", "Data Delivery [%]", y_limits=(0, 105))
 
-        if var_delay.get():
-            log("Gerando: Delay (Data vs Control)...")
-            p = plot_delay_grouped_c(summary, results_dir, fmt, show_preview)
-            log("Salvo em: " + str(p) if p else "No file generated.")
-            generated.append(p)
-
-        if var_overhead_c.get():
-            log("Gerando: Control Overhead...")
-            p = plot_overhead_c(summary, results_dir, fmt, show_preview, sim_time)
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
 
         if var_overhead_l.get():
             log("Gerando: Control Overhead...")
-            p = plot_overhead_l(summary, results_dir, fmt, show_preview, sim_time)
-            log("Salvo em: " + str(p) if p else "No file generated.")
-            generated.append(p)
-
-        if var_fullnetwork_c.get():
-            log("Gerando: Time to full network...")
-            p = plot_metric_single_c(summary, results_dir, fmt, show_preview, 5, "Time to full network", "Time [s]")
+            p = plot_overhead_l(summary, lng, results_dir, fmt, show_preview, sim_time)
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
         
         if var_fullnetwork_l.get():
             log("Gerando: Time to full network...")
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 5, "Time to full network", "Time [s]")
+            if (lng == "pt"):
+                p = plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, 5, "Tempo para descoberta da rede completa", "Tempo [s]")
+            else:
+                p = plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, 5, "Time to full network", "Time [s]")
+
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
         
         if var_energy_l.get():
             log("Gerando: Energy...")
-            p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energia", "Energia [mJ]", y_limits=(0, 70))
-            #p = plot_metric_single_l(summary, results_dir, fmt, show_preview, 6, "Energy", "Energy [mJ]", y_limits=(0, 70))
+
+            if (lng == "pt"):
+                p = plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, 6, "Energia", "Energia [mJ]", y_limits=(0, 70))
+            else:
+                p = plot_metric_single_l(summary, lng, results_dir, fmt, show_preview, 6, "Energy", "Energy [mJ]", y_limits=(0, 70))
+            
             log("Salvo em: " + str(p) if p else "No file generated.")
             generated.append(p)
 
@@ -1306,7 +1217,7 @@ ttk.Label(scrollable_frame, text="Multiple Flow Setup:").pack(pady=5)
 mfs_frame = ttk.Frame(scrollable_frame)
 mfs_frame.pack()
 
-mfs_options = ["NO MFS", "MFS5", "MFS10"]
+mfs_options = ["NO MFS", "MFS5", "MFS10", "MFS30"]
 mfs_vars = {}
 for mfs in mfs_options:
     var = tk.BooleanVar(value=True)
