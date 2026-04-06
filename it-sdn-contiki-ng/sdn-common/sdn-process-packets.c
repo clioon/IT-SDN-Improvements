@@ -502,8 +502,10 @@ static void treat_src_routed_ack() {
 
 static void treat_mult_data_flow_setup() {
   SDN_DEBUG("Processing SDN_PACKET_MULTIPLE_DATA_FLOW_SETUP.\n");
+  //printf("[MFS] rx\n");
   sdn_packetbuf* sdn_packet;
   if (SDN_PACKET_GET_FIELD(packet_ptr, sdn_mult_data_flow_setup_t, path_len) == 0 ) {
+    //printf("[MFS] setting sets\n");
     SDN_PACKET_GET_FIELD(packet_ptr, sdn_mult_data_flow_setup_t, set_len) --;
 
     sdn_dataflow_insert( \
@@ -531,6 +533,7 @@ static void treat_mult_data_flow_setup() {
 
     // if there still are set flows in the packet, resend it
     if (SDN_PACKET_GET_FIELD(packet_ptr, sdn_mult_data_flow_setup_t, set_len)) {
+      //printf("[MFS] next set\n");
       // next destination is the action_parameter from the current sdn_mult_data_flow_elem_t
       sdnaddr_copy( \
         &SDN_PACKET_GET_FIELD(packet_ptr, sdn_mult_data_flow_setup_t, destination), \
@@ -542,6 +545,7 @@ static void treat_mult_data_flow_setup() {
     }
   // still on source routed segment
   } else {
+    //printf("[MFS] next srcrtd\n");
     SDN_PACKET_GET_FIELD(packet_ptr, sdn_mult_data_flow_setup_t, path_len) --;
     sdnaddr_copy( \
       &SDN_PACKET_GET_FIELD(packet_ptr, sdn_mult_data_flow_setup_t, destination), \

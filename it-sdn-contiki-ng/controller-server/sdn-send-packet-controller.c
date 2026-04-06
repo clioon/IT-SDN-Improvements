@@ -98,7 +98,7 @@ int send_mult_data_flow_setup(sdnaddr_t* packet_destination, flowid_t dest_flowi
 
   uint16_t packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, sets_total_len);
   // printf("DEBUG: endereco destino mfs: ");
-  sdnaddr_print(packet_destination);
+  //sdnaddr_print(packet_destination);
 
   if (!packet_len) {
     SDN_DEBUG_ERROR("Failed to append source route header (multi-setup)\n");

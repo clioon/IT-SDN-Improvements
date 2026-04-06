@@ -885,12 +885,12 @@
   <plugin>
     org.contikios.cooja.plugins.ScriptRunner
     <plugin_config>
-      <script>TIMEOUT(1800000);&#xD;
+      <script>TIMEOUT(1800000);
 &#xD;
 sim.setSpeedLimit(4);&#xD;
 &#xD;
 FileWriter=Java.type("java.io.FileWriter");&#xD;
-my_output = new FileWriter("/dev/null");&#xD;
+my_output = new FileWriter("/dev/null");
 &#xD;
 while (true) {&#xD;
     my_output.write(time + ":" + id + ":" + msg + "\n");&#xD;

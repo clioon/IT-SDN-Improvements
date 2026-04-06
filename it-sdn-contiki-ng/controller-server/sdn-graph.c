@@ -47,26 +47,38 @@ static sdn_graph_segment_ptr segment_hash_table[SEGMENT_HASH_TABLE_SIZE];
 
 //       sdn_graph_neighbor_ptr neighbor = current_node->neighbors_head;
 //       if (neighbor == NULL) {
-//         printf("\n  -> (no neighbor)\n");
+//         printf(" -> (no neighbor)\n");
 //       } else {
-//         printf("\n  -> Neighbors:\n");
 //         while (neighbor != NULL) {
-//           printf("    -> ");
+//           printf(" -> ");
 //           if (neighbor->node_ptr != NULL) {
 //             sdnaddr_print(&neighbor->node_ptr->id);
 //           } else {
 //             printf("[ERROR: NULL neighbor pointer]");
 //           }
-//           printf("\n");
 //           neighbor = neighbor->next;
 //         }
 //       }
 //       current_node = current_node->next_in_bucket;
+//       printf("\n");
 //     }
 //   }
 //   printf("\n--- Total nodes: %d ---\n", total_nodes);
 // }
 
+
+void print_addr(sdnaddr_t* addr) {
+  uint8_t *charaddr = (uint8_t*)addr;
+  uint8_t i;
+
+  printf("[");
+
+  for (i = 0; i < sizeof(sdnaddr_t); i++) {
+    printf(" %02X", charaddr[i]);
+  }
+
+  printf(" ]");
+}
 
 void print_path_list(sdn_graph_path_list_ptr head) {
     int path_num = 1;
@@ -88,19 +100,6 @@ void print_path_list(sdn_graph_path_list_ptr head) {
         printf("\n");
         current = current->next;
     }
-}
-
-void print_addr(sdnaddr_t* addr) {
-  uint8_t *charaddr = (uint8_t*)addr;
-  uint8_t i;
-
-  printf("[");
-
-  for (i = 0; i < sizeof(sdnaddr_t); i++) {
-    printf(" %02X", charaddr[i]);
-  }
-
-  printf(" ]");
 }
 
 // ==========================================
@@ -236,6 +235,22 @@ static void build_graph(uint16_t flowid) {
 //      BUILD PATHS FROM LEAF NODES 
 // ==========================================
 
+static int is_node_in_any_path(sdnaddr_t *node_addr) {
+  sdn_graph_path_list_ptr current_path_entry = final_paths_head;
+  
+  while (current_path_entry != NULL) {
+    for (int i = 0; i < current_path_entry->path.len; i++) {
+      if (sdnaddr_cmp(&current_path_entry->path.nodes[i], node_addr) == SDN_EQUAL) {
+        return 1;
+      }
+    }
+    current_path_entry = current_path_entry->next;
+  }
+  
+  return 0;
+}
+
+
 static void add_path_to_list(sdn_graph_path_ptr path_to_add) {
   sdn_graph_path_list_ptr new_entry = (sdn_graph_path_list_ptr)malloc(sizeof(struct sdn_graph_path_list));
   if (new_entry == NULL) {
@@ -326,6 +341,28 @@ static void get_all_paths(void) {
 
         get_node_path(current_node, &path, 0, &is_active, 0);
       }
+      current_node = current_node->next_in_bucket;
+    }
+  }
+
+  // find loops
+  for (int i = 0; i < HASH_TABLE_SIZE; i++) {
+    sdn_graph_node_ptr current_node = node_hash_table[i];
+
+    while (current_node != NULL) {
+      int was_changed = 0;
+      if (current_node->table_entry != NULL) {
+        was_changed = (current_node->table_entry->changed == 1);
+      }
+
+      if (was_changed && !is_node_in_any_path(&current_node->id)) {
+        struct sdn_graph_path path;
+        memset(&path, 0, sizeof(struct sdn_graph_path));
+        int is_active = 0;
+
+        get_node_path(current_node, &path, 0, &is_active, 0);
+      }
+      
       current_node = current_node->next_in_bucket;
     }
   }
@@ -420,20 +457,43 @@ static void resolve_path_conflicts(void) {
     }
 
     if (current_path_entry->path.len <= 1) {
-      sdn_graph_path_list_ptr node_to_free = current_path_entry;
+      int is_drop_rule = 0;
 
-      if (prev_path_entry == NULL) {
-        final_paths_head = current_path_entry->next;
-        current_path_entry = final_paths_head;
-      } 
-
-      else {
-        prev_path_entry->next = current_path_entry->next;
-        current_path_entry = current_path_entry->next;
+      if (current_path_entry->path.len == 1) {
+        sdnaddr_t *node_addr = &current_path_entry->path.nodes[0];
+        unsigned int hash = sdn_hash_address((unsigned char *)node_addr);
+        sdn_graph_node_ptr c_node = node_hash_table[hash];
+        
+        while (c_node != NULL) {
+          if (sdnaddr_cmp(node_addr, &c_node->id) == SDN_EQUAL) {
+            if (c_node->table_entry != NULL) {
+              if (sdnaddr_cmp((sdnaddr_t *)&c_node->table_entry->source, (sdnaddr_t *)&c_node->table_entry->next_hop) == SDN_EQUAL) {
+                is_drop_rule = 1;
+              }
+            }
+            break;
+          }
+          c_node = c_node->next_in_bucket;
+        }
       }
 
+      if (!is_drop_rule) {
+        sdn_graph_path_list_ptr node_to_free = current_path_entry;
 
-      free(node_to_free);
+        if (prev_path_entry == NULL) {
+          final_paths_head = current_path_entry->next;
+          current_path_entry = final_paths_head;
+        } else {
+          prev_path_entry->next = current_path_entry->next;
+          current_path_entry = current_path_entry->next;
+        }
+
+        free(node_to_free);
+
+      } else {
+        prev_path_entry = current_path_entry;
+        current_path_entry = current_path_entry->next;
+      }
 
     } else {
       prev_path_entry = current_path_entry;
@@ -447,15 +507,26 @@ static void resolve_path_conflicts(void) {
 // =====================================================
 
 void sdn_graph_update_changes(void) {
-  for (int i = 0; i < HASH_TABLE_SIZE; i++) {
-    sdn_graph_node_ptr current_node = node_hash_table[i];
+  sdn_graph_path_list_ptr current_path_entry = final_paths_head;
 
-    while (current_node != NULL) {
-      if (current_node->table_entry != NULL) {
-        current_node->table_entry->changed = 0;
+  while (current_path_entry != NULL) {
+    for (int i = 0; i < current_path_entry->path.len; i++) {
+      sdnaddr_t *node_addr = &current_path_entry->path.nodes[i];
+      
+      unsigned int hash = sdn_hash_address((unsigned char *)node_addr);
+      sdn_graph_node_ptr current_node = node_hash_table[hash];
+      
+      while (current_node != NULL) {
+        if (sdnaddr_cmp(node_addr, (sdnaddr_t *)&current_node->id) == SDN_EQUAL) {
+          if (current_node->table_entry != NULL) {
+            current_node->table_entry->changed = 0;
+          }
+          break;
+        }
+        current_node = current_node->next_in_bucket;
       }
-      current_node = current_node->next_in_bucket;
     }
+    current_path_entry = current_path_entry->next;
   }
 }
 

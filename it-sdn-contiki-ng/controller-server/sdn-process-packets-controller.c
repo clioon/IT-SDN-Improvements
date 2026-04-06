@@ -540,20 +540,20 @@ void checks_flow_address_table_changes() {
   flow_address_table_ptr flow_address_table_field = sdn_flow_address_table_get();
   SDN_DEBUG("checks_flow_address_table_changes()\n");
 //TODO: comment this
-  while(flow_address_table_field != NULL) {
+  // while(flow_address_table_field != NULL) {
 
-    if(flow_address_table_field->changed == 1) {
-      printf("ERROR: (inconsistency) SOURCE ");
-      sdnaddr_print((sdnaddr_t *)flow_address_table_field->source);
-      printf(" TARGET ");
-      sdnaddr_print((sdnaddr_t *)flow_address_table_field->target);
-      printf(" CHANGED = %d\n", flow_address_table_field->changed);
-    }
+  //   if(flow_address_table_field->changed == 1) {
+  //     printf("ERROR: (inconsistency) SOURCE ");
+  //     sdnaddr_print((sdnaddr_t *)flow_address_table_field->source);
+  //     printf(" TARGET ");
+  //     sdnaddr_print((sdnaddr_t *)flow_address_table_field->target);
+  //     printf(" CHANGED = %d\n", flow_address_table_field->changed);
+  //   }
 
-    flow_address_table_field = flow_address_table_field->next;
-  }
+  //   flow_address_table_field = flow_address_table_field->next;
+  // }
 
-  flow_address_table_field = sdn_flow_address_table_get();
+  // flow_address_table_field = sdn_flow_address_table_get();
 //end TODO
 
   while(flow_address_table_field != NULL) {
@@ -608,18 +608,18 @@ void checks_flow_id_table_changes() {
   printf("checks_flow_id_table_changes()\n");
 
 //TODO: comment this
-  while(flow_id_table_field != NULL) {
+  // while(flow_id_table_field != NULL) {
 
-    if(flow_id_table_field->changed == 1) {
-      printf("ERROR: (inconsistency) SOURCE ");
-      sdnaddr_print((sdnaddr_t *)flow_id_table_field->source);
-      printf(" FLOW ID [%d] CHANGED = %d.\n", flow_id_table_field->flowid, flow_id_table_field->changed);
-    }
+  //   if(flow_id_table_field->changed == 1) {
+  //     printf("ERROR: (inconsistency) SOURCE ");
+  //     sdnaddr_print((sdnaddr_t *)flow_id_table_field->source);
+  //     printf(" FLOW ID [%d] CHANGED = %d.\n", flow_id_table_field->flowid, flow_id_table_field->changed);
+  //   }
 
-    flow_id_table_field = flow_id_table_field->next;
-  }
+  //   flow_id_table_field = flow_id_table_field->next;
+  // }
 
-  flow_id_table_field = sdn_flow_id_table_get();
+  // flow_id_table_field = sdn_flow_id_table_get();
 //end TODO
 
   while(flow_id_table_field != NULL) {

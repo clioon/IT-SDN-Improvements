@@ -220,9 +220,10 @@ void SerialConnector::decodeSerialPacket(sdn_serial_packet_t *packet) {
             countdown--;
         } else {
             process_multiple_flow_setup();
-            countdown = 10;
+            countdown = 5;
         }
-        //sdn_reliability_timer_event();
+#else
+        sdn_reliability_timer_event();
 #endif
 
     } else if(packet->header.msg_type != SDN_SERIAL_MSG_TYPE_EMPTY){
