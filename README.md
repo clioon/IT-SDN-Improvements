@@ -79,7 +79,7 @@ Depending on the analysis, three actions may be taken:
 
 Aggregated packets follow a structured format that preserves metadata (e.g., source address, sequence number, payload size) for each subpacket, ensuring correct processing at the destination, where they are de-aggregated and handled individually. The mechanism also respects protocol constraints such as the IEEE 802.15.4 packet size limit.
 
-![Merged Packet Structure](docs/images/mergedpktstructure.png)
+![Merged Packet Structure](assets/mergedpktstructure.png)
 
 This approach reduces queue occupancy, lowers the number of transmissions, and significantly improves packet delivery under high traffic conditions.
 
