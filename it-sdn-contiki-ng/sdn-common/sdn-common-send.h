@@ -29,13 +29,15 @@ extern uint8_t sdn_seq_no;
 
 #define ENQUEUE_AND_SEND(packet_ptr, packet_len, queue_time) \
   INCREMENT_SEQ_NO(packet_ptr, NULL); \
+  uint8_t packet_copy[SDN_MAX_PACKET_SIZE]; \
+  memcpy(packet_copy, packet_ptr, packet_len); \
   if (sdn_send_queue_enqueue((uint8_t *) packet_ptr, packet_len, queue_time) != SDN_SUCCESS) { \
     print_packet_header((uint8_t *)packet_ptr, packet_len); \
     sdn_packetbuf_pool_put((struct sdn_packetbuf *)packet_ptr); \
     SDN_DEBUG_ERROR ("Error on packet enqueue.\n"); \
     return SDN_ERROR; \
   } else { \
-    SDN_METRIC_TX(packet_ptr); \
+    SDN_METRIC_TX(packet_copy); \
     sdn_send_down_once(); \
     return SDN_SUCCESS; \
   }
@@ -43,13 +45,15 @@ extern uint8_t sdn_seq_no;
 
 #define ENQUEUE_AND_SEND_CUSTOM(packet_ptr, packet_len, queue_time, type) \
   INCREMENT_SEQ_NO(packet_ptr, NULL); \
+  uint8_t packet_copy[SDN_MAX_PACKET_SIZE]; \
+  memcpy(packet_copy, packet_ptr, packet_len); \
   if (sdn_send_queue_enqueue_custom((uint8_t *) packet_ptr, packet_len, queue_time, type) != SDN_SUCCESS) { \
     print_packet_header((uint8_t *)packet_ptr, packet_len); \
     sdn_packetbuf_pool_put((struct sdn_packetbuf *)packet_ptr); \
     SDN_DEBUG_ERROR ("Error on packet enqueue.\n"); \
     return SDN_ERROR; \
   } else { \
-    SDN_METRIC_TX(packet_ptr); \
+    SDN_METRIC_TX(packet_copy); \
     sdn_send_down_once(); \
     return SDN_SUCCESS; \
   }

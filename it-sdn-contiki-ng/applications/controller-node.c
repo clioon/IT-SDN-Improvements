@@ -38,91 +38,95 @@ extern uint8_t sdn_seq_no;
 PROCESS(sdn_core_process, "SDN Controller process");
 AUTOSTART_PROCESSES(&sdn_core_process);
 
-void sdn_receive() {
-
+static void sdn_receive_one(uint8_t *packet, uint16_t packet_len) {
   sdn_serial_packet_t serial_pkt;
-  uint8_t * packet_ptr = packetbuf_dataptr();
-  uint8_t * pkt_to_enqueue_ptr;
-  uint8_t packet_len = packetbuf_datalen();
 
-#ifdef DEBUG_SDN
-  int index;
-  SDN_DEBUG ("Packet Received from [%02X", packetbuf_addr(PACKETBUF_ADDR_SENDER)->u8[0]);
-  for (index = 1; index < SDNADDR_SIZE; index++) {
-    SDN_DEBUG (":%02X", packetbuf_addr(PACKETBUF_ADDR_SENDER)->u8[index]);
+  if (sdn_seqno_is_duplicate(SDN_HEADER(packet)) == SDN_YES) return;
+  sdn_seqno_register(SDN_HEADER(packet));
+
+  if (SDN_HEADER(packet)->thl == 0) return;
+  SDN_HEADER(packet)->thl--;
+
+#ifdef SDN_METRIC
+  if ((SDN_ROUTED_BY_ADDR(packet) && sdnaddr_cmp(&sdn_node_addr, &SDN_GET_PACKET_ADDR(packet)) == SDN_EQUAL) ||
+     (SDN_ROUTED_BY_FLOWID(packet) && flowid_cmp(&sdn_controller_flow, &SDN_GET_PACKET_FLOW(packet))== SDN_EQUAL) ||
+      SDN_ROUTED_NOT(packet)) {
+    SDN_METRIC_RX(packet);
   }
 #endif
 
-  SDN_DEBUG ("] \n");
-
-
-// int index;
-// printf ("Packet Received from [%02X", packetbuf_addr(PACKETBUF_ADDR_SENDER)->u8[0]);
-// for (index = 1; index < SDNADDR_SIZE; index++) {
-// printf (":%02X", packetbuf_addr(PACKETBUF_ADDR_SENDER)->u8[index]);
-// }
-// printf ("] \n");
-// printf ("[ \n");
-// for (index=0; index < packet_len; index++) {
-// printf (":%02X", ((uint8_t *)packetbuf_dataptr())[index]);
-// }
-// printf ("] \n");
-
-  print_packet((uint8_t*)packetbuf_dataptr(), packetbuf_datalen());
-
-  if (sdn_seqno_is_duplicate(SDN_HEADER(packetbuf_dataptr())) == SDN_YES) {
-    SDN_DEBUG("Packet is duplicated, dropping.\n");
-    return;
-  }
-  sdn_seqno_register(SDN_HEADER(packetbuf_dataptr()));
-
-  if (SDN_HEADER(packet_ptr)->thl == 0) {
-    SDN_DEBUG ("THL expired.\n");
-    return;
-  }
-  SDN_HEADER(packet_ptr)->thl --;
-
-#ifdef SDN_METRIC
-  // assuming the controller receives packets only to SDN_CONTROLLER_FLOW or its own address
-  // source routed packets are not expected
-  if ( (SDN_ROUTED_BY_ADDR(packet_ptr) && sdnaddr_cmp(&sdn_node_addr, &SDN_GET_PACKET_ADDR(packet_ptr)) == SDN_EQUAL) ||
-       (SDN_ROUTED_BY_FLOWID(packet_ptr) && flowid_cmp(&sdn_controller_flow, &SDN_GET_PACKET_FLOW(packet_ptr))== SDN_EQUAL) ||
-        SDN_ROUTED_NOT(packet_ptr) ) {
-    SDN_METRIC_RX(packet_ptr);
-  }
-#endif // SDN_METRIC
-
-  switch (SDN_HEADER(packet_ptr)->type) {
+  switch (SDN_HEADER(packet)->type) {
     case SDN_PACKET_ND:
-    //   SDN_ND.input(packet_ptr, packet_len);
-    // break;
+      SDN_ND.input(packet, packet_len);
+      break;
     case SDN_PACKET_CD:
-      // SDN_CD.input(packet_ptr, packet_len);
-      pkt_to_enqueue_ptr = (uint8_t*) sdn_packetbuf_pool_get();
-      if (pkt_to_enqueue_ptr) {
-        memcpy(pkt_to_enqueue_ptr, packet_ptr, packet_len);
-        if (sdn_recv_queue_enqueue(pkt_to_enqueue_ptr, packet_len) != SDN_SUCCESS) {
-          sdn_packetbuf_pool_put((struct sdn_packetbuf *)pkt_to_enqueue_ptr);
-          SDN_DEBUG_ERROR ("Error on packet enqueue.\n");
-        } else {
-          if(sdn_recv_queue_size() == 1) {
-            process_post(&sdn_core_process, SDN_EVENT_NEW_PACKET, 0);
-          }
-        }
-      }
-    break;
-
+      SDN_CD.input(packet, packet_len);
+      break;
     default:
-      memcpy(serial_pkt.payload, packet_ptr, packet_len);
-      // Setting serial packet address as the MAC sender.
-      sdnaddr_copy(&serial_pkt.header.node_addr, (sdnaddr_t*)packetbuf_addr(PACKETBUF_ADDR_SENDER));
-      serial_pkt.header.msg_type = SDN_SERIAL_MSG_TYPE_RADIO;
+      memcpy(serial_pkt.payload, packet, packet_len);
+      sdnaddr_copy(&serial_pkt.header.node_addr, &SDN_HEADER(packet)->source);
+      serial_pkt.header.msg_type    = SDN_SERIAL_MSG_TYPE_RADIO;
       serial_pkt.header.payload_len = packet_len;
-      // printf("Sending to Serial\n");
       sdn_serial_send(&serial_pkt);
-    break;
-
+      break;
   }
+}
+
+void sdn_receive() {
+  uint8_t *packet     = packetbuf_dataptr();
+  uint8_t  packet_len = packetbuf_datalen();
+
+#ifdef ENABLE_SDN_TREATMENT
+  if(SDN_PACKET_IS_MERGED(packet)) {
+    SDN_DEBUG ("controller: merged packet received (type %02x, num_subpackets=%d)\n", SDN_HEADER(packet)->type, SDN_GET_NUM_SUBPACKETS(packet, sdn_get_header_size(packet)));
+    uint8_t header_size = sdn_get_header_size(packet);
+    uint8_t num_sub = SDN_GET_NUM_SUBPACKETS(packet, header_size);
+    uint16_t offset = header_size + 1;
+    uint8_t is_src_rtd = SDN_ROUTED_BY_SRC(packet);
+
+    uint8_t indiv[SDN_MAX_PACKET_SIZE];
+    memset(indiv, 0, sizeof(indiv));
+    memcpy(indiv, packet, header_size);
+    SDN_PACKET_SET_NOT_MERGED(indiv);
+
+    uint8_t tail[SDN_MAX_PACKET_SIZE] = {0};
+    uint8_t tail_len = 0;
+
+    if (is_src_rtd) {
+      size_t body_len = sdn_get_src_rtd_merged_subpackets_len(packet);
+      tail_len = packet_len - (body_len + header_size);
+      if(tail_len > 0 && tail_len < SDN_MAX_PACKET_SIZE) memcpy(tail, (packet + header_size + body_len), tail_len);
+    }
+
+    for(int i = 0; i < num_sub; i++) {
+      if(offset + 2 + LINKADDR_SIZE > packet_len) break;
+      
+      uint8_t seq = packet[offset++];
+      sdnaddr_t source;
+      memcpy(&source, packet + offset, LINKADDR_SIZE);
+      offset += LINKADDR_SIZE;
+      uint8_t sub_len = packet[offset++];
+      if (offset + sub_len > packet_len) break;
+
+      memset(indiv + header_size, 0, SDN_MAX_PACKET_SIZE - header_size);
+      memcpy(indiv + header_size, packet + offset, sub_len);
+      offset += sub_len;
+      SDN_HEADER(indiv)->seq_no = seq;
+      SDN_HEADER(indiv)->source = source;
+
+      uint16_t indiv_len = header_size + sub_len;
+      if (is_src_rtd) {
+        indiv_len += tail_len; 
+        if (tail_len > 0) memcpy(indiv + header_size + sub_len, tail, tail_len);
+      }
+
+      sdn_receive_one(indiv, indiv_len);
+    }
+    return;
+  }
+#endif
+
+  sdn_receive_one(packet, packet_len);
 }
 
 void nd_event() {

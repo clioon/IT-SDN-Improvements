@@ -37,7 +37,7 @@
 #include "sdn-common-send.h"
 #include "sdn-util-controller.h"
 
-uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destination);
+uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destination, uint16_t extra_len);
 
 /**********************************************************************************************************************************/
 int send_src_rtd_data_flow_setup(sdnaddr_t* packet_destination, flowid_t dest_flowid, sdnaddr_t* route_nexthop, action_t action) {
@@ -60,10 +60,48 @@ int send_src_rtd_data_flow_setup(sdnaddr_t* packet_destination, flowid_t dest_fl
   sdnaddr_copy(&sdn_packet->action_parameter, route_nexthop);
   sdn_packet->action_id = action;
 
-  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination);
+  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, 0);
 
   if (!packet_len) {
     SDN_DEBUG_ERROR("Failed to append source route header\n");
+    return SDN_ERROR;
+  }
+
+  ENQUEUE_AND_SEND(sdn_packet, packet_len, 0);
+}
+/**********************************************************************************************************************************/
+int send_mult_data_flow_setup(sdnaddr_t* packet_destination, flowid_t dest_flowid, uint8_t set_len, sdn_mult_flow_elem_t* sets) {
+
+  //If this packet is for me, sends error
+  if(memcmp(&sdn_node_addr, packet_destination, SDNADDR_SIZE) == 0) {
+    SDN_DEBUG_ERROR("Controller is the mult data flow setup destination");
+    return SDN_ERROR;
+  }
+
+  sdn_mult_data_flow_setup_t *sdn_packet = (sdn_mult_data_flow_setup_t *) sdn_packetbuf_pool_get();
+  if (sdn_packet == NULL) {
+    SDN_DEBUG_ERROR ("SDN packetbuf pool is empty.\n");
+    return SDN_ERROR;
+  }
+
+  uint16_t fixed_len = sizeof(sdn_mult_data_flow_setup_t);
+  uint16_t sets_total_len = set_len * sizeof(sdn_mult_flow_elem_t);
+
+  MAKE_SDN_HEADER(SDN_PACKET_MULTIPLE_DATA_FLOW_SETUP, SDN_DEFAULT_TTL);
+  flowid_copy(&sdn_packet->flowid, &dest_flowid);
+  // printf("DEBUG: flow id: ");
+  // flowid_print(&sdn_packet->flowid);
+  sdn_packet->set_len = set_len;
+
+  uint8_t* sets_ptr = ((uint8_t*)sdn_packet) + fixed_len;
+  memcpy(sets_ptr, sets, sets_total_len);
+
+  uint16_t packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, sets_total_len);
+  // printf("DEBUG: endereco destino mfs: ");
+  //sdnaddr_print(packet_destination);
+
+  if (!packet_len) {
+    SDN_DEBUG_ERROR("Failed to append source route header (multi-setup)\n");
     return SDN_ERROR;
   }
 
@@ -90,7 +128,7 @@ int send_src_rtd_control_flow_setup(sdnaddr_t* packet_destination, sdnaddr_t* ro
   sdnaddr_copy(&sdn_packet->action_parameter, route_nexthop);
   sdn_packet->action_id = action;
 
-  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination);
+  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, 0);
 
   if (!packet_len) {
     SDN_DEBUG_ERROR("Failed to append source route header\n");
@@ -119,7 +157,7 @@ uint8_t sdn_send_src_rtd_phase_addr(sdnaddr_t* packet_destination, sdnaddr_t* ph
   sdnaddr_copy(&((sdn_phase_info_src_rtd_t*) sdn_packet)->phase_receiver, phase_receiver);
   SDN_PACKET_GET_FIELD(sdn_packet, sdn_phase_info_src_rtd_t, phase) = phase;
 
-  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination);
+  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, 0);
 
   if (!packet_len) {
     SDN_DEBUG_ERROR("Failed to append source route header\n");
@@ -174,7 +212,7 @@ int send_src_rtd_ack(sdnaddr_t* packet_destination, uint8_t acked_packed_type, u
   sdn_packet->acked_packed_type = acked_packed_type;
   sdn_packet->acked_packed_seqno = acked_packed_seqno;
 
-  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination);
+  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, 0);
 
   if (!packet_len) {
     SDN_DEBUG_ERROR("Failed to append source route header\n");
@@ -201,7 +239,7 @@ int send_src_rtd_cont_mngt(sdnaddr_t* packet_destination, uint16_t metrics) {
   MAKE_SDN_HEADER(SDN_PACKET_MNGT_CONT_SRC_RTD, SDN_DEFAULT_TTL);
   sdn_packet->mngt_request = metrics;
 
-  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination);
+  packet_len = add_src_rtd_header((sdn_packetbuf*)sdn_packet, packet_destination, 0);
 
   if (!packet_len) {
     SDN_DEBUG_ERROR("Failed to append source route header\n");
@@ -213,7 +251,7 @@ int send_src_rtd_cont_mngt(sdnaddr_t* packet_destination, uint16_t metrics) {
 }
 #endif
 /**********************************************************************************************************************************/
-uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destination) {
+uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destination, uint16_t extra_len) {
   //Source Routed data flow setup packet
   route_ptr route = NULL;
   uint16_t packet_len = 0;
@@ -223,6 +261,8 @@ uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destina
   uint64_t* unidir_list = NULL;
 #endif
 
+  uint8_t no_real_dest = 0;
+
   printf("appending source route header\n");
 
   if (sdn_packet == NULL) {
@@ -231,6 +271,16 @@ uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destina
   }
 
   switch (SDN_HEADER(sdn_packet)->type) {
+
+    case SDN_PACKET_MULTIPLE_DATA_FLOW_SETUP:
+      packet_len  =                            sizeof(sdn_mult_data_flow_setup_t) + extra_len;
+      path_len    = &SDN_PACKET_GET_FIELD(sdn_packet, sdn_mult_data_flow_setup_t, path_len);
+      real_dest   = 0;
+      no_real_dest = 1;
+      #if RDC_UNIDIR_SUPPORT
+      unidir_list = &SDN_PACKET_GET_FIELD(sdn_packet, sdn_mult_data_flow_setup_t, unidir_list);
+      #endif
+      break;
 
     case SDN_PACKET_SRC_ROUTED_CONTROL_FLOW_SETUP:
       packet_len  =                            sizeof(sdn_src_rtd_control_flow_setup_t);
@@ -324,7 +374,7 @@ uint16_t add_src_rtd_header(sdn_packetbuf* sdn_packet, sdnaddr_t* packet_destina
   printf("\n");
   route = route_head;
 
-  sdnaddr_copy(real_dest, packet_destination);
+  if (!no_real_dest) sdnaddr_copy(real_dest, packet_destination);
 
   int index_hops = count_hops - 2;
   int max_hops = (SDN_MAX_PACKET_SIZE - packet_len) / sizeof(sdnaddr_t);

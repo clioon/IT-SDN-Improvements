@@ -6393,7 +6393,7 @@
     <plugin_config>
       <script>TIMEOUT(1800000);
 &#xD;
-sim.setSpeedLimit(1.0);&#xD;
+sim.setSpeedLimit(4);&#xD;
 &#xD;
 FileWriter=Java.type("java.io.FileWriter");&#xD;
 my_output = new FileWriter("/dev/null");

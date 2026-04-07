@@ -40,10 +40,12 @@ DEFINES += SDN_ROUTE_SENSIBILITY=0.5
 
 DEFINES += SDN_CONF_TX_RELIABILITY=1
 DEFINES += SDN_NEIGHBORINFO_NEIGHBORS_TO_SRC
-#DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS
+DEFINES += SDN_NEIGHBORINFO_SRC_TO_NEIGHBORS
 
 DEFINES += SDN_SOURCE_ROUTED
-DEFINES += SDN_INFORM_NEW_EDGE_SERIAL
+#DEFINES += SDN_INFORM_NEW_EDGE_SERIAL
+
+DEFINES += SDN_MFS
 
 # routes sensibility related setings
 DEFINES += WEIGHT_ETX=1.0
@@ -53,7 +55,7 @@ DEFINES += WEIGHT_ENERGY=0.0
 #DEFINES += MANAGEMENT
 
 # DEFINES += RDC_CONF_UNIDIR_SUPPORT=1
-DEFINES += CONTROLLER_BIDIR_ROUTES_ONLY=0
+DEFINES += CONTROLLER_BIDIR_ROUTES_ONLY=1
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -96,6 +98,7 @@ SOURCES += main.cpp\
     ../sdn-serial-send.c \
     ../sdn-process-packets-controller.c \
     ../sdn-reliability.c \
+    ../sdn-graph.c \
     ../sdn-send-packet-controller.c \
     ../sdn-util-controller.c \
     mainwindow_wrapper.cpp
@@ -126,6 +129,7 @@ HEADERS  += mainwindow.h \
     ../sdn-serial-send.h \
     ../sdn-process-packets-controller.h \
     ../sdn-reliability.h \
+    ../sdn-graph.h \
     ../sdn-send-packet-controller.h \
     ../sdn-util-controller.h \
     mainwindow_wrapper.h

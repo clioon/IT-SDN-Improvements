@@ -1,6 +1,6 @@
 CONTIKI_PROJECT = enabled-node sink-node
 
-CONTIKI=/home/lion/ic/contiki-ng
+CONTIKI?=/home/lion/ic/contiki-ng
 
 # CONTIKIDIRS
 EXTERNALDIRS += ../contiki-sdn/
@@ -35,7 +35,8 @@ DEFINES+=NBR_TABLE_CONF_MAX_NEIGHBORS=16
 CFLAGS += -DSDN_ENABLED_NODE
 # Others [SDN_CONTROLLER_NODE, SDN_CONTROLLER_PC]
 
-CFLAGS += -DDEBUG_SDN
+CFLAGS += -DENABLE_SDN_TREATMENT
+#CFLAGS += -DDEBUG_SDN
 CFLAGS += -DSDN_METRIC
 #CFLAGS += -DDEMO
 
@@ -50,5 +51,7 @@ MAKE_ROUTING = MAKE_ROUTING_NULLROUTING
 CFLAGS += -DLINKADDR_CONF_SIZE=2
 
 all: enabled-node-hello-world
+
+CFLAGS += $(EXTRA_FLAGS)
 
 include $(CONTIKI)/Makefile.include

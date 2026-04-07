@@ -1,6 +1,6 @@
 CONTIKI_PROJECT = enabled-node sink-node
 
-CONTIKI=/home/lion/ic/contiki-ng
+CONTIKI?=/home/lion/ic/contiki-ng
 
 # CONTIKIDIRS
 EXTERNALDIRS += ../contiki-sdn/
@@ -50,5 +50,7 @@ MAKE_ROUTING = MAKE_ROUTING_NULLROUTING
 CFLAGS += -DLINKADDR_CONF_SIZE=2
 
 all: $(CONTIKI_PROJECT)
+
+CFLAGS += $(EXTRA_FLAGS)
 
 include $(CONTIKI)/Makefile.include

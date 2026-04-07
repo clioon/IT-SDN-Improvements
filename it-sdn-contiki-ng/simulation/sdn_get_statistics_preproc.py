@@ -13,7 +13,7 @@ def preproc_file(filename):
     #     """, re.X) #re.X: verbose so we can comment along
 
     expression = re.compile(r"""
-        =(?:FG|RX|TX[AB]?)|E:\s\d+\smJ # RX or TX
+        =(?:FG|RX|TX[AB]?|MG|RP)|E:\s\d+\smJ # RX or TX
         """, re.X) #re.X: verbose so we can comment along
 
     try:

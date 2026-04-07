@@ -35,7 +35,7 @@
 //Defines minimum battery value for routing in node.
 #define THRESHOLD_BATTERY_ROUTE 5 // in percent
 
-#define MAX_ETX_METRIC 100 //1024 // 65535
+#define MAX_ETX_METRIC 0x111 //1024 // 65535
 
 static int get_weight(unsigned char energy, int etx);
 

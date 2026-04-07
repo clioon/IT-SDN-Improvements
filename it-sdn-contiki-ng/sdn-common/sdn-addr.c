@@ -115,3 +115,61 @@ void flowid_print(flowid_t* f) {
 
   printf("%04u", flowid);
 }
+
+
+size_t sdn_get_src_rtd_merged_subpackets_len(uint8_t *packet) {
+  // skip header and destination
+  uint8_t *p = packet + sizeof(sdn_header_t) + sizeof(sdnaddr_t);
+ 
+  uint8_t num_sub = *p++;
+  size_t total_size = 0;
+  
+  if (num_sub > 8) return -1;
+ 
+  for(uint8_t i = 0; i < num_sub; i++) {
+      p++; // skip the seq no byte
+      p += LINKADDR_SIZE; // skip the source bytes
+      uint8_t len = *p++;
+      total_size += 2 + LINKADDR_SIZE + len; // byte that stores the seq no + byte that stores len + LINKADDR_SIZE bytes that stores source + length
+      p += len;
+  }
+ 
+  return total_size;
+}
+
+sdnaddr_t *sdn_packet_get_next_src_addr(uint8_t *p, size_t pkt_type_size) {
+  if (SDN_PACKET_IS_MERGED(p)) {
+    size_t sub_len = sdn_get_src_rtd_merged_subpackets_len(p);
+    if (sub_len == (size_t)-1) return NULL;
+
+    uint8_t *path_len_ptr = p
+      + sizeof(sdn_header_t) // header
+      + sizeof(sdnaddr_t) // destination
+      + 1 // no of subpackets
+      + sub_len
+      + sizeof(sdnaddr_t);
+
+    uint8_t path_len = *path_len_ptr;
+    return &SDN_GET_ADDR_IN_ARRAY(path_len_ptr + 1, path_len);
+  } else {
+    uint8_t *path_len_ptr = p + pkt_type_size - sizeof(uint8_t);
+    uint8_t path_len = *path_len_ptr;
+    return &SDN_GET_ADDR_IN_ARRAY(path_len_ptr + 1, path_len); 
+  }
+}
+
+sdnaddr_t *sdn_get_real_dest_from_merged_packet(uint8_t *packet) {
+  if (!SDN_PACKET_IS_MERGED(packet)) return SDN_GET_PACKET_REAL_DEST(packet);
+
+  size_t sub_len = sdn_get_src_rtd_merged_subpackets_len(packet);
+  if (sub_len == (size_t)-1) return NULL;
+  uint8_t *real_dest_ptr = packet;
+
+  real_dest_ptr += 
+  sizeof(sdn_header_t)
+  + sizeof(sdnaddr_t) // destination
+  + 1                 // num_subpackets
+  + sub_len;          // subpackets
+  
+  return (sdnaddr_t*)real_dest_ptr;
+}

@@ -327,6 +327,8 @@ uint8_t sdn_send_data(uint8_t *data, uint16_t len, flowid_t flowid) {
     return SDN_ERROR;
   }
 
+  memset(((uint8_t *)sdn_packet), 0, SDN_MAX_PACKET_SIZE);
+
   MAKE_SDN_HEADER(SDN_PACKET_DATA, SDN_DEFAULT_TTL)
 
   flowid_copy(&sdn_packet->flowid, &flowid);

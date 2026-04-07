@@ -65,6 +65,8 @@ def parse_file(filename):
     rx = defaultdict(list)
     txb = {}
     energy = {}
+    merged_packets = defaultdict(lambda: defaultdict(int))
+    replaced_packets = defaultdict(lambda: defaultdict(int))
     fg_time = -1
 
     expression = re.compile(r"""
@@ -87,6 +89,9 @@ def parse_file(filename):
         =(?P<FG>FG) # FG flag
         =(?P<NN>[0-9]*) # number of nodes
         """, re.X) #re.X: verbose so we can comment along
+    
+    mg_expression = re.compile(r"=MG=(?P<MG_DIR>RX|TX)=(?P<MG_TYPE>[0-9A-F]{2})")
+    rp_expression = re.compile(r"=RP=(?P<RP_DIR>RX|TX)=(?P<RP_TYPE>[0-9A-F]{2})")
 
     energy_expression = re.compile(r"""
         (?P<TIME>.*) # First field is time, we do not match any pattern
@@ -213,6 +218,18 @@ def parse_file(filename):
                             else:
                                 print("there should be only one FG")
 
+                        s_mg = mg_expression.search(l)
+                        if s_mg:
+                            mg_dir = s_mg.group('MG_DIR')
+                            mg_type = s_mg.group('MG_TYPE')
+                            merged_packets[mg_dir][mg_type] += 1
+                        else:
+                            s_rp = rp_expression.search(l)
+                            if s_rp:
+                                rp_dir = s_rp.group('RP_DIR')
+                                rp_type = s_rp.group('RP_TYPE')
+                                replaced_packets[rp_dir][rp_type] += 1
+
     except IOError:
         print("Error reading file:", filename)
 
@@ -252,6 +269,16 @@ def parse_file(filename):
                     data_delay_sink_dist[dist_to_sink(k[0], nsink, grid_side)] += [(rx_time - tx_time)]
                 if (rx_time - tx_time) < 0:
                     print("negative time", k, v)
+
+    if replaced_packets.get('TX'):
+        for pkt_type, rp_count in replaced_packets['TX'].items():
+            if sent_type.get(pkt_type):
+                sent_type[pkt_type] = max(0, sent_type[pkt_type] - rp_count)
+
+    if replaced_packets.get('RX'):
+        for pkt_type, rp_count in replaced_packets['RX'].items():
+            if sent_type.get(pkt_type):
+                sent_type[pkt_type] = max(0, sent_type[pkt_type] - rp_count)
 
     print("node", end=";")
     for t in sorted(sent_type.keys()):
@@ -338,6 +365,16 @@ def parse_file(filename):
         totalDelay = sum(delay_type.values())
         print("%.2f" % (totalDelay / totalRecv,))
 
+    print("\nMerged packets (MG) by direction and type:")
+    for direction in sorted(merged_packets.keys()):
+        for pkt_type, count in sorted(merged_packets[direction].items()):
+            print(f"Direction {direction}, Type {pkt_type}: {count} vezes")
+
+    print("\nReplaced packets (RP) by direction and type:")
+    for direction in sorted(replaced_packets.keys()):
+        for pkt_type, count in sorted(replaced_packets[direction].items()):
+            print(f"Direction {direction}, Type {pkt_type}: {count} vezes")
+
     delivery_data = -1
     delivery_ctrl = -1
     delay_data = -1
@@ -347,24 +384,24 @@ def parse_file(filename):
     if sent_type['05']:
         delivery_data = 100.0*received_type['05']/sent_type['05']
 
-    if sum(v if k not in ('05', '0A', '0B') else 0 in sent_type.items()):
-        delivery_ctrl = 100.0*sum(v if k not in ('05', '0A', '0B') else 0 in received_type.items()) \
-                            / sum(v if k not in ('05', '0A', '0B') else 0 in sent_type.items())
+    if sum(v if k not in ('05', '0A', '0B') else 0 for k,v in sent_type.items()):
+        delivery_ctrl = 100.0*sum(v if k not in ('05', '0A', '0B') else 0 for k,v in received_type.items()) \
+                            / sum(v if k not in ('05', '0A', '0B') else 0 for k,v in sent_type.items())
 
     if received_type['05']:
         delay_data = delay_type['05'] / received_type['05']
 
-    if sum(v if k not in ('05', '0A', '0B') else 0 in received_type.items()):
-        delay_ctrl = sum(v if k not in ('05', '0A', '0B') else 0 in delay_type.items()) \
-                / sum(v if k not in ('05', '0A', '0B') else 0 in received_type.items())
+    if sum(v if k not in ('05', '0A', '0B') else 0 for k,v in received_type.items()):
+        delay_ctrl = sum(v if k not in ('05', '0A', '0B') else 0 for k,v in delay_type.items()) \
+                / sum(v if k not in ('05', '0A', '0B') else 0 for k,v in received_type.items())
 
-    ctrl_overhead = sum(v if k not in ('05',) else 0 in sent_type.items())
+    ctrl_overhead = sum(v if k not in ('05',) else 0 for k,v in sent_type.items())
 
     if energy:
         energy_avg = sum(energy.values())/len(energy)
 
     print ()
-    print ("results_summary = (delivery_data, delivery_ctrl, delay_data, delay_ctrl, ctrl_overhead, fg_time)")
+    print ("results_summary = (delivery_data, delivery_ctrl, delay_data, delay_ctrl, ctrl_overhead, fg_time, energy, )")
     results_summary = (delivery_data, delivery_ctrl, delay_data, delay_ctrl, ctrl_overhead, fg_time, energy_avg, sent_type)
     print (results_summary)
     return results_summary
@@ -377,6 +414,7 @@ def pretty_scenario(name):
     pretty_nd['IM-NV'] = "IM-NV"
     pretty_nd['NV-SC'] = "NV-SC"
     pretty_nd['IM-SC'] = "Improved"
+    pretty_nd['IM-SC-nullrdc-truebidir'] = "TrueBidir"
 
     n = repr(name[0])
     topo = name[1]
@@ -397,20 +435,20 @@ if __name__ == "__main__":
         parse_file(sys.argv[1])
         exit(0)
 
-    nodes_v = (16, 25, 36, 49, 64, 81, 100)
-    nodes_v = (16, 25, 36, 49, 64)
+    nodes_v = (16, 25, 36, 49, 64, 81, 169)
+    #nodes_v = (81, 169)
     topology_types = ('GRID', 'BERLIN')
-    topology_types = ('GRID', )
+    topology_types = ('GRID', 'BERLIN')
     link_types = ('FULL', 'RND', 'CTA', 'SPN')
     link_types = ('FULL', )
     topologies = [t + '-' + l for t in topology_types for l in link_types]
-    nd_possibilities = ('IM-SC-nullrdc-bidir', 'IM-SC-nullrdc-unidir')
+    nd_possibilities = ('IM-SC-nullrdc-truebidir',)
     fileprefix = ""
     datarates = (1,)
     MIN_ITER = 1
     MAX_ITER = 10
-    sim_time = 30.0
-    results_dir = "./port_tests/"
+    sim_time = 3600.0
+    results_dir = "../"
     partial_results = defaultdict(list)
     partial_results_packet_count = defaultdict(list)
 
@@ -443,9 +481,9 @@ if __name__ == "__main__":
                             r = parse_file(results_dir + filename)
                             partial_results[scenario] += [r[:-1]]
                             partial_results_packet_count[scenario] += [r[-1]]
-                        except:
+                        except Exception as e:
                             # problematic_files += [filename]
-                            print ("problem parsing", filename)
+                            print ("problem parsing", filename, ":", e)
 
     metric_names = ("delivery_data", "delivery_ctrl", "delay_data", "delay_ctrl", "ctrl_overhead", "fg_time", "energy")
     f_all.write("scenario;")
@@ -605,7 +643,7 @@ if __name__ == "__main__":
     plt.rcParams.update({'font.size': 16, 'legend.fontsize': 14})
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting delivery")
     i_metric = 0
@@ -634,7 +672,7 @@ if __name__ == "__main__":
     for chosen_n in (9,25):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+        plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
         print ()
         print ("ploting delivery for slides", chosen_n)
         i_metric = 0
@@ -694,7 +732,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting delivery data only")
     i_metric = 0
@@ -750,7 +788,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     ax.set_yscale('log')#, basex=2)
     print ()
     print ("ploting delay")
@@ -785,7 +823,7 @@ if __name__ == "__main__":
     for chosen_n in (9,25):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+        plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
         print ()
         print ("ploting delay for slides", chosen_n)
         i_metric = 2
@@ -850,7 +888,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting overhead")
     i_metric = 4
@@ -884,7 +922,7 @@ if __name__ == "__main__":
     for chosen_n in (9,25):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+        plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
         print ()
         print ("ploting overhead for slides", chosen_n)
         i_metric = 4
@@ -947,7 +985,7 @@ if __name__ == "__main__":
     ##########################################################################
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    plt.grid(b=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
+    plt.grid(visible=True, which='major', color='gray', linestyle='--', lw=0.1, axis='y')
     print ()
     print ("ploting time to full network")
     i_metric = 5

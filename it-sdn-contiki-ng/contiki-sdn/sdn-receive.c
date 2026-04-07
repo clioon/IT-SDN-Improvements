@@ -68,6 +68,7 @@ uint8_t overhear_to_cd = SDN_NO;
   if (sdn_packet == NULL) { \
     SDN_DEBUG_ERROR ("SDN packetbuf pool is empty.\n");
   } else {
+    memset(sdn_packet, 0,  SDN_MAX_PACKET_SIZE);
     memcpy(sdn_packet, packetbuf_dataptr(), packetbuf_datalen());
     //TODO: DAGO colocar essa verificação antes de reservar memória do pool
     if (SDN_HEADER(sdn_packet)->thl == 0) {

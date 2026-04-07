@@ -57,6 +57,7 @@
 #endif
 
 #include "stdio.h"
+#include "sdn-protocol.h"
 
 #define TO_STRING(value) #value
 #define STRINGFY(value) #value " = " TO_STRING(value)
@@ -84,16 +85,39 @@
   if (SDN_ROUTED_BY_FLOWID(packet_ptr)) \
     flowid_print(&SDN_GET_PACKET_FLOW(packet_ptr)); \
   if (SDN_ROUTED_BY_SRC(packet_ptr)) \
-    sdnaddr_print_nodebug(&SDN_GET_PACKET_REAL_DEST(packet_ptr)); \
+    sdnaddr_print_nodebug(sdn_get_real_dest_from_merged_packet((uint8_t *)packet_ptr)); \
   printf("=\n");
 
 #define SDN_METRIC_TX(packet_ptr) SDN_METRIC_RXTX(packet_ptr, "TX")
 #define SDN_METRIC_RX(packet_ptr) SDN_METRIC_RXTX(packet_ptr, "RX")
 #define SDN_METRIC_ENERGY(...) printf(__VA_ARGS__);
+
+#define SDN_METRIC_MERGE_RXTX(packet_ptr1, packet_ptr2, RXTX) \
+  printf("="); \
+  sdnaddr_print_nodebug(&SDN_HEADER(packet_ptr1)->source); \
+  printf("="); \
+  sdnaddr_print_nodebug(&SDN_HEADER(packet_ptr2)->source); \
+  printf("=MG=%s=%02X=%02X=%02X=\n", RXTX, SDN_HEADER(packet_ptr1)->type, SDN_HEADER(packet_ptr1)->seq_no, SDN_HEADER(packet_ptr2)->seq_no);
+#define SDN_METRIC_MERGE_TX(packet_ptr1, packet_ptr2) SDN_METRIC_MERGE_RXTX(packet_ptr1, packet_ptr2, "TX")
+#define SDN_METRIC_MERGE_RX(packet_ptr1, packet_ptr2) SDN_METRIC_MERGE_RXTX(packet_ptr1, packet_ptr2, "RX")
+
+#define SDN_METRIC_REPLACE_RXTX(packet_ptr, RXTX) \
+  printf("="); \
+  sdnaddr_print_nodebug(&SDN_HEADER(packet_ptr)->source); \
+  printf("=RP=%s=%02X=%02X=\n", RXTX, SDN_HEADER(packet_ptr)->type, SDN_HEADER(packet_ptr)->seq_no);
+#define SDN_METRIC_REPLACE_TX(packet_ptr) SDN_METRIC_REPLACE_RXTX(packet_ptr, "TX")
+#define SDN_METRIC_REPLACE_RX(packet_ptr) SDN_METRIC_REPLACE_RXTX(packet_ptr, "RX")
+
 #else //SDN_METRIC
 #define SDN_METRIC_RXTX(packet_ptr, RXTX)
 #define SDN_METRIC_TX(packet_ptr)
 #define SDN_METRIC_RX(packet_ptr)
+#define SDN_METRIC_MERGE_RXTX(packet_ptr1, packet_ptr2, RXTX)
+#define SDN_METRIC_MERGE_RX(packet_ptr1, packet_ptr2)
+#define SDN_METRIC_MERGE_TX(packepacket_ptr1, packet_ptr2t_ptr)
+#define SDN_METRIC_REPLACE_RXTX(packet_ptr, RXTX)
+#define SDN_METRIC_REPLACE_RX(packet_ptr)
+#define SDN_METRIC_REPLACE_TX(packet_ptr)
 #define SDN_METRIC_ENERGY(...)
 #endif //SDN_METRIC
 

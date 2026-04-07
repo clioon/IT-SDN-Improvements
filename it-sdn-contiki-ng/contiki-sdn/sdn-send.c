@@ -64,14 +64,6 @@ uint8_t sld_count; // helper variable
 uint8_t sld_remove_element(uint8_t index);
 #endif //SDN_TX_RELIABILITY
 
-typedef enum {
-  SDN_SEND_IDLE,
-  SDN_SEND_ACK_WAIT,
-  SDN_SEND_TRICKLE_TIME,
-  SDN_SEND_FULL_WINDOW,
-  SDN_SEND_BUSY
-} sdn_send_status_t;
-
 #if SDN_1HOP_RELIABILITY
 #define TRICKLE_TIME_WINDOW 7
 
@@ -87,6 +79,10 @@ void trickle_time_callback(void *ptr);
 PROCESS(sdn_send_process, "SDN Send process");
 
 sdn_send_status_t sdn_send_status;
+
+sdn_send_status_t sdn_get_send_status() {
+  return (sdn_send_status == SDN_SEND_IDLE) ? SDN_SEND_IDLE : SDN_SEND_ACK_WAIT;
+}
 
 void sdn_send_init() {
 
@@ -128,6 +124,11 @@ PROCESS_THREAD(sdn_send_process, ev, data)
     PROCESS_WAIT_EVENT();
 
       if(ev == SDN_EVENT_NEW_PACKET) {
+
+#ifdef ENABLE_SDN_TREATMENT
+        extern volatile uint8_t sdn_processing_send_queue;
+        PROCESS_WAIT_UNTIL(sdn_processing_send_queue == 0);
+#endif
 
         sdn_send_queue_data_t *queue_data = sdn_send_queue_head();
         action_t action;
@@ -459,6 +460,8 @@ uint8_t sld_await_ack(uint8_t* packet, uint8_t len) {
 
   uint8_t i;
   uint8_t is_redundant;
+
+  if (SDN_HEADER(packet)->reserved & 0x1) return SDN_SUCCESS;
 
   if (! (SDN_HEADER(packet)->type == SDN_PACKET_NEIGHBOR_REPORT || \
       SDN_HEADER(packet)->type == SDN_PACKET_DATA_FLOW_REQUEST || \

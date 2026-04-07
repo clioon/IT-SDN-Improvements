@@ -103,6 +103,16 @@
   }
 #endif
 
+typedef enum {
+  SDN_SEND_IDLE,
+  SDN_SEND_ACK_WAIT,
+  SDN_SEND_TRICKLE_TIME,
+  SDN_SEND_FULL_WINDOW,
+  SDN_SEND_BUSY
+} sdn_send_status_t;
+
+sdn_send_status_t sdn_get_send_status();
+
 void sdn_send_init();
 
 void sdn_send_down_once();

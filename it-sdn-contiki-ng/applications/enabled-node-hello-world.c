@@ -50,7 +50,7 @@ PROCESS_THREAD(sdn_test_process, ev, data) {
   static struct etimer start_timer;
   
   etimer_set(&periodic_timer, 1 * CLOCK_SECOND);
-  etimer_set(&start_timer, 40 * CLOCK_SECOND);
+  etimer_set(&start_timer, 50 * CLOCK_SECOND);
   
   if (sdn_node_addr.u8[0] == 2) {
   
@@ -69,21 +69,21 @@ PROCESS_THREAD(sdn_test_process, ev, data) {
     
     etimer_restart(&periodic_timer);
     
-    if (sdn_node_addr.u8[0] == 3 || sdn_node_addr.u8[0] == 4 || sdn_node_addr.u8[0] == 5) {
+    if (sdn_node_addr.u8[0] != 2 && sdn_node_addr.u8[0] != 1) {
     
       //printf("sender");
     
-      //char *data = "Hello World!\n";
+      char *data1 = "Hello!\n";
       char *data4 = "Goodbye World!";
-      //char *data3 = "Test 3";
-      //char *data2 = "Test 4";
+      char *data3 = "Test";
+      char *data2 = "Packet Data";
 
       //sdn_send((uint8_t *)data, strlen(data), 2018);
-      //sdn_send((uint8_t *)data, strlen(data), 2018);
-      
-      //sdn_send((uint8_t *)data3, strlen(data3), 2018);
-      //sdn_send((uint8_t *)data4, strlen(data4), 2018);
+      sdn_send((uint8_t *)data2, strlen(data2), 2018);
+      sdn_send((uint8_t *)data1, strlen(data1), 2018);
+      sdn_send((uint8_t *)data3, strlen(data3), 2018);
       sdn_send((uint8_t *)data4, strlen(data4), 2018);
+      // sdn_send((uint8_t *)data4, strlen(data4), 2018);
   
     }
     
