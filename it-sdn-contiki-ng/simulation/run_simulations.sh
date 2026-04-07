@@ -3,13 +3,6 @@
 #set -x
 #set -v
 
-# if [ "$1" = "enable" ]; then
-#   EXTRA_FLAGS="-DENABLE_SDN_TREATMENT"
-# 	echo "sdn treatment enabled"
-# else
-#   EXTRA_FLAGS=""
-# fi
-
 # Simulation set configuration
 
 #queue treatment
